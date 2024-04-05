@@ -1,0 +1,42 @@
+.image1{
+    width: 70px;
+    height: 70px;
+}
+#header{
+    width:25%;
+    height:50px;
+    
+}
+.container-fluid{
+    background-color:#191552;
+    height:100px;
+    
+}
+.navbar{
+    padding:0px;
+    margin:0px;
+}
+body{
+    background-color: white;
+}
+.nav-link{
+    color:rgb(0, 146, 195);
+    font-size:20px;
+    text-decoration: underline;
+    cursor: pointer;
+}
+.nav-link:hover{
+    color:#0fd5f3;
+}
+.nav-link:active{
+    color:#7aedff;
+}
+
+
+
+
+
+
+ 
+    
+
