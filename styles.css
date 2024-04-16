@@ -1,8 +1,5 @@
 html{
-height:500vh;
-max-height: fit-content;
 overflow-y:scroll;
-position:static;
 }
 /* Googlefont Poppins CDN Link */
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap');
@@ -16,7 +13,7 @@ body{
   min-height: 100vh;
 }
 nav{
-  position: fixed;
+  position: absolute;
   top: 0;
   left: 0;
   width: 100%;
@@ -315,142 +312,94 @@ nav .navbar .links li .sub-menu li{
   max-width: 100%;
 } 
 }
-/* Importing Google font - Open Sans */
-@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
 
 * {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  font-family: 'Open Sans', sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+.main-section {
+    width: 100%;
+    text-align: center;
+    padding: 5rem 0;
 }
 
 .footer {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  max-width: 1280px;
-  width: 95%;
-  background: #10182F;
-  border-radius: 6px;
+    display: flex;
+    color: #fffefe;
+    padding: 2rem 0;
+    height: auto;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    background-color:#191552;
 }
 
-.footer .footer-row {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-  gap: 3.5rem;
-  padding: 60px;
+.box {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 20px;
 }
 
-.footer-row .footer-col h4 {
-  color: #fff;
-  font-size: 1.2rem;
-  font-weight: 400;
+.footer h2 {
+    font-size: 1.3rem;
+    margin-bottom: 1rem;
+    font-weight: bold;
 }
 
-.footer-col .links {
-  margin-top: 20px;
+.links li {
+    list-style: none;
+    margin-bottom:5px;
+    text-align: center;
+    font-weight: 100;
+  
 }
 
-.footer-col .links li {
-  list-style: none;
-  margin-bottom: 10px;
+.links li a {
+    text-decoration: none;
+    color: #fff;
 }
 
-.footer-col .links li a {
-  text-decoration: none;
-  color: #bfbfbf;
+.registration {
+    display: flex;
+    flex-direction: column;
 }
 
-.footer-col .links li a:hover {
-  color: #fff;
+.registration input {
+    padding: 10px;
+    font-weight: 100;
+    border: none;
+    outline: none;
+    border-radius: 5px;
+    text-align: center;
+    font-size: 12px;
+    margin: 1rem 0;
 }
 
-.footer-col p {
-  margin: 20px 0;
-  color: #bfbfbf;
-  max-width: 300px;
+button {
+    border: none;
+    padding: 12px 0;
+    border-radius: 30px;
+    cursor: pointer;
 }
 
-.footer-col form {
-  display: flex;
-  gap: 5px;
+.address {
+    text-align: center;
+    margin-bottom: 10px;
 }
 
-.footer-col input {
-  height: 40px;
-  border-radius: 6px;
-  background: none;
-  width: 100%;
-  outline: none;
-  border: 1px solid #7489C6 ;
-  caret-color: #fff;
-  color: #fff;
-  padding-left: 10px;
+.social {
+    display: flex;
+    list-style: none;
 }
 
-.footer-col input::placeholder {
-  color: #ccc;
-}
-
- .footer-col form button {
-  background: #fff;
-  outline: none;
-  border: none;
-  padding: 10px 15px;
-  border-radius: 6px;
-  cursor: pointer;
-  font-weight: 500;
-  transition: 0.2s ease;
-}
-
-.footer-col form button:hover {
-  background: #cecccc;
-}
-
-.footer-col .icons {
-  display: flex;
-  margin-top: 30px;
-  gap: 30px;
-  cursor: pointer;
-}
-
-.footer-col .icons i {
-  color: #afb6c7;
-}
-
-.footer-col .icons i:hover  {
-  color: #fff;
-}
-
-@media (max-width: 768px) {
-  .footer {
-    position: relative;
-    bottom: 0;
-    left: 0;
-    transform: none;
-    width: 100%;
-    border-radius: 0;
-  }
-
-  .footer .footer-row {
-    padding: 20px;
-    gap: 1rem;
-  }
-
-  .footer-col form {
-    display: block;
-  }
-
-  .footer-col form :where(input, button) {
-    width: 100%;
-  }
-
-  .footer-col form button {
-    margin: 10px 0 0 0;
-  }
+.social li {
+    margin: 0 8px;
+    cursor: pointer;
+    font-size: 18px;
 }
 
 
