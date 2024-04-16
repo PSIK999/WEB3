@@ -352,6 +352,7 @@ nav .navbar .links li .sub-menu li{
 
 .links li {
     list-style: none;
+    margin-right:30px;
     margin-bottom:5px;
     text-align: center;
     font-weight: 100;
