@@ -514,3 +514,26 @@ html{
     border-radius: 0.375rem;
     transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out
 }
+.FeaturedProducts {
+  display: flex;
+  margin: 4rem;
+  justify-content: space-around;
+}
+.card-img-top{
+  max-height: 75%;
+}
+.Categoriesitems{
+  display: flex;
+  margin: 4rem;
+  justify-content: space-around;
+}
+#Categories {
+  margin: 2rem;
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+
+}
+#FeaturedProductstitle  {
+  margin: 2rem;
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+
+}
