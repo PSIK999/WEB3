@@ -373,12 +373,16 @@
     font-size:25px;
     text-align:center;
     border:3px;
+    border-color:rgb(147, 147, 147);
     border-style:solid;
     border-image-width:100px;
     border-image-outset: 6px;
     padding: 16px 28px;
     border-radius:100px;
   }
+   .btn-shop .button1:hover{
+  border-color:white;
+}
   @import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
   
   * {
