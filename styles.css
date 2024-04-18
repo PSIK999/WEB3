@@ -321,10 +321,65 @@
     max-width: 100%;
   } 
   }
-  .mainimage .imagepage {
+  .imagepage {
     width:100%;
-    height:100%;
     max-width: fit-content;
+    position:relative;
+    object-fit: cover;
+    opacity:0.3;
+  
+  }
+  .mainimage{
+    background-color:rgb(0, 0, 0);
+    text-align: center;
+    color:white;
+  }
+  .textimage{
+    position:absolute;
+    top:50%;
+    left: 50%;
+    transform:translate(-50%, -50%);
+    font-size:80px;
+    width:50%;
+    font-family: "Rajdhani", sans-serif;
+    font-weight: 300;
+    font-style: normal;
+    
+  }
+  .textimage2{
+    position:absolute;
+    top:65%;
+    left: 50%;
+    transform:translate(-50%, -50%);
+    font-size:30px;
+    font-family: "Rajdhani", sans-serif;
+    font-weight: 300;
+    font-style: normal;
+    color:rgb(211, 211, 211);
+  }
+  .btn-shop .button1 {
+    position:absolute;
+    top:80%;
+    left: 50%;
+    transform:translate(-50%, -50%);
+    cursor:pointer;
+    display:inline-block;
+    background:transparent;
+    background-repeat:no-repeat;
+    font-family: "Rajdhani", sans-serif;
+    font-weight: 300;
+    font-style: normal;
+    color:white;
+    font-size:25px;
+    text-align:center;
+    border:3px;
+    border-style:solid;
+    border-image-width:100px;
+    border-image-outset: 6px;
+    padding: 16px 28px;
+    border-radius:100px;
+    
+  }
   }
   @import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
   
