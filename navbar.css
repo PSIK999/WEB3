@@ -1,5 +1,5 @@
 nav{
-    position:absolute;
+    position:fixed;
     top: 0;
     left: 0;
     width: 100%;
@@ -17,10 +17,13 @@ nav{
     align-items: center;
     justify-content: space-between;
     margin: auto;
-    /* background: red; */
+    transition: height 0.2 ease-out;
     padding: 0 50px;
-  
   }
+  nav .shrink{
+    height:50%;
+  }
+  
   .cart {
     float:right;
     margin-right:10px;

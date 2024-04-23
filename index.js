@@ -37,3 +37,12 @@ let jsArrow = document.querySelector(".js-arrow");
 jsArrow.onclick = function() {
  navLinks.classList.toggle("show3");
 }
+const navnav = document.querySelector('.navbar');
+
+window.onscroll = function() {
+  if (window.pageYOffset > 100) { /* Adjust the number to your liking */
+    navbar.classList.add('shrink');
+  } else {
+    navbar.classList.remove('shrink');
+  }
+};
