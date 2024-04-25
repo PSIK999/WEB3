@@ -5,7 +5,7 @@ nav{
     width: 100%;
     height: 100%;
     height: 70px;
-    background-color:#191552;
+    background-color:#191552; 
     box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
     z-index: 99;
   }
@@ -19,11 +19,8 @@ nav{
     margin: auto;
     transition: height 0.2 ease-out;
     padding: 0 50px;
-  }
-  nav .shrink{
-    height:50%;
-  }
   
+  }
   .cart {
     float:right;
     margin-right:10px;
@@ -194,6 +191,8 @@ nav{
     nav .navbar{
       max-width: 100%;
       padding: 0 25px;
+      background-color:#191552; 
+    
     }
   
     nav .navbar .logo a{

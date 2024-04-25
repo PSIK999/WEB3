@@ -7,9 +7,8 @@
   margin-left: 5rem;
   margin-right: 5rem;
   /*  CHABIX Hon badna nzide div(bel html wel css tab3a) tkoun icon zghire sale 7mara na3mela overlay 3a soure el product  */
- 
 }
-.card{
+  .card{ 
   width: 300px;
     height: 420px;
     border: 1px solid #ddd;
@@ -46,6 +45,5 @@
   #TodayBestDealstitle {
     margin: 2rem;
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
-  
   }
 }
