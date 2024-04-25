@@ -1,7 +1,7 @@
 body{
 	margin:0;
 	color:#6a6f8c;
-    background:url(electronic-device-balancing-concept.jpg) no-repeat center;
+    background:url(images/electronic-device-balancing-concept.jpg) no-repeat center;
     background-size: cover;
 	font:600 16px/18px 'Open Sans',sans-serif;
 }
@@ -16,7 +16,7 @@ a{color:inherit;text-decoration:none}
 	max-width:525px;
 	min-height:670px;
 	position:relative;
-	background:url(electronic-device-balancing-concept.jpg) no-repeat center;
+	background:url(images/electronic-device-balancing-concept.jpg) no-repeat center;
     background-size: cover;
 	box-shadow:0 12px 15px 0 rgba(0,0,0,.24),0 17px 50px 0 rgba(0,0,0,.19);
 }
@@ -85,7 +85,6 @@ a{color:inherit;text-decoration:none}
 	background:rgba(255,255,255,.1);
 }
 .login-form .group input[data-type="password"]{
-	text-security:circle;
 	-webkit-text-security:circle;
 }
 .login-form .group .label{

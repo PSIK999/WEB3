@@ -67,11 +67,12 @@
     margin: 1rem 0;
 }
 
-button {
+.btn-signin {
     border: none;
     padding: 12px 0;
     border-radius: 30px;
     cursor: pointer;
+    margin-top:50px;
 }
 
 .address {
