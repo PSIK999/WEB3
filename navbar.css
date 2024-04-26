@@ -61,12 +61,14 @@ nav{
   }
   nav .navbar .links li a{
     height: 100%;
-    text-decoration: none;
+    text-decoration: underline;
     white-space: nowrap;
     color: #fff;
     font-size: 15px;
     font-weight: 500;
   }
+
+
   .links li:hover .htmlcss-arrow,
   .links li:hover .js-arrow{
     transform: rotate(180deg);
