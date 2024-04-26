@@ -1,12 +1,15 @@
 /* Styles for screens smaller than or equal to 480px (mobile phones) */
 /* Styles for screens larger than 480px but smaller than or equal to 768px (tablets) */
 /* Styles for screens larger than 768px (computers) */
-@media only screen and (min-width: 769px){
+/* @media only screen and (min-width: 769px){ */
 .TodayBestDeals{
   display:flex;
-  margin-left: 5rem;
-  margin-right: 5rem;
-  /*  CHABIX Hon badna nzide div(bel html wel css tab3a) tkoun icon zghire sale 7mara na3mela overlay 3a soure el product  */
+  margin-left: 4rem;
+  margin-right: 1rem;
+  flex-wrap: wrap;
+  justify-content:space-between;
+  width: calc(50%-10px);
+
 }
   .card{ 
   width: 300px;
@@ -18,9 +21,13 @@
     
 }
 .FeaturedProducts {
-    display: flex;
-    margin-left: 4rem;
-    margin-right: 1rem;
+  display:flex;
+  margin-left: 4rem;
+  margin-right: 1rem;
+  flex-wrap: wrap;
+  justify-content:space-between;
+  width: calc(50%-10px);
+
   }
   .card-img-top{
     width: 100%;
@@ -31,6 +38,9 @@
     display: flex;
     margin-left: 4rem;
     margin-right: 1rem;
+    flex-wrap: wrap;
+    justify-content:space-between;
+    width: calc(50%-10px);
   }
   #Categories {
     margin: 2rem;
@@ -46,4 +56,9 @@
     margin: 2rem;
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
   }
-}
+  .textfooter{ margin:1rem; }
+
+
+  
+
+  

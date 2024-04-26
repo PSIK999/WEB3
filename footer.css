@@ -83,6 +83,7 @@
 .social {
     display: flex;
     list-style: none;
+    margin-right: 42px;
 }
 
 .social li {
