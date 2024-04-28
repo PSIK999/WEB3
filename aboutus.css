@@ -2,14 +2,19 @@
     max-width: 800px;
     margin: 0 auto;
     text-align: center;
-}  
-.writing p {
-    margin-bottom: 20px;
-    line-height: 1.6;
-} 
-.writing strong {
-    font-weight: bold; 
 }
-.writing em {
+  
+.section {
+    margin-top: 10px;
+} 
+.section strong {
+    font-weight: bold;
+}
+  
+.section p {
+    margin-top: 5px;
+    line-height: 1.6;
+}  
+.section em {
     font-style: italic;
 }
