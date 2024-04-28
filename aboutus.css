@@ -1,9 +1,15 @@
-.writing{
+.writing {
+    max-width: 800px;
+    margin: 0 auto;
     text-align: center;
-    margin: 25px;
-    margin-left: 200px;
-    margin-right: 200px;
+}  
+.writing p {
+    margin-bottom: 20px;
+    line-height: 1.6;
+} 
+.writing strong {
+    font-weight: bold; 
 }
-p{
-    padding: 10px;
+.writing em {
+    font-style: italic;
 }
