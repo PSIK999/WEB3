@@ -2,6 +2,24 @@
 /* Styles for screens larger than 480px but smaller than or equal to 768px (tablets) */
 /* Styles for screens larger than 768px (computers) */
 /* @media only screen and (min-width: 769px){ */
+  .TodayBestDealsTitle{
+    background-color:#191552;
+  height:50px;
+  color:white;
+  text-align:center;
+  margin-top:25px;
+  margin-bottom:25px;
+  padding-top:7px;
+  }
+  .TodayBestDealsBg{
+    background-color:#191552;
+    height:50px;
+    color:#191552;
+    text-align:center;
+    margin-top:25px;
+    margin-bottom:25px;
+    padding-top:7px;
+  }
 .TodayBestDeals{
   display:flex;
   margin-left: 4rem;

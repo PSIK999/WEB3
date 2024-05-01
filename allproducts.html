@@ -15,52 +15,110 @@
 <link href="https://fonts.googleapis.com/css2?family=Gemunu+Libre:wght@200..800&family=Grey+Qo&display=swap"
   rel="stylesheet">
 <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
-<link rel="stylesheet" href="styles.css">
+
+<link rel="stylesheet" href="./styles.css">
+<link rel="stylesheet" href="./navbar.css">
+<link rel="stylesheet" href="./footer.css">
+<link rel="stylesheet" href="./products.css">
 </head>
 
-<body>
+<body loading="lazy">
   <header>
+
     <nav>
-      <div class="navbar">
-        <i class='bx bx-menu'></i>
-        <div class="logo"><a><img class="ke" src="logo-no-background.png"></a></div>
-        <div class="nav-links">
-          <div class="sidebar-logo">
-            <span class="logo-name"><img class="ko" src="logo-no-background.png"></span>
-            <i class='bx bx-x'></i>
+
+    <div class="main-navbar shadow-sm sticky-top">
+      <div class="top-navbar">
+          <div class="container-fluid">
+              <div class="row">
+                  <div class="col-md-2 my-auto d-none d-sm-none d-md-block d-lg-block">
+                    <div class="logo"><img src="images/logo-no-background.png" class="ke"></div>
+                  
+                  </div>
+                  <div class="col-md-5 my-auto">
+                      <form role="search">
+                          <div class="input-group">
+                              <input type="search" placeholder="Search your product" class="form-control" />
+                              <button class="btn bg-white" type="submit">
+                                  <i class="fa fa-search"></i>
+                              </button>
+                          </div>
+                      </form>
+                  </div>
+                  <div class="col-md-5 my-auto">
+                      <ul class="nav justify-content-end">
+                          
+                          <li class="nav-item">
+                              <a class="nav-link" href="cart.html">
+                                  <i class="fa fa-shopping-cart"></i> Cart (0)
+                              </a>
+                          </li>
+                          <li class="nav-item">
+                              <a class="nav-link" href="#">
+                                  <i class="fa fa-heart"></i> Wishlist (0)
+                              </a>
+                          </li>
+                          <li class="nav-item dropdown">
+                              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                  <i class="fa fa-user"></i> Username 
+                              </a>
+                              <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                              <li><a class="dropdown-item" href="#"><i class="fa fa-user"></i> Profile</a></li>
+
+                              <li><a class="dropdown-item" href="#"><i class="fa fa-list"></i> My Orders</a></li>
+                              <li><a class="dropdown-item" href="#"><i class="fa fa-heart"></i> My Wishlist</a></li>
+                              <li><a class="dropdown-item" href="cart.html"><i class="fa fa-shopping-cart"></i> My Cart</a></li>
+                              <li><a class="dropdown-item" href="#"><i class="fa fa-sign-out"></i> Logout</a></li>
+                              </ul>
+                          </li>
+                      </ul>
+                  </div>
+              </div>
           </div>
-          <ul class="links">
-            <li><a href="index (1).html">Home</a></li>
-            <li>
-              <a href="#">All Products</a>
-              <i class='bx bxs-chevron-down htmlcss-arrow arrow  '></i>
-              <ul class="htmlCss-sub-menu sub-menu">
-                <li><a href="Accessories.html">Accessories</a></li>
-                <li><a href="Desktops.html">Desktops</a></li>
-                <li><a href="Laptops.html">Laptops</a></li>
-                <li><a href="Monitors.html">Monitors</a></li>
-              </ul>
-            </li>
-            <li><a href="aboutus.html">About Us</a></li>
-            <li><a href="contactus.html">Contact Us</a></li>
-            <li><a href="feedback.html">Feedback</a></li>
-          </ul>
-        </div>
-        <div class="search-box">
-          <i class='bx bx-search'></i>
-          <div class="input-box">
-            <input type="text" placeholder="Search...">
-          </div>
-          <div class="cart">
-            <i class="bx bx-cart"><a href="cart.html"></a></i>
-          </div>
-        </div>
       </div>
-    </nav>
+      <nav class="navbar navbar-expand-lg">
+          <div class="container-fluid">
+              <a class="navbar-brand d-block d-sm-block d-md-none d-lg-none" href="#">
+                  SahelTronix
+              </a>
+              <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                  <span class="navbar-toggler-icon"></span>
+              </button>
+              <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                  <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                      <li class="nav-item">
+                          <a class="nav-link" href="index (1).html">Home</a>
+                      </li>
+                      <li class="nav-item">
+                          <a class="nav-link" href="allproducts.html">All Products</a>
+                      </li>
+                      <li class="nav-item">
+                          <a class="nav-link" href="#FeaturedProducts">Featured Products</a>
+                      </li>
+                      <li class="nav-item">
+                          <a class="nav-link" href="laptops.html">Laptops</a>
+                      </li>
+                      <li class="nav-item">
+                          <a class="nav-link" href="Desktops.html">Desktops</a>
+                      </li>
+                      <li class="nav-item">
+                          <a class="nav-link" href="Accessories.html">Accessories</a>
+                      </li>
+                      <li class="nav-item">
+                          <a class="nav-link" href="Monitors.html">Monitors</a>
+                      </li>
+                      <li class="nav-item">
+                        <a class="nav-link" href="aboutus.html">About Us</a>
+                    </li>
+                  </ul>
+              </div>
+          </div>
+      </nav>
+  </div>
   </header>
   <main>
     <div class="mainimage">
-      <img class="imagepage" src="electronic-device-balancing-concept.jpg">
+     
     </div>
     <p>123</p>
     <p>123</p>

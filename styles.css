@@ -16,15 +16,16 @@
   .mainimage{
     background-image:url(images/pikaso_texttoimage_CREATE-AN-IMAGE-WITH-A-DARK-BLUE-BACKGROUND-AND-GA.jpeg);
     background-repeat: no-repeat;
-    background-size:cover;
-    background-attachment: fixed;  
-    height:100vh; 
-    width:100vw;
+    background-position: center;
+    background-size: 100% 90vh;
+    height:90vh; 
+    width:100vw; 
+
   }
   @media  (max-width:768px) {
     .mainimage {
       background-attachment: scroll;
-      height:50vh;
+      height:70vh;
       margin-bottom:20px;
       background-position:center;
     }
