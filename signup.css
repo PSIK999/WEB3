@@ -1,8 +1,13 @@
-body{
-	margin:0;
-	color:#6a6f8c;
-    background:url(images/electronic-device-balancing-concept.jpg) no-repeat center;
+html, body {
+    height: 100vh;
+    margin: 0;
+    padding: 0;
+    background:url(images/electronic-device-balancing-concept.jpg);
     background-size: cover;
+	background-repeat: no-repeat;
+    background-position: center center;
+	width: 100%;
+	height: 100%;
 	font:600 16px/18px 'Open Sans',sans-serif;
 }
 *,:after,:before{box-sizing:border-box}
