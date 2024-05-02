@@ -24,9 +24,9 @@
   }
   @media  (max-width:768px) {
     .mainimage {
-      background-attachment: scroll;
-      height:70vh;
+      height:50vh;
       margin-bottom:20px;
+      background-size:100% 50vh;
       background-position:center;
     }
   }
