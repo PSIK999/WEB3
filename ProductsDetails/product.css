@@ -124,11 +124,12 @@ h4{
     justify-content: space-between;
     margin: 100px auto 50px;
 }
-select{
+.selectbtn{
     border: 1px solid #032eb9cc;
     padding: 5px;
+    
 }
-select:focus{
+.selectbtn:focus{
     outline: none;
 }
 
@@ -195,7 +196,4 @@ color: #0c038a;
 }
 a{
     text-decoration: #0c038a;
-}
-.Viewmore{
-    float: right;
 }

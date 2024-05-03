@@ -162,6 +162,23 @@
    .viewbtnedit:active{
     background-color:white;
    }
+   .buybtn{
+    margin-left:85px;
+    text-decoration:none;
+    border-radius:6vh;
+    font-size:15px;
+    background-color:#191552; 
+    color:white;
+    margin-top:5px;
+  
+
+   }
+   .buybtn:hover{
+    background-color:rgb(255, 196, 0);
+    color:black;
+    transition: background 0.5s;
+    
+   }
   #Categories {
     margin: 2rem;
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
@@ -186,3 +203,12 @@
 
     }
   }
+.card-categories{
+  display:flex;
+  justify-content:center;
+  text-align:center;
+  font-size:30px;
+  color:#191552;
+  text-decoration: none;
+  font-weight: bold;
+}

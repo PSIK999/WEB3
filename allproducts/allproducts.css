@@ -11,10 +11,13 @@
 select{
     border: 1px solid #032eb9cc;
     padding: 5px;
+    float:right;
+   
 }
 select:focus{
     outline: none;
 }
+
 
 .col-4{
     flex-basis: 25%;
