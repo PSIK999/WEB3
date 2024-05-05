@@ -7,7 +7,7 @@
   }
 .main-navbar .top-navbar{
 
-     background-color:#191552; 
+     background-color:black;
 
     padding-top: 10px;
     padding-bottom: 10px;
@@ -33,19 +33,17 @@
 .main-navbar .top-navbar .dropdown-menu .dropdown-item i{
     width: 20px;
     text-align: center;
-    color: #2874f0;
     background:white;
     font-size: 14px;
 }
 .main-navbar .navbar{
     padding: 0px;
-    background-color: #ddd;
-    /* background-color:#191552; */
-    background:white;
+    background-color: white;
+    background:black;
 }
 .main-navbar .navbar .nav-item .nav-link{
     padding: 8px 20px;
-    color: #000;
+    color: white;
     font-size: 15px;
 }
 
@@ -54,12 +52,17 @@
     .main-navbar .top-navbar .nav-link{
         font-size: 12px;
         padding: 8px 10px;
+        color:white;
     }
 }
  .ke{
   width:100px;
   height:70px;
-  margin-top:13px;
-  color:white;
+  margin-top:20px;
+  color:rgb(255, 196, 0);
 }  
-
+@media (max-width:768px){
+    .main-navbar .navbar{
+        background:white;
+    }
+}

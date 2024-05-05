@@ -5,7 +5,7 @@
    text-decoration:none;
    border-radius:6vh;
    font-size:15px;
-   background-color:#191552; 
+   background-color:black; 
    color:white;
    margin-top:5px;
    width:80px;
@@ -67,7 +67,7 @@ h4{
     font-size: 14px;
 }
 .rating .fa{
-color: #0c038a;
+color: black;
 }
 .col-4:hover{
     transform: translate(-5px);
@@ -80,12 +80,12 @@ a{
   margin: 0 auto 80px;
   position: relative;
   line-height: 60px;
-  color: #555;
+  color:black;
   margin-top: 100px;
 }
 .title::after{
   content: '' ;
-  background-color: rgb(7, 18, 122);
+  background-color: rgb(169, 131, 4);
   width: 80px;
   height: 5px;
   border-radius: 5px;

@@ -20,7 +20,7 @@
     height: auto;
     justify-content: space-around;
     flex-wrap: wrap;
-    background-color:#191552;
+    background-color:black;
 }
 
 .box {
@@ -106,4 +106,7 @@
 .textfooter p {
     margin: 10px 0;
   }
+}
+.footertitle{
+    color:rgb(255, 196, 0);
 }

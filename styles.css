@@ -52,14 +52,18 @@
     margin-right:60%;
     }
     .viewbtnedit{
-      background-color:#191552;
+      background-color:black;
      color:white;
      border-radius:5vh;
-     width:100px;
-     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+     width:150px;
+     font-family:'Times New Roman', Times, serif;
      font-size:17px;
-     border-color: black;
+     border-color:black;
+     border-style:groove;
      cursor:pointer;
+    }
+    .viewbtnedit:hover{
+      background-color:rgb(255, 196, 0);
     }
     .viewbtnedit:active{
      background-color:white;
