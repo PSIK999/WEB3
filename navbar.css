@@ -1,15 +1,20 @@
 
+
+
   .main-navbar{
     border-bottom: 1px solid #ccc;
-}
+
+  }
 .main-navbar .top-navbar{
-    /* background-color: #2874f0; */
-    background-color:#191552;
+
+     background-color:#191552; 
+
     padding-top: 10px;
     padding-bottom: 10px;
 }
 .main-navbar .top-navbar .brand-name{
     color: #fff;
+    
 }
 .main-navbar .top-navbar .nav-link{
     color: #fff;
@@ -29,14 +34,14 @@
     width: 20px;
     text-align: center;
     color: #2874f0;
-    background:transparent;
+    background:white;
     font-size: 14px;
 }
 .main-navbar .navbar{
     padding: 0px;
     background-color: #ddd;
     /* background-color:#191552; */
-    background:transparent;
+    background:white;
 }
 .main-navbar .navbar .nav-item .nav-link{
     padding: 8px 20px;
@@ -51,8 +56,10 @@
         padding: 8px 10px;
     }
 }
-.logo .ke{
-  width:65px;
-  height:65px;
-  margin-left:70px;
-}
+ .ke{
+  width:100px;
+  height:70px;
+  margin-top:13px;
+  color:white;
+}  
+
