@@ -70,3 +70,16 @@ th:last-child{
         display:none;
     }
 }
+
+.checkout-btn{
+    margin-left:70px;
+    width:100% ;
+    color:white;
+    background-color:black;
+    margin-top:10px;
+    
+    
+}
+.checkout-btn:hover{
+    background-color:rgb(255, 196, 0);
+}
