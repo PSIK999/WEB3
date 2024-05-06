@@ -58,7 +58,7 @@ h4{
     font-size: 14px;
 }
 .rating .fa{
-color: #0c038a;
+color: black;
 }
 .col-4:hover{
     transform: translate(-5px);
@@ -68,18 +68,19 @@ color: #0c038a;
 }
 .page-btn span{
     display: inline-block;
-    border: 1px solid #0c038a;
+    border: 1px solid black;
     margin-left: 10px;
     width: 40px;
     height: 40px;
     text-align: center;
     line-height: 40px;
     cursor: pointer;
+    color:black;
 }
 .page-btn span:hover{
-    background-color: #0c038a;
-    color: #fff;
+    background-color:rgb(255, 196, 0);
+    color: #fff; 
 }
 a{
-    text-decoration: #0c038a;
+    text-decoration: black;
 }

@@ -1,5 +1,5 @@
 
-
+/* THE NAVBAR'S CSS */
 
   .main-navbar{
     border-bottom: 1px solid #ccc;
@@ -47,22 +47,31 @@
     font-size: 15px;
 }
 
+  /* LOGO */
 
-@media only screen and (max-width: 600px) {
-    .main-navbar .top-navbar .nav-link{
-        font-size: 12px;
-        padding: 8px 10px;
-        color:white;
-    }
-}
  .ke{
   width:100px;
   height:70px;
   margin-top:20px;
   color:rgb(255, 196, 0);
+
+  /* RESPONSIVITY */
+  
 }  
 @media (max-width:768px){
     .main-navbar .navbar{
         background:white;
+    }
+}
+@media (max-width:768px){
+    .main-navbar .navbar .nav-item .nav-link{
+        color:black;
+    }
+}
+@media only screen and (max-width: 600px) {
+    .main-navbar .top-navbar .nav-link{
+        font-size: 12px;
+        padding: 8px 10px;
+        color:white;
     }
 }
