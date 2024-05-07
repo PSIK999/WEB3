@@ -11,7 +11,7 @@ textarea:focus {
   box-shadow: none !important;
 }
 
-input[type=checkbox] {
+input[type="checkbox"] {
   appearance: checkbox !important;
 }
 
@@ -36,7 +36,7 @@ h2 {
   padding: 0;
   font-weight: 900;
   color: #222;
-  font-family: 'Montserrat';
+  font-family: "Montserrat";
   font-size: 24px;
   text-transform: uppercase;
   text-align: center;
@@ -47,7 +47,7 @@ body {
   line-height: 1.8;
   color: #222;
   font-weight: 400;
-  font-family: 'Montserrat';
+  font-family: "Montserrat";
   background-image: url("../images/electronic-device-balancing-concept.jpg");
   background-repeat: no-repeat;
   background-size: cover;
@@ -98,7 +98,8 @@ body {
   color: #fff;
   text-transform: uppercase;
   border: none;
-  background-image: -webkit-linear-gradient(left, #21d4fd, #b721ff);}
+  background-image: -webkit-linear-gradient(left, #21d4fd, #b721ff);
+}
 
 .label-agree-term {
   font-size: 12px;

@@ -1,4 +1,3 @@
-
 // function getNumber(div) {
 //   return parseInt(div.querySelector('p').textContent);
 // }
@@ -20,6 +19,5 @@
 // const container = document.getElementById('container');
 // container.innerHTML = '';
 // divs.forEach(div => container.appendChild(div));
-
 
 // }

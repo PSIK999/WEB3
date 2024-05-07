@@ -1,85 +1,84 @@
 .cart-page {
-    margin: 80px auto;
+  margin: 80px auto;
 }
-table{
-    width:100%;
-    border-collapse:collapse;
+table {
+  width: 100%;
+  border-collapse: collapse;
 }
-.cart-info{
-    display:flex;
-    flex-wrap:wrap;
+.cart-info {
+  display: flex;
+  flex-wrap: wrap;
 }
-th{
-    text-align:left;
-    padding:5px;
-    color:#fff;
-    background:black;
-    font-weight:normal;
+th {
+  text-align: left;
+  padding: 5px;
+  color: #fff;
+  background: black;
+  font-weight: normal;
 }
-td{
-    padding: 10px 5px;
+td {
+  padding: 10px 5px;
 }
-td input{
-    width:40px;
-    height:30px;
-    padding: 5px;
+td input {
+  width: 40px;
+  height: 30px;
+  padding: 5px;
 }
-td a{
-    color:#191552;
-    font-size:12px;
+td a {
+  color: #191552;
+  font-size: 12px;
 }
-td img{
-    width:120px;
-    height:120px;
-    margin-right:10px;
+td img {
+  width: 120px;
+  height: 120px;
+  margin-right: 10px;
 }
-.total-price{
-    display:flex;
-    justify-content:flex-end;
+.total-price {
+  display: flex;
+  justify-content: flex-end;
+}
+.total-price table {
+  border-top: 3px solid black;
+  width: 100%;
+  max-width: 400px;
+}
+td:last-child {
+  text-align: right;
+}
+th:last-child {
+  text-align: right;
+}
+@media only screen and (max-width: 600px) {
+  .row {
+    text-align: center;
+  }
+  .col-2,
+  .col-3,
+  .col-4 {
+    flex-basis: 100%;
+  }
+  .single-product .row {
+    text-align: left;
+  }
+  .single-product .col-2 {
+    padding: 20px 0;
+  }
+  .single-product h1 {
+    font-size: 26px;
+    line-height: 32px;
+  }
+  .cart-info p {
+    display: none;
+  }
+}
 
+.checkout-btn {
+  margin-left: 70px;
+  width: 100%;
+  color: white;
+  background-color: black;
+  margin-top: 10px;
 }
-.total-price table{
-    border-top: 3px solid black;
-    width: 100%;
-    max-width:400px;
-}
-td:last-child{
-    text-align:right;
-}
-th:last-child{
-    text-align:right;
-}
-@media only screen and (max-width: 600px){
-    .row{
-        text-align:center;
-    }
-    .col-2, .col-3, .col-4{
-        flex-basis: 100%;
-    }
-    .single-product .row{
-        text-align:left;
-    }
-    .single-product .col-2{
-        padding: 20px 0;
-    }
-    .single-product h1{
-        font-size: 26px;
-        line-height: 32px;
-    }
-    .cart-info p{
-        display:none;
-    }
-}
-
-.checkout-btn{
-    margin-left:70px;
-    width:100% ;
-    color:white;
-    background-color:black;
-    margin-top:10px;
-    
-    
-}
-.checkout-btn:hover{
-    background-color:rgb(255, 196, 0);
+.checkout-btn:hover {
+  background-color: rgb(255, 196, 0);
 }
