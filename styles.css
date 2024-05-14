@@ -11,8 +11,7 @@ body {
   overflow-y: visible;
 }
 
-.mainimage {
-  background-image: url(/images/laptop-murjp1nk4lp1idlt.jpg);
+header {
   background-repeat: no-repeat;
   background-position: center;
   background-size: 100% 100vh;
