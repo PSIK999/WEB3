@@ -1,0 +1,23 @@
+.writing {
+  max-width: 800px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.section {
+  margin-top: 10px;
+}
+.section strong {
+  font-weight: bold;
+}
+
+.section p {
+  margin-top: 5px;
+  line-height: 1.6;
+}
+.section em {
+  font-style: italic;
+}
+.titletitle {
+  text-align: center;
+}
