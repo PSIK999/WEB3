@@ -46,6 +46,12 @@
   margin-top: 20px;
   color: rgb(255, 196, 0);
 }
+@media (max-width:1230px){
+  .logo .ke{
+    width:20px;
+
+  }
+}
 @media (max-width: 768px) {
   .main-navbar .navbar {
     background: white;
