@@ -41,6 +41,7 @@ h2 {
   text-transform: uppercase;
   text-align: center;
   margin-bottom: 40px;
+  color:white;
 }
 
 body {
@@ -48,7 +49,6 @@ body {
   color: #222;
   font-weight: 400;
   font-family: "Montserrat";
-  background-image: url("../images/electronic-device-balancing-concept.jpg");
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center center;
@@ -62,7 +62,7 @@ body {
 }
 
 .signup-content {
-  background: #fff;
+  background: black;
   border-radius: 10px;
   padding: 50px 85px;
 }
@@ -98,21 +98,22 @@ body {
   color: #fff;
   text-transform: uppercase;
   border: none;
-  background-image: -webkit-linear-gradient(left, #21d4fd, #b721ff);
+  background-image: -webkit-linear-gradient(left, #493901, #eeb600);
+  cursor:pointer;
 }
 
 .label-agree-term {
   font-size: 12px;
   font-weight: 600;
-  color: #555;
+  color: white;
 }
 
 .term-service {
-  color: #222;
+  color: rgb(255, 196, 0);
 }
 
 .loginhere {
-  color: #555;
+  color: white;
   font-weight: 500;
   text-align: center;
   margin-top: 91px;
@@ -121,7 +122,7 @@ body {
 
 .loginhere-link {
   font-weight: 700;
-  color: #222;
+  color: rgb(255, 196, 0);
 }
 
 .field-icon {
