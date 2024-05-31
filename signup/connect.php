@@ -11,13 +11,14 @@ try {
     echo "Connection failed: " .$e->getMessage();
 }
 */
-$host="localhost";
-$user="root";
-$pass="";
-$db="saheltronixs01";
-$conn=new mysqli($host,$user,$pass,$db);
-if($conn->connect_error){
-    echo "Failed to connect DB".$conn->connect_error;
-}
+$host="mysql-3974ab90-sergionjeim-e9a0.d.aivencloud.com:22356";
+$user="avnadmin";
+$pass="AVNS_lb6GguxdpmlAqBN023C";
+$db="saheltronix";
+  $conn=new mysqli($host,$user,$pass,$db);
+  if($conn->connect_error){
+     echo "Failed to connect DB".$conn->connect_error;
+    }
 
-?>
+
+ ?>
