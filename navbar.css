@@ -46,6 +46,50 @@
   margin-top: 20px;
   color: rgb(255, 196, 0);
 }
+.mainimage{
+  background-image:url(./images/laptop-murjp1nk4lp1idlt.jpg);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 100% 100vh;
+  height: 100vh;
+  width: 100vw;
+} 
+.imagetext {
+    margin: 10px;
+    text-align: center;
+    margin-top: 10%;
+    margin-right: 60%;
+    color: white;
+  }
+  .viewbtn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+    margin-right: 60%;
+  }
+  .viewbtnedit {
+    background-color: black;
+    color: white;
+    border-radius: 5vh;
+    width: 150px;
+    font-family: "Times New Roman", Times, serif;
+    font-size: 17px;
+    border-color: black;
+    border-style: groove;
+    cursor: pointer;
+  }
+  .viewbtnedit:hover {
+    background-color: rgb(255, 196, 0);
+  }
+  .viewbtnedit:active {
+    background-color: white;
+  }
+  @media (max-width: 768px) {
+    .viewbtn {
+      margin-right: 0px;
+    }
+  }
 @media (max-width:1230px){
   .logo .ke{
     width:20px;
@@ -67,5 +111,18 @@
     font-size: 12px;
     padding: 8px 10px;
     color: white;
+  }
+}
+@media (max-width: 768px) {
+  .mainimage {
+    height: 80vh;
+    background-size: cover;
+    background-position: center;
+  }
+}
+@media (max-width: 768px) {
+  .imagetext {
+    margin-right: 0px;
+    margin-top: 100px;
   }
 }
