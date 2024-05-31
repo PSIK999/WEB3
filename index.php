@@ -48,7 +48,18 @@ include "./signup/connect.php";
     <?php
         include ("navbar.php");
         ?>
+         <div class="imagetext">
+            <h3>We Offer Our Customers</h3>
+            <h3>The Best Products</h3>
+            <h5>With Affordable Prices</h5>
+          </div>
+          <div class="viewbtn">
+            <a href="./allproducts/allproducts.html">
+              <button class="viewbtnedit">Shop Now</button>
+            </a>
+          </div>
         </div>
+        
 
     <main>
       <div class="small-container">
@@ -445,7 +456,7 @@ include "./signup/connect.php";
       </div>
       <div class="box">
         <h2 class="footertitle">𝔖𝔞𝔥𝔢𝔩𝔗𝔯𝔬𝔫𝔦𝔵</h2>
-        <form action="./signup/signup.html" class="registration">
+        <form action="./signup/signup.p" class="registration">
           <button type="submit" class="btn-signin">Sign Up Now</button>
         </form>
       </div>

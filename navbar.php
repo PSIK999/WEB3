@@ -1,13 +1,13 @@
-        <nav>
+
+      <nav>
           <div class="main-navbar shadow-sm sticky-top">
             <div class="top-navbar">
               <div class="container-fluid">
                 <div class="row">
                   <div
-                    class="col-md-2 my-auto d-none d-sm-none d-md-block d-lg-block"
-                  >
+                    class="col-md-2 my-auto d-none d-sm-none d-md-block d-lg-block">
                     <div class="logo">
-                      <h1 class="ke">𝔖𝔞𝔥𝔢𝔩𝔗𝔯𝔬𝔫𝔦𝔵</h1>
+                      <img src="./images/20240524_162618.png" class="ke">
                     </div>
                   </div>
                   <div class="col-md-5 my-auto">
@@ -27,7 +27,7 @@
                   <div class="col-md-5 my-auto">
                     <ul class="nav justify-content-end">
                       <li class="nav-item">
-                        <a class="nav-link" href="./signup/signup.html">
+                        <a class="nav-link" href="./signup/signup.php">
                           <i class="fa fa-heart"></i> Sign Up
                         </a>
                       </li>
@@ -121,7 +121,7 @@
                 >
                   <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <li class="nav-item">
-                      <a class="nav-link" href="./index.html">Home</a>
+                      <a class="nav-link" href="./index.php">Home</a>
                     </li>
                     <li class="nav-item">
                       <a class="nav-link" href="./allproducts/allproducts.html"
@@ -129,18 +129,18 @@
                       >
                     </li>
                     <li class="nav-item">
-                      <a class="nav-link" href="./laptops.html">Laptops</a>
+                      <a class="nav-link" href="./laptops.php">Laptops</a>
                     </li>
                     <li class="nav-item">
-                      <a class="nav-link" href="./desktops.html">Desktops</a>
+                      <a class="nav-link" href="./desktops.php">Desktops</a>
                     </li>
                     <li class="nav-item">
-                      <a class="nav-link" href="./accessories.html"
+                      <a class="nav-link" href="./accessories.php"
                         >Accessories</a
                       >
                     </li>
                     <li class="nav-item">
-                      <a class="nav-link" href="./monitors.html">Monitors</a>
+                      <a class="nav-link" href="./monitors.php">Monitors</a>
                     </li>
                     <li class="nav-item">
                       <a class="nav-link" href="./aboutus/aboutus.html"
@@ -156,16 +156,5 @@
                 </div>
               </div>
             </nav>
-          </div>
-
-          <div class="imagetext">
-            <h3>We Offer Our Customers</h3>
-            <h3>The Best Products</h3>
-            <h5>With Affordable Prices</h5>
-          </div>
-          <div class="viewbtn">
-            <a href="./allproducts/allproducts.html">
-              <button class="viewbtnedit">Shop Now</button>
-            </a>
           </div>
         </nav>
