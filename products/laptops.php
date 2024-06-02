@@ -33,7 +33,7 @@ include "../products/productFetcher.php";
   <main>
     <div class="small-container">
       <div class="row row-2">
-        <h2>All Desktops</h2>
+        <h2>All Laptops</h2>
         <select class="selectbtn">
           <option>Default sorting</option>
           <option>Sort by price</option>
