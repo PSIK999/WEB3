@@ -1,7 +1,7 @@
 <?php
 include "../signup/connect.php";
 require_once '../signup/auth.php';
-include "../productFetcher.php"
+include "../products/productFetcher.php"; 
 ?>
 
 <!DOCTYPE html>
@@ -36,16 +36,16 @@ include "../productFetcher.php"
       rel="stylesheet"
     />
 
-    <link rel="stylesheet" href="../styles.css" />
-    <link rel="stylesheet" href="../navbar.css" />
-    <link rel="stylesheet" href="../footer.css" />
-    <link rel="stylesheet" href="../products.css" />
+   <link rel="stylesheet" href="../mainPage/styles.css" />
+    <link rel="stylesheet" href="../navbar/navbar.css" />
+    <link rel="stylesheet" href="../footer/footer.css" />
+    <link rel="stylesheet" href="../products/products.css" />
  
   </head>
 
   <body loading="lazy">
   <?php
-        include ("../navbar.php");
+          include ("../navbar/navbar.php");
     ?>
 
     <main>
@@ -100,12 +100,12 @@ include "../productFetcher.php"
       </main>
 
 <?php
-include("../footer.php");
+include("../footer/footer.php");
 ?>
 
 
 </html>
-    <script src="../index.js"></script>
+    <script src="../mainPage/index.js"></script>
     <script src="../allproducts/allproducts.js"></script>
     <script
       src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
