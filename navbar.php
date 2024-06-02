@@ -143,7 +143,7 @@
                       <a class="nav-link" href="./monitors.php">Monitors</a>
                     </li>
                     <li class="nav-item">
-                      <a class="nav-link" href="./aboutus/aboutus.html"
+                      <a class="nav-link" href="./aboutus/aboutus.php"
                         >About Us</a
                       >
                     </li>

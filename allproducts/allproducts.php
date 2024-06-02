@@ -224,7 +224,7 @@ include "../signup/connect.php";
             <img
               src="../images/productsImages/laptops/Asus Rog Strix G16 G614JI-N3169 Core i9-13980hx Rtx 4070 165hz 16/ROGStrixG16G614_3.jpg"
             />
-            <a href="../productsDetails/product.html"
+            <a href="../productsDetails/product.php"
               ><h4>ASUS-ROG-STRIX-G18</h4>
               <div class="rating">
                 <i class="fa fa-star"></i>
@@ -232,7 +232,7 @@ include "../signup/connect.php";
                 <i class="fa fa-star"></i>
                 <i class="fa fa-star"></i>
                 <i class="fa fa-star"></i>
-                <a href="../checkout/checkout.html">
+                <a href="../checkout/checkout.php">
                   <button type="submit" class="buybtn">Buy Now</button>
                 </a>
               </div>
@@ -243,7 +243,7 @@ include "../signup/connect.php";
             <img
               src="../images/productsImages/headphones/HyperX Cloud Alpha Gaming Headset/HyperXCloudAlpha_1.jpg"
             />
-            <a href="../productsDetails/product.html"
+            <a href="../productsDetails/product.php"
               ><h4>HyperX Cloud Alpha Gaming Headset</h4>
               <div class="rating">
                 <i class="fa fa-star"></i>
@@ -251,7 +251,7 @@ include "../signup/connect.php";
                 <i class="fa fa-star"></i>
                 <i class="fa fa-star"></i>
                 <i class="fa fa-star-o"></i>
-                <a href="../checkout/checkout.html">
+                <a href="../checkout/checkout.php">
                   <button type="submit" class="buybtn">Buy Now</button>
                 </a>
               </div>
@@ -262,7 +262,7 @@ include "../signup/connect.php";
             <img
               src="../images/productsImages/graphics cards/Vga Amd Radeon RX 6950 XT 16gb Gddr6 Pcie 4.0/AMDRADEONRX6950XT_4.jpg"
             />
-            <a href="../productsDetails/product.html"
+            <a href="../productsDetails/product.php"
               ><h4>Vga Amd Radeon RX 6950 XT 16gb Gddr6 Pcie 4.0</h4>
               <div class="rating">
                 <i class="fa fa-star"></i>
@@ -270,7 +270,7 @@ include "../signup/connect.php";
                 <i class="fa fa-star"></i>
                 <i class="fa fa-star"></i>
                 <i class="fa fa-star-o"></i>
-                <a href="../checkout/checkout.html">
+                <a href="../checkout/checkout.php">
                   <button type="submit" class="buybtn">Buy Now</button>
                 </a>
               </div>
@@ -281,7 +281,7 @@ include "../signup/connect.php";
             <img
               src="../images/productsImages/mouses/Hyperx Pulsefire Dart Wireless Rgb Gaming Mouse/HyperxPulsefireDartWireless_6.jpg"
             />
-            <a href="../productsDetails/product.html"
+            <a href="../productsDetails/product.php"
               ><h4>Hyperx Pulsefire Dart Wireless Rgb Gaming Mouse</h4>
               <div class="rating">
                 <i class="fa fa-star"></i>
@@ -289,7 +289,7 @@ include "../signup/connect.php";
                 <i class="fa fa-star"></i>
                 <i class="fa fa-star"></i>
                 <i class="fa fa-star-o"></i>
-                <a href="../checkout/checkout.html">
+                <a href="../checkout/checkout.php">
                   <button type="submit" class="buybtn">Buy Now</button>
                 </a>
               </div>
@@ -304,7 +304,7 @@ include "../signup/connect.php";
             <img
               src="../images/productsImages/mouses/Genesis GX85 NMG-0711 MMO Laser Gaming Mouse/NMG-09663v1.jpg"
             />
-            <a href="../productsDetails/product.html"
+            <a href="../productsDetails/product.php"
               ><h4>Genesis GX85 NMG-0711 MMO Laser Gaming Mouse</h4>
               <div class="rating">
                 <i class="fa fa-star"></i>
@@ -312,7 +312,7 @@ include "../signup/connect.php";
                 <i class="fa fa-star"></i>
                 <i class="fa fa-star"></i>
                 <i class="fa fa-star"></i>
-                <a href="../checkout/checkout.html">
+                <a href="../checkout/checkout.php">
                   <button type="submit" class="buybtn">Buy Now</button>
                 </a>
               </div>
@@ -323,7 +323,7 @@ include "../signup/connect.php";
             <img
               src="../images/productsImages/desktops/Alienware Aurora Core i7-9700k Desktop Computers/AlienwareAurora_3_-C.jpg"
             />
-            <a href="../productsDetails/product.html"
+            <a href="../productsDetails/product.php"
               ><h4>Alienware Aurora Core i7-9700k Desktop Computer</h4>
               <div class="rating">
                 <i class="fa fa-star"></i>
@@ -331,7 +331,7 @@ include "../signup/connect.php";
                 <i class="fa fa-star"></i>
                 <i class="fa fa-star"></i>
                 <i class="fa fa-star-o"></i>
-                <a href="../checkout/checkout.html">
+                <a href="../checkout/checkout.php">
                   <button type="submit" class="buybtn">Buy Now</button>
                 </a>
               </div>
@@ -342,7 +342,7 @@ include "../signup/connect.php";
             <img
               src="../images/productsImages/graphics cards/Vga Msi Ventus 3x Rtx 3090 24gb GDDR6X OC Edition/MsiGeForceRTX3090VENTUS3X24GOC_2.jpg"
             />
-            <a href="../productsDetails/product.html"
+            <a href="../productsDetails/product.php"
               ><h4>Vga Msi Ventus 3x Rtx 3090 24gb GDDR6X OC Edition</h4>
               <div class="rating">
                 <i class="fa fa-star"></i>
@@ -350,7 +350,7 @@ include "../signup/connect.php";
                 <i class="fa fa-star"></i>
                 <i class="fa fa-star"></i>
                 <i class="fa fa-star-o"></i>
-                <a href="../checkout/checkout.html">
+                <a href="../checkout/checkout.php">
                   <button type="submit" class="buybtn">Buy Now</button>
                 </a>
               </div>
@@ -361,7 +361,7 @@ include "../signup/connect.php";
             <img
               src="../images/productsImages/keyboards/Hyperx Alloy Elite 2 Rgb Mechanical Gaming Keyboard/HyperxElite2_4.jpg"
             />
-            <a href="../productsDetails/product.html"
+            <a href="../productsDetails/product.php"
               ><h4>Hyperx Alloy Elite 2 Rgb Mechanical Gaming Keyboard</h4>
               <div class="rating">
                 <i class="fa fa-star"></i>
@@ -369,7 +369,7 @@ include "../signup/connect.php";
                 <i class="fa fa-star"></i>
                 <i class="fa fa-star"></i>
                 <i class="fa fa-star-o"></i>
-                <a href="../checkout/checkout.html">
+                <a href="../checkout/checkout.php">
                   <button type="submit" class="buybtn">Buy Now</button>
                 </a>
               </div>
@@ -384,7 +384,7 @@ include "../signup/connect.php";
             <img
               src="../images/productsImages/monitors/Samsung Odyssey G5 LC27G55TQBMXUE 27 144hz 2k 1ms Hdr10 Curved Gaming Monitor/SAMSUNGODYSSEYG5LC27G55TQBMXUE_5.jpg"
             />
-            <a href="../productsDetails/product.html"
+            <a href="../productsDetails/product.php"
               ><h4>
                 Samsung Odyssey G5 27" 144hz 2k 1ms Hdr10 Curved Gaming Monitor
               </h4>
@@ -394,7 +394,7 @@ include "../signup/connect.php";
                 <i class="fa fa-star"></i>
                 <i class="fa fa-star"></i>
                 <i class="fa fa-star"></i>
-                <a href="../checkout/checkout.html">
+                <a href="../checkout/checkout.php">
                   <button type="submit" class="buybtn">Buy Now</button>
                 </a>
               </div>
@@ -405,7 +405,7 @@ include "../signup/connect.php";
             <img
               src="../images/productsImages/headphones/Hyperx Cloud Mix Bluetooth Gaming Headset/HyperxCloudMix_1.jpg"
             />
-            <a href="../productsDetails/product.html"
+            <a href="../productsDetails/product.php"
               ><h4>Hyperx Cloud Mix Bluetooth Gaming Headset</h4>
               <div class="rating">
                 <i class="fa fa-star"></i>
@@ -413,7 +413,7 @@ include "../signup/connect.php";
                 <i class="fa fa-star"></i>
                 <i class="fa fa-star"></i>
                 <i class="fa fa-star-o"></i>
-                <a href="../checkout/checkout.html">
+                <a href="../checkout/checkout.php">
                   <button type="submit" class="buybtn">Buy Now</button>
                 </a>
               </div>
@@ -424,7 +424,7 @@ include "../signup/connect.php";
             <img
               src="../images/productsImages/mousepads/Hyperx Fury S X-Large Size Pro Gaming Mouse Pad/HyperxFurySX-Large_2.jpg"
             />
-            <a href="../productsDetails/product.html"
+            <a href="../productsDetails/product.php"
               ><h4>Hyperx Fury S X-Large Size Pro Gaming Mouse Pad</h4>
               <div class="rating">
                 <i class="fa fa-star"></i>
@@ -432,7 +432,7 @@ include "../signup/connect.php";
                 <i class="fa fa-star"></i>
                 <i class="fa fa-star"></i>
                 <i class="fa fa-star-o"></i>
-                <a href="../checkout/checkout.html">
+                <a href="../checkout/checkout.php">
                   <button type="submit" class="buybtn">Buy Now</button>
                 </a>
               </div>
@@ -443,7 +443,7 @@ include "../signup/connect.php";
             <img
               src="../images/productsImages/monitors/AOC 27 C27G2Z 240hz 0.5ms 1500r Curved Gaming Monitor/AOCC27G2Z_2.jpg"
             />
-            <a href="../productsDetails/product.html"
+            <a href="../productsDetails/product.php"
               ><h4>AOC 27 C27G2Z 240hz 0.5ms 1500r Curved Gaming Monitor</h4>
               <div class="rating">
                 <i class="fa fa-star"></i>
@@ -451,7 +451,7 @@ include "../signup/connect.php";
                 <i class="fa fa-star"></i>
                 <i class="fa fa-star"></i>
                 <i class="fa fa-star-o"></i>
-                <a href="../checkout/checkout.html">
+                <a href="../checkout/checkout.php">
                   <button type="submit" class="buybtn">Buy Now</button>
                 </a>
               </div>
@@ -466,7 +466,7 @@ include "../signup/connect.php";
             <img
               src="../images/productsImages/headphones/Hyperx Cloud X Chat Gaming Headset/HyperxCloudxChat_3.jpg"
             />
-            <a href="../productsDetails/product.html"
+            <a href="../productsDetails/product.php"
               ><h4>Hyperx Cloud X Chat Gaming Headset</h4>
               <div class="rating">
                 <i class="fa fa-star"></i>
@@ -474,7 +474,7 @@ include "../signup/connect.php";
                 <i class="fa fa-star"></i>
                 <i class="fa fa-star"></i>
                 <i class="fa fa-star"></i>
-                <a href="../checkout/checkout.html">
+                <a href="../checkout/checkout.php">
                   <button type="submit" class="buybtn">Buy Now</button>
                 </a>
               </div>
@@ -485,7 +485,7 @@ include "../signup/connect.php";
             <img
               src="../images/productsImages/hard drives/internal hard drives/Seagate Exos X16 14tb Hdd Internal Hard Disk/SeagateEXOSX1614TB.jpg"
             />
-            <a href="../productsDetails/product.html"
+            <a href="../productsDetails/product.php"
               ><h4>Seagate Exos X16 14tb Hdd Internal Hard Disk</h4>
               <div class="rating">
                 <i class="fa fa-star"></i>
@@ -493,7 +493,7 @@ include "../signup/connect.php";
                 <i class="fa fa-star"></i>
                 <i class="fa fa-star"></i>
                 <i class="fa fa-star-o"></i>
-                <a href="../checkout/checkout.html">
+                <a href="../checkout/checkout.php">
                   <button type="submit" class="buybtn">Buy Now</button>
                 </a>
               </div>
@@ -504,7 +504,7 @@ include "../signup/connect.php";
             <img
               src="../images/productsImages/desktops/Acer Veriton M4650G Core i5 6th Gen Desktop Computers/AcerVeritonM4650Gdesktop_1.jpg"
             />
-            <a href="../productsDetails/product.html"
+            <a href="../productsDetails/product.php"
               ><h4>Acer Veriton M4650G Core i5 6th Gen Desktop Computer</h4>
               <div class="rating">
                 <i class="fa fa-star"></i>
@@ -512,7 +512,7 @@ include "../signup/connect.php";
                 <i class="fa fa-star"></i>
                 <i class="fa fa-star"></i>
                 <i class="fa fa-star-o"></i>
-                <a href="../checkout/checkout.html">
+                <a href="../checkout/checkout.php">
                   <button type="submit" class="buybtn">Buy Now</button>
                 </a>
               </div>
@@ -523,7 +523,7 @@ include "../signup/connect.php";
             <img
               src="../images/productsImages/keyboards/Genesis RX85 NKG-0959 Mechanical Gaming Keyboard/Z23287_90547.jpg"
             />
-            <a href="../productsDetails/product.html"
+            <a href="../productsDetails/product.php"
               ><h4>Genesis RX85 NKG-0959 Mechanical Gaming Keyboard</h4>
               <div class="rating">
                 <i class="fa fa-star"></i>
@@ -531,7 +531,7 @@ include "../signup/connect.php";
                 <i class="fa fa-star"></i>
                 <i class="fa fa-star"></i>
                 <i class="fa fa-star-o"></i>
-                <a href="../checkout/checkout.html">
+                <a href="../checkout/checkout.php">
                   <button type="submit" class="buybtn">Buy Now</button>
                 </a>
               </div>
