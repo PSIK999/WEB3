@@ -48,24 +48,6 @@
  
   
 }
-.mainimage{
-  background-image:url(./images/laptop-murjp1nk4lp1idlt.jpg); 
-  background-repeat: no-repeat; 
-  background-position: center; 
-  background-size: 100% 100vh;
-  height: 100vh;
-  width: 100vw;
-
-  
-} 
-   .textimage {
-    margin: 10px;
-    text-align: center;
-    margin-top: 10%;
-    margin-right: 60%;
-    color: white; 
-    
-  }
   .viewbtn {
     display: flex;
     justify-content: center;
@@ -121,16 +103,5 @@
     font-size: 12px;
     padding: 8px 10px;
     color: white;
-  }
-}
-@media (max-width: 768px) {
-  .mainimage {
-    height: 80vh;
-    background-size: cover;
-    background-position: center;
-  }
-    .textimage{
-    margin-right: 0px;
-    margin-top: 100px;
   }
 }
