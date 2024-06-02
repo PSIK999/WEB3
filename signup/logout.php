@@ -1,6 +1,7 @@
 <?php
 session_destroy();
-header('Location: ./index.php');
+header('Location: <div class="">
+<mainPage></mainPage>/index.php');
 exit();
 
 ?>

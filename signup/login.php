@@ -86,7 +86,7 @@
 
 <?php 
 
-include "connect.php";
+include "../signup/connect.php";
 
 if(isset($_POST['submit']) && $_POST['submit'] == "Log in"){
    $email=$_POST['email'];

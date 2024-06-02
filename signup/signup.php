@@ -106,20 +106,20 @@
             </form>
             <p class="loginhere">
               Already have an account ?
-              <a href="./login.php" class="loginhere-link">Login here</a>
+              <a href="../login.php" class="loginhere-link">Login here</a>
             </p>
           </div>
         </div>
       </section>
     </div>
-    <script src="./main.js"></script>
+    <script src="../signup/main.js"></script>
   </body>
 </html>
 
 
 <?php
 
-include ("connect.php");
+include ("../signup/connect.php");
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if (isset($_POST['submit']) && $_POST['submit'] == "Sign up") {

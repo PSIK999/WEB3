@@ -1,7 +1,6 @@
 <?php
 
 function getProductDetails($conn, $product_id) {
-    static $count = 0;
     $product_id = intval($product_id);
 
     $sql = "SELECT name, description, image_url, price FROM products WHERE product_id = $product_id";
@@ -12,10 +11,10 @@ function getProductDetails($conn, $product_id) {
         $product_html = "
             <div class='col-4'>
                 <img src='" . htmlspecialchars($row['image_url']) . "' />
-                <a href='../productsDetails/product.html'>
+                <a href='../productsDetails/product.php'>
                     <h4>" . htmlspecialchars($row['name']) . "</h4>
                     <div class='rating'>
-                        <a href='../checkout/checkout.html'>
+                        <a href='../checkout/checkout.php'>
                             <button type='submit' class='buybtn'>Buy Now</button>
                         </a>
                     </div>
@@ -23,12 +22,8 @@ function getProductDetails($conn, $product_id) {
                 </a>
             </div>";
 
-        $count++;
         return $product_html;
 
-        if ($count % 4 == 0) {
-            echo "<div class='row'>$product_html</div>\n";
-        }
     } else {
         return "Product not found.";
     }

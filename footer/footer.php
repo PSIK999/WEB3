@@ -2,19 +2,19 @@
       <div class="box">
         <h2>Links</h2>
         <ul class="links">
-          <li><a href="./links/privacyPolicy.php"> Privacy Policy </a></li>
+          <li><a href="../links/privacyPolicy.php"> Privacy Policy </a></li>
           <li>
-            <a href="./links/shippingPolicy.php"> Shipping Policy </a>
+            <a href="../links/shippingPolicy.php"> Shipping Policy </a>
           </li>
           <li>
-            <a href="./links/termsOfService.php"> Terms of Services </a>
+            <a href="../links/termsOfService.php"> Terms of Services </a>
           </li>
-          <li><a href="./links/refundPolicy.php"> Refund Policy </a></li>
+          <li><a href="../links/refundPolicy.php"> Refund Policy </a></li>
         </ul>
       </div>
       <div class="box">
         <h2 class="footertitle">𝔖𝔞𝔥𝔢𝔩𝔗𝔯𝔬𝔫𝔦𝔵</h2>
-        <form action="./signup/signup.php" class="registration">
+        <form action="../signup/signup.php" class="registration">
           <button type="submit" class="btn-signin">Sign Up Now</button>
         </form>
       </div>
