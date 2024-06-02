@@ -1,7 +1,7 @@
 <?php
 session_start();
-include "./signup/connect.php";
-include "productFetcher.php";
+include "../signup/connect.php";
+include "../products/productFetcher.php";
 ?>
 <!DOCTYPE html>
 <html lang="en">

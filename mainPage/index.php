@@ -1,7 +1,7 @@
 <?php
 session_start();
 include "../signup/connect.php";
-
+include "../products/productFetcher.php";
 ?>
 
 
@@ -53,7 +53,6 @@ include "../signup/connect.php";
         echo getProductDetails($conn, 13);
         echo getProductDetails($conn, 16);
         echo getProductDetails($conn, 23);
-        $conn->close();
         ?>
       </div>
       <br />
