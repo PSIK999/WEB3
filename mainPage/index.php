@@ -38,7 +38,7 @@ include "../products/productFetcher.php";
       <h5>With Affordable Prices</h5>
     </div>
     <div class="viewbtn">
-      <a href="./allproducts/allproducts.php">
+      <a href="../allproducts/allproducts.php">
         <button class="viewbtnedit">Shop Now</button>
       </a>
     </div>
@@ -97,36 +97,36 @@ include "../products/productFetcher.php";
       </div>
     </div>
 
-    <div class="small-container"></div>
-    <h2 class="title">Categories</h2>
-
-    <div class="row">
-      <div class="col-4">
-        <a href="#"><img src="../images/productsImages/desktops/Acer Veriton M4650G Core i5 6th Gen Desktop Computers/AcerVeritonM4650Gdesktop_1.jpg" /></a>
-        <a href="../products/desktops.php">
-          <h4>DESKTOPS ></h4>
-        </a>
+    <div class="small-container">
+      <h2 class="title">Categories</h2>
+  
+      <div class="row">
+          <div class="col-4">
+            <a href="#"><img src="../images/productsImages/desktops/Acer Veriton M4650G Core i5 6th Gen Desktop Computers/AcerVeritonM4650Gdesktop_1.jpg" /></a>
+            <a href="../products/desktops.php">
+              <h4>DESKTOPS ></h4>
+            </a>
+          </div>
+          <div class="col-4">
+            <a href="#"><img src="../images/productsImages/laptops/Hp Zbook Firefly 14 G9 Core i7-1265u Iris Xe 14 Fhd+ Mobile Workstation Laptop/HpZBookFirefly14G9_4.jpg" /></a>
+            <a href="../products/laptops.php">
+              <h4>LAPTOPS ></h4>
+            </a>
+          </div>
+          <div class="col-4">
+            <a href="#"><img src="../images/productsImages/mousepads/Hyperx Fury S X-Large Size Pro Gaming Mouse Pad/HyperxFurySX-Large_2.jpg" /></a>
+            <a href="../products/accessories.php">
+              <h4>ACCESSORIES ></h4>
+            </a>
+          </div>
+          <div class="col-4">
+            <a href="#"><img src="../images/productsImages/monitors/AOC 27 C27G2Z 240hz 0.5ms 1500r Curved Gaming Monitor/AOCC27G2Z_2.jpg" /></a>
+            <a href="../products/monitors.php">
+              <h4>MONITORS ></h4>
+            </a>
+          </div>
       </div>
-      <div class="col-4">
-        <a href="#"><img src="../images/productsImages/laptops/Hp Zbook Firefly 14 G9 Core i7-1265u Iris Xe 14 Fhd+ Mobile Workstation Laptop/HpZBookFirefly14G9_4.jpg" /></a>
-        <a href="../products/laptops.php">
-          <h4>LAPTOPS ></h4>
-        </a>
       </div>
-      <div class="col-4">
-        <a href="#"><img src="../images/productsImages/mousepads/Hyperx Fury S X-Large Size Pro Gaming Mouse Pad/HyperxFurySX-Large_2.jpg" /></a>
-        <a href="../products/accessories.php">
-          <h4>ACCESSORIES ></h4>
-        </a>
-      </div>
-      <div class="col-4">
-        <a href="#"><img src="../images/productsImages/monitors/AOC 27 C27G2Z 240hz 0.5ms 1500r Curved Gaming Monitor/AOCC27G2Z_2.jpg" /></a>
-        <a href="../products/monitors.php">
-          <h4>MONITORS ></h4>
-        </a>
-      </div>
-    </div>
-    </div>
     <div class="testimonial">
       <div class="small-container">
         <div class="row">
