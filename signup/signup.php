@@ -106,41 +106,104 @@
             </form>
             <p class="loginhere">
               Already have an account ?
-              <a href="../login.php" class="loginhere-link">Login here</a>
+              <a href="./login.php" class="loginhere-link">Login here</a>
             </p>
           </div>
         </div>
       </section>
     </div>
-    <script src="../signup/main.js"></script>
+    <script src="./main.js"></script>
   </body>
 </html>
 
 
 <?php
+include ("connect.php");
 
-include ("../signup/connect.php");
+// On each page load, add HTTP headers to control caching
+header('Cache-Control: no-cache, no-store, must-revalidate');
+header('Pragma: no-cache');
+header('Expires: 0');
+
+// Start the session
+session_start();
+
+// Regenerate session ID to prevent session fixation
+session_regenerate_id(true);
+
+// Generate a token for the user session
+$token = bin2hex(random_bytes(16));
+$_SESSION['token'] = $token;
+$_SESSION['token_expiration'] = time() + 3600; // 1 hour expiration
+
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if (isset($_POST['submit']) && $_POST['submit'] == "Sign up") {
+        // Regenerate session ID to prevent session fixation
+        session_regenerate_id(true);
+
         $firstName = $_POST['firstname'];
         $lastName = $_POST['lastname'];
         $email = $_POST['email'];
         $password = $_POST['password'];
-        $password = md5($password);
-        $checkEmail = "SELECT * From users where email='$email'";
-        $result = $conn->query($checkEmail);
-        
-        if ($result->num_rows > 0) {
-            echo "Email Address Already Exists !";
+        $re_password = $_POST['re_password'];
+
+        // Validate the input data
+        $errors = array();
+        if (empty($firstName)) {
+            $errors[] = 'First name is required';
+        }
+        if (empty($lastName)) {
+            $errors[] = 'Last name is required';
+        }
+        if (empty($email)) {
+            $errors[] = 'Email is required';
+        }
+        if (empty($password)) {
+            $errors[] = 'Password is required';
+        }
+        if (empty($re_password)) {
+            $errors[] = 'Re-enter password is required';
+        }
+        if ($password!== $re_password) {
+            $errors[] = 'Passwords do not match';
+        }
+
+        // Check if there are any errors
+        if (count($errors) > 0) {
+            foreach ($errors as $error) {
+                echo '<p style="color: red;">'. $error. '</p>';
+            }
         } else {
-            $insertQuery = "INSERT INTO users(first_name,last_name,email,password)
-                       VALUES ('$firstName','$lastName','$email','$password')";
-            if ($conn->query($insertQuery) == TRUE) {
-                header("location: ../index.php");
+            // Check if email already exists
+            $stmt = $conn->prepare("SELECT * FROM users WHERE email=?");
+            $stmt->bind_param("s", $email);
+            $stmt->execute();
+            $result = $stmt->get_result();
+
+            if ($result->num_rows > 0) {
+                echo "Email Address Already Exists!";
             } else {
-                echo "Error:" . $conn->error;
+                // Hash the password using password_hash()
+                $hashed_password = password_hash($password, PASSWORD_DEFAULT);
+
+                // Insert user data into the database
+                $stmt = $conn->prepare("INSERT INTO users (first_name, last_name, email, password) VALUES (?,?,?,?)");
+                $stmt->bind_param("ssss", $firstName, $lastName, $email, $hashed_password);
+                if ($stmt->execute()) {
+                    // Generate a token for the user session
+                    //$token = bin2hex(random_bytes(16));
+                    //$_SESSION['token'] = $token;
+                    //$_SESSION['token_expiration'] = time() + 3600; // 1 hour expiration
+
+                    header("location: login.php");
+                } else {
+                    echo "Error:". $conn->error;
+                }
             }
         }
     }
 }
+
+
+?>

@@ -1,6 +1,6 @@
 <?php
-session_start();
 include "../signup/connect.php";
+require_once '../signup/auth.php';
 include "../products/productFetcher.php";
 ?>
 

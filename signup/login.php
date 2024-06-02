@@ -84,28 +84,210 @@
   </body>
 </html>
 
-<?php 
+<?php
 
-include "../signup/connect.php";
 
-if(isset($_POST['submit']) && $_POST['submit'] == "Log in"){
-   $email=$_POST['email'];
-   $password=$_POST['password'];
-   $password=md5($password) ;
-   
-   $sql="SELECT * FROM users WHERE email='$email' and password='$password'";
-   $result=$conn->query($sql);
-   if($result->num_rows>0){
-    session_start();
-    $row=$result->fetch_assoc();
-    $_SESSION['email']=$row['email'];
-    header("Location: ../index.php");
-    echo "zabatettttttttttttttttttt";
-    exit();
-   }
-   else{
-    echo "Not Found, Incorrect Email or Password";
-   }
+include ("connect.php");
 
+// On each page load, add HTTP headers to control caching
+header('Cache-Control: no-cache, no-store, must-revalidate');
+header('Pragma: no-cache');
+header('Expires: 0');
+
+// Start the session
+session_start();
+
+// Regenerate session ID to prevent session fixation
+session_regenerate_id(true);
+
+// Define the expected token
+$expectedToken = 'your_secret_token_here';
+
+// Check if the token is valid
+if (!isset($_SESSION['token']) || $_SESSION['token']!== $expectedToken) {
+    // Token is invalid, generate a new one
+    $token = bin2hex(random_bytes(16));
+    $_SESSION['token'] = $token;
 }
+
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    if (isset($_POST['submit']) && $_POST['submit'] == "Log in") {
+        // Regenerate session ID to prevent session fixation
+        session_regenerate_id(true);
+
+        $email = $_POST['email'];
+        $password = $_POST['password'];
+
+        // Validate the input data
+        $errors = array();
+        if (empty($email)) {
+            $errors[] = 'Email is required';
+        }
+        if (empty($password)) {
+            $errors[] = 'Password is required';
+        }
+
+        // Check if there are any errors
+        if (count($errors) > 0) {
+            foreach ($errors as $error) {
+                echo '<p style="color: red;">'. $error. '</p>';
+            }
+        } else {
+            // Check if email and password match
+            $stmt = $conn->prepare("SELECT * FROM users WHERE email=?");
+            $stmt->bind_param("s", $email);
+            $stmt->execute();
+            $result = $stmt->get_result();
+
+            if ($result->num_rows > 0) {
+                $user = $result->fetch_assoc();
+
+                // Verify the password
+                if (password_verify($password, $user['password'])) {
+                    // Password is correct, store user data in the session
+                    $_SESSION['user_id'] = $user['id'];
+                    $_SESSION['email'] = $user['email'];
+
+                    // Generate a token for the user session
+                    $token = bin2hex(random_bytes(16));
+                    $_SESSION['token'] = $token;
+                    $_SESSION['token_expiration'] = time() + 3600; // 1 hour expiration
+
+                    // Redirect the user to the index page
+                    header("location: ../mainpage/index.php");
+                    exit();
+                } else {
+                    echo "Incorrect password";
+                }
+            } else {
+                echo "Email not found";
+            }
+        }
+    }
+}
+
+
+
+/*include "connect.php";
+
+session_start();
+
+if (isset($_POST['submit']) && $_POST['submit'] == "Log in") {
+  $email = $_POST['email'];
+  $password = $_POST['password'];
+
+  $stmt = $conn->prepare("SELECT * FROM users WHERE email=?");
+  $stmt->bind_param("s", $email);
+  $stmt->execute();
+  $result = $stmt->get_result();
+
+  if ($result->num_rows > 0) {
+      $row = $result->fetch_assoc();
+      $hashed_password = $row['password'];
+
+      if (password_verify($password, $hashed_password)) {
+          session_start();
+          $_SESSION['user_id'] = $row['user_id']; // assuming 'id' is the primary key column in your 'users' table
+          $_SESSION['email'] = $row['email'];
+
+          // Regenerate session ID to prevent session fixation
+          session_regenerate_id(true);
+
+          // Generate a token for the user session
+          $token = bin2hex(random_bytes(16));
+          $_SESSION['token'] = $token;
+          $_SESSION['token_expiration'] = time() + 3600; // 1 hour expiration
+
+          header("Location:../index.php");
+          exit();
+      } else {
+          echo "Not Found, Incorrect Email or Password";
+      }
+  } else {
+      echo "Not Found, Incorrect Email or Password";
+  }
+
+  $stmt->close();
+}
+
+
+
+include ("connect.php");
+
+// On each page load, add HTTP headers to control caching
+header('Cache-Control: no-cache, no-store, must-revalidate');
+header('Pragma: no-cache');
+header('Expires: 0');
+
+// Start the session
+session_start();
+
+// Regenerate session ID to prevent session fixation
+session_regenerate_id(true);
+
+// Define the expected token
+$expectedToken = 'your_secret_token_here';
+
+// Check if the token is valid
+if (!isset($_SESSION['token']) || $_SESSION['token']!== $expectedToken) {
+    // Token is invalid, generate a new one
+    $token = bin2hex(random_bytes(16));
+    $_SESSION['token'] = $token;
+}
+
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    if (isset($_POST['submit']) && $_POST['submit'] == "Log in") {
+        // Regenerate session ID to prevent session fixation
+        session_regenerate_id(true);
+
+        $email = $_POST['email'];
+        $password = $_POST['password'];
+
+        // Validate the input data
+        $errors = array();
+        if (empty($email)) {
+            $errors[] = 'Email is required';
+        }
+        if (empty($password)) {
+            $errors[] = 'Password is required';
+        }
+
+        // Check if there are any errors
+        if (count($errors) > 0) {
+            foreach ($errors as $error) {
+                echo '<p style="color: red;">'. $error. '</p>';
+            }
+        } else {
+            // Check if email and password match
+            $stmt = $conn->prepare("SELECT * FROM users WHERE email=?");
+            $stmt->bind_param("s", $email);
+            $stmt->execute();
+            $result = $stmt->get_result();
+
+            if ($result->num_rows > 0) {
+                $user = $result->fetch_assoc();
+
+                // Verify the password
+                if (password_verify($password, $user['password'])) {
+                    // Password is correct, store user data in the session
+                    $_SESSION['user_id'] = $user['id'];
+                    $_SESSION['email'] = $user['email'];
+
+                    // Generate a token for the user session
+                    $token = bin2hex(random_bytes(16));
+                    $_SESSION['token'] = $token;
+                    $_SESSION['token_expiration'] = time() + 3600; // 1 hour expiration
+
+                    header("location: ../index.php");
+                } else {
+                    echo "Incorrect password";
+                }
+            } else {
+                echo "Email not found";
+            }
+        }
+    }
+}
+
+*/
 ?>

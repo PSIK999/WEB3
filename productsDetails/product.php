@@ -1,9 +1,9 @@
 <?php
-session_start();
 include "../signup/connect.php";
+require_once '../signup/auth.php';
+
 
 ?>
-
 
 <!DOCTYPE html>
 <html lang="en">
