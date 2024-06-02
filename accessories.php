@@ -59,7 +59,7 @@
             <img
               src="./images/productsImages/graphics cards/Vga Amd Radeon RX 6950 XT 16gb Gddr6 Pcie 4.0/AMDRADEONRX6950XT_5.jpg"
             />
-            <a href="./productsDetails/product.html"
+            <a href="./productsDetails/product.php"
               ><h4>Vga Amd Radeon RX 6950 XT 16gb Gddr6 Pcie 4.0</h4>
               <div class="rating">
                 <i class="fa fa-star"></i>
@@ -78,7 +78,7 @@
             <img
               src="./images/productsImages/keyboards/Genesis RX85 NKG-0959 Mechanical Gaming Keyboard/Z23287_90546.jpg"
             />
-            <a href="./productsDetails/product.html"
+            <a href="./productsDetails/product.php"
               ><h4>Genesis RX85 NKG-0959 Mechanical Gaming Keyboard</h4>
               <div class="rating">
                 <i class="fa fa-star"></i>
@@ -97,7 +97,7 @@
             <img
               src="./images/productsImages/headphones/Hyperx Cloud Mix Bluetooth Gaming Headset/HyperxCloudMix_2_a.jpg"
             />
-            <a href="./productsDetails/product.html"
+            <a href="./productsDetails/product.php"
               ><h4>Hyperx Cloud Mix Bluetooth Gaming Headset</h4>
               <div class="rating">
                 <i class="fa fa-star"></i>
@@ -116,7 +116,7 @@
             <img
               src="./images/productsImages/mouses/Hyperx Pulsefire Dart Wireless Rgb Gaming Mouse/HyperxPulsefireDartWireless_6.jpg"
             />
-            <a href="./productsDetails/product.html"
+            <a href="./productsDetails/product.php"
               ><h4>Hyperx Pulsefire Dart Wireless Rgb Gaming Mouse</h4>
               <div class="rating">
                 <i class="fa fa-star"></i>
@@ -134,41 +134,9 @@
         </div>
       </div>
     </main>
-    <footer class="footer">
-      <div class="box">
-        <h2>Links</h2>
-        <ul class="links">
-          <li><a href="./links/privacyPolicy.html"> Privacy Policy </a></li>
-          <li>
-            <a href="./links/shippingPolicy.html"> Shipping Policy </a>
-          </li>
-          <li>
-            <a href="./links/termsOfService.html"> Terms of Services </a>
-          </li>
-          <li><a href="./links/refundPolicy.html"> Refund Policy </a></li>
-        </ul>
-      </div>
-      <div class="box">
-        <h2 class="footertitle">𝔖𝔞𝔥𝔢𝔩𝔗𝔯𝔬𝔫𝔦𝔵</h2>
-        <form action="./signup/signup.html" class="registration">
-          <button type="submit" class="btn-signin">Sign Up Now</button>
-        </form>
-      </div>
-      <div class="box">
-        <h2>Address</h2>
-        <p class="address">
-          <br />
-          Sahel Alma , Lebanon<br />
-          Next To Jamil Market<br />
-        </p>
-        <ul class="social">
-          <li><i class="fa-brands fa-facebook"></i></li>
-          <li><i class="fa-brands fa-twitter"></i></li>
-          <li><i class="fa-brands fa-instagram"></i></li>
-          <li><i class="fa-brands fa-youtube"></i></li>
-        </ul>
-      </div>
-    </footer>
+    <?php
+    include("footer.php");
+    ?>
     <script src="./index.js"></script>
 
     <script

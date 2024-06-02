@@ -32,7 +32,7 @@
                         </a>
                       </li>
                       <li class="nav-item">
-                        <a class="nav-link" href="./cart/cart.html">
+                        <a class="nav-link" href="./cart/cart.php">
                           <i class="fa fa-shopping-cart"></i> Cart (0)
                         </a>
                       </li>
@@ -63,7 +63,7 @@
                           <li>
                             <a
                               class="dropdown-item"
-                              href="./profile/profile.html"
+                              href="./profile/profile.php"
                               ><i class="fa fa-user"></i> Profile</a
                             >
                           </li>
@@ -79,7 +79,7 @@
                             >
                           </li>
                           <li>
-                            <a class="dropdown-item" href="./cart/cart.html"
+                            <a class="dropdown-item" href="./cart/cart.php"
                               ><i class="fa fa-shopping-cart"></i> My Cart</a
                             >
                           </li>
@@ -124,7 +124,7 @@
                       <a class="nav-link" href="./index.php">Home</a>
                     </li>
                     <li class="nav-item">
-                      <a class="nav-link" href="./allproducts/allproducts.html"
+                      <a class="nav-link" href="./allproducts/allproducts.php"
                         >All Products</a
                       >
                     </li>
@@ -148,7 +148,7 @@
                       >
                     </li>
                     <li class="nav-item">
-                      <a class="nav-link" href="./contactus/contactus.html"
+                      <a class="nav-link" href="./contactus/contactus.php"
                         >Contact Us</a
                       >
                     </li>

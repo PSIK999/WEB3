@@ -60,7 +60,7 @@
             <img
               src="./images/productsImages/monitors/AOC 27 C27G2Z 240hz 0.5ms 1500r Curved Gaming Monitor/AOCC27G2Z_1.jpg"
             />
-            <a href="./productsDetails/product.html"
+            <a href="./productsDetails/product.php"
               ><h4>AOC 27 C27G2Z 240hz 0.5ms Curved Gaming Monitor</h4>
               <div class="rating">
                 <i class="fa fa-star"></i>
@@ -79,7 +79,7 @@
             <img
               src="./images/productsImages/monitors/Dell P3421W 34” Ips 3.4k Type C Curved Professional Monitor/Dell34P3421WMonitor_8.jpg"
             />
-            <a href="./productsDetails/product.html"
+            <a href="./productsDetails/product.php"
               ><h4>
                 Dell P3421W 34” Ips 3.4k Type C Curved Professional Monitor
               </h4>
@@ -100,7 +100,7 @@
             <img
               src="./images/productsImages/monitors/Msi C27C4X  27 9S6-3CA91T-098 250hz 1ms 1500r True Color Curved Gaming Monitor/MSIC27C4X9S6-3CA91T-098_2.jpg"
             />
-            <a href="./productsDetails/product.html"
+            <a href="./productsDetails/product.php"
               ><h4>Msi C27C4X 250hz 1ms Curved Gaming Monitor</h4>
               <div class="rating">
                 <i class="fa fa-star"></i>
@@ -119,7 +119,7 @@
             <img
               src="./images/productsImages/monitors/Samsung Odyssey G5 LC27G55TQBMXUE 27 144hz 2k 1ms Hdr10 Curved Gaming Monitor/SAMSUNGODYSSEYG5LC27G55TQBMXUE_5.jpg"
             />
-            <a href="./productsDetails/product.html"
+            <a href="./productsDetails/product.php"
               ><h4>Samsung Odyssey 144hz 1ms Curved Gaming Monitor</h4>
               <div class="rating">
                 <i class="fa fa-star"></i>
@@ -137,43 +137,13 @@
         </div>
       </div>
     </main>
-    <footer class="footer">
-      <div class="box">
-        <h2>Links</h2>
-        <ul class="links">
-          <li><a href="./links/privacyPolicy.html"> Privacy Policy </a></li>
-          <li>
-            <a href="./links/shippingPolicy.html"> Shipping Policy </a>
-          </li>
-          <li>
-            <a href="./links/termsOfService.html"> Terms of Services </a>
-          </li>
-          <li><a href="./links/refundPolicy.html"> Refund Policy </a></li>
-        </ul>
-      </div>
-      <div class="box">
-        <h2 class="footertitle">𝔖𝔞𝔥𝔢𝔩𝔗𝔯𝔬𝔫𝔦𝔵</h2>
-        <form action="/signup/signup.html" class="registration">
-          <button type="submit" class="btn-signin">Sign Up Now</button>
-        </form>
-      </div>
-      <div class="box">
-        <h2>Address</h2>
-        <p class="address">
-          <br />
-          Sahel Alma , Lebanon<br />
-          Next To Jamil Market<br />
-        </p>
-        <ul class="social">
-          <li><i class="fa-brands fa-facebook"></i></li>
-          <li><i class="fa-brands fa-twitter"></i></li>
-          <li><i class="fa-brands fa-instagram"></i></li>
-          <li><i class="fa-brands fa-youtube"></i></li>
-        </ul>
-      </div>
-    </footer>
-    <script src="./index.js"></script>
 
+   <?php
+    include("footer.php");
+   ?>
+
+
+    <script src="./index.js"></script>
     <script
       src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
       integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"

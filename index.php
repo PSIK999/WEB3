@@ -9,7 +9,7 @@ include "./signup/connect.php";
 <html lang="en">
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Project</title>
+  <title>SahelTronix</title>
 
   <head>
     <link
@@ -44,35 +44,35 @@ include "./signup/connect.php";
   </head>
 
   <body loading="lazy">
+
   <div class="mainimage">
     <?php
         include ("navbar.php");
         ?>
-         <div class="imagetext">
+         <div class="textimage">
             <h3>We Offer Our Customers</h3>
             <h3>The Best Products</h3>
             <h5>With Affordable Prices</h5>
           </div>
           <div class="viewbtn">
-            <a href="./allproducts/allproducts.html">
+            <a href="./allproducts/allproducts.php">
               <button class="viewbtnedit">Shop Now</button>
             </a>
           </div>
-        </div>
-        
-
+          </div>
+      
     <main>
       <div class="small-container">
         <h2 class="title">Today's Best Deals</h2>
         <div class="row">
           <div class="col-4">
-            <a href="../productsDetails/product.html"
+            <a href="../productsDetails/product.php"
               ><img
                 src="./images/productsImages/laptops/Asus Rog Strix G16 G614JI-N3169 Core i9-13980hx Rtx 4070 165hz 16/ROGStrixG16G614_3.jpg"
                 alt="..."
               />
             </a>
-            <a href="/productsDetails/product.html">
+            <a href="./productsDetails/product.php">
               <h4>Asus ROG STRIX G16 G164JI-N3169
                 (Brand New)</h4>
             </a>
@@ -82,7 +82,7 @@ include "./signup/connect.php";
               <i class="fa fa-star"></i>
               <i class="fa fa-star"></i>
               <i class="fa fa-star"></i>
-              <a href="./checkout/checkout.html">
+              <a href="./checkout/checkout.php">
                 <button type="submit" class="buybtn">Buy Now</button>
               </a>
             </div>
@@ -103,7 +103,7 @@ include "./signup/connect.php";
               <i class="fa fa-star"></i>
               <i class="fa fa-star"></i>
               <i class="fa fa-star-o"></i>
-              <a href="./checkout/checkout.html">
+              <a href="./checkout/checkout.php">
                 <button type="submit" class="buybtn">Buy Now</button>
               </a>
             </div>
@@ -124,7 +124,7 @@ include "./signup/connect.php";
               <i class="fa fa-star"></i>
               <i class="fa fa-star"></i>
               <i class="fa fa-star-half"></i>
-              <a href="./checkout/checkout.html">
+              <a href="./checkout/checkout.php">
                 <button type="submit" class="buybtn">Buy Now</button>
               </a>
             </div>
@@ -145,7 +145,7 @@ include "./signup/connect.php";
               <i class="fa fa-star"></i>
               <i class="fa fa-star"></i>
               <i class="fa fa-star"></i>
-              <a href="./checkout/checkout.html">
+              <a href="./checkout/checkout.php">
                 <button type="submit" class="buybtn">Buy Now</button>
               </a>
             </div>
@@ -229,7 +229,7 @@ include "./signup/connect.php";
               <i class="fa fa-star"></i>
               <i class="fa fa-star"></i>
               <i class="fa fa-star-half"></i>
-              <a href="./checkout/checkout.htmll">
+              <a href="./checkout/checkout.php">
                 <button type="submit" class="buybtn">Buy Now</button>
               </a>
             </div>
@@ -250,7 +250,7 @@ include "./signup/connect.php";
               <i class="fa fa-star"></i>
               <i class="fa fa-star"></i>
               <i class="fa fa-star"></i>
-              <a href="./checkout/checkout.html">
+              <a href="./checkout/checkout.php">
                 <button type="submit" class="buybtn">Buy Now</button>
               </a>
             </div>
@@ -271,7 +271,7 @@ include "./signup/connect.php";
               <i class="fa fa-star"></i>
               <i class="fa fa-star"></i>
               <i class="fa fa-star"></i>
-              <a href="./checkout/checkout.html">
+              <a href="./checkout/checkout.php">
                 <button type="submit" class="buybtn">Buy Now</button>
               </a>
             </div>
@@ -292,7 +292,7 @@ include "./signup/connect.php";
               <i class="fa fa-star"></i>
               <i class="fa fa-star"></i>
               <i class="fa fa-star"></i>
-              <a href="./checkout/checkout.html">
+              <a href="./checkout/checkout.php">
                 <button type="submit" class="buybtn">Buy Now</button>
               </a>
             </div>
@@ -309,7 +309,7 @@ include "./signup/connect.php";
               ><img
                 src="./images/productsImages/desktops/Acer Veriton M4650G Core i5 6th Gen Desktop Computers/AcerVeritonM4650Gdesktop_1.jpg"
             /></a>
-            <a href="/desktops.html">
+            <a href="/desktops.php">
               <h4>DESKTOPS ></h4>
             </a>
           </div>
@@ -318,7 +318,7 @@ include "./signup/connect.php";
               ><img
                 src="./images/productsImages/laptops/Hp Zbook Firefly 14 G9 Core i7-1265u Iris Xe 14 Fhd+ Mobile Workstation Laptop/HpZBookFirefly14G9_4.jpg"
             /></a>
-            <a href="./laptops.html">
+            <a href="./laptops.php">
               <h4>LAPTOPS ></h4>
             </a>
           </div>
@@ -327,7 +327,7 @@ include "./signup/connect.php";
               ><img
                 src="./images/productsImages/mousepads/Hyperx Fury S X-Large Size Pro Gaming Mouse Pad/HyperxFurySX-Large_2.jpg"
             /></a>
-            <a href="/accessories.html">
+            <a href="/accessories.php">
               <h4>ACCESSORIES ></h4>
             </a>
           </div>
@@ -336,7 +336,7 @@ include "./signup/connect.php";
               ><img
                 src="./images/productsImages/monitors/AOC 27 C27G2Z 240hz 0.5ms 1500r Curved Gaming Monitor/AOCC27G2Z_2.jpg"
             /></a>
-            <a href="./monitors.html">
+            <a href="./monitors.php">
               <h4>MONITORS ></h4>
             </a>
           </div>
@@ -440,41 +440,9 @@ include "./signup/connect.php";
       </div>
     </main>
 
-    <footer class="footer">
-      <div class="box">
-        <h2>Links</h2>
-        <ul class="links">
-          <li><a href="./links/privacyPolicy.html"> Privacy Policy </a></li>
-          <li>
-            <a href="./links/shippingPolicy.html"> Shipping Policy </a>
-          </li>
-          <li>
-            <a href="./links/termsOfService.html"> Terms of Services </a>
-          </li>
-          <li><a href="./links/refundPolicy.html"> Refund Policy </a></li>
-        </ul>
-      </div>
-      <div class="box">
-        <h2 class="footertitle">𝔖𝔞𝔥𝔢𝔩𝔗𝔯𝔬𝔫𝔦𝔵</h2>
-        <form action="./signup/signup.p" class="registration">
-          <button type="submit" class="btn-signin">Sign Up Now</button>
-        </form>
-      </div>
-      <div class="box">
-        <h2>Address</h2>
-        <p class="address">
-          <br />
-          Sahel Alma , Lebanon<br />
-          Next To Jamil Market<br />
-        </p>
-        <ul class="social">
-          <li><i class="fa-brands fa-facebook"></i></li>
-          <li><i class="fa-brands fa-twitter"></i></li>
-          <li><i class="fa-brands fa-instagram"></i></li>
-          <li><i class="fa-brands fa-youtube"></i></li>
-        </ul>
-      </div>
-    </footer>
+<?php
+   include("footer.php")
+?>
 
     <script src="./index.js"></script>
     <script
