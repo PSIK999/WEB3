@@ -76,15 +76,19 @@ require_once '../signup/auth.php';
                         <input
                           type="text"
                           class="form-control"
-                          placeholder="Simon"
-                        />
+                          placeholder="<?php  $email = $_SESSION['email'];
+                                              $query = mysqli_query($conn, "SELECT users.* FROM `users` WHERE users.email='$email'");
+                                              while ($row = mysqli_fetch_array($query)) {
+                                              echo $row['first_name'] ; } ?>">
                       </div>
                       <div class="col-md-6">
                         <input
                           type="text"
                           class="form-control"
-                          placeholder="Khalil"
-                        />
+                          placeholder="<?php  $email = $_SESSION['email'];
+                                              $query = mysqli_query($conn, "SELECT users.* FROM `users` WHERE users.email='$email'");
+                                              while ($row = mysqli_fetch_array($query)) {
+                                              echo $row['last_name'] ; } ?>">
                       </div>
                     </div>
                     <div class="form-group">
@@ -92,8 +96,10 @@ require_once '../signup/auth.php';
                       <input
                         type="text"
                         class="form-control mb-1"
-                        placeholder="simon.khalil@isae.edu.lb"
-                      />
+                        placeholder="<?php  $email = $_SESSION['email'];
+                                              $query = mysqli_query($conn, "SELECT users.* FROM `users` WHERE users.email='$email'");
+                                              while ($row = mysqli_fetch_array($query)) {
+                                              echo $row['email'] ; } ?>">
                       <div class="alert alert-warning mt-3">
                         Your email is not confirmed. Please check your inbox.<br />
                         <a href="javascript:void(0)">Resend confirmation</a>
@@ -342,3 +348,4 @@ require_once '../signup/auth.php';
     </main>
   </body>
 </html>
+
