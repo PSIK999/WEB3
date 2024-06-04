@@ -1,6 +1,5 @@
 <?php
 include "../signup/connect.php";
-//include '../signup/regular_auth.php';
 session_start()
 ?>
 
