@@ -1,8 +1,9 @@
 <?php
 include "../signup/connect.php";
-require_once '../signup/auth.php';
+include '../signup/regular_auth.php';
 include "../products/productFetcher.php";
 ?>
+
 
 
 <!DOCTYPE html>
