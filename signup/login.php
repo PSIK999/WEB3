@@ -147,6 +147,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     // Password is correct, store user data in the session
                     $_SESSION['user_id'] = $user['id'];
                     $_SESSION['email'] = $user['email'];
+                    $_SESSION['log'] = true; 
 
                     // Generate a token for the user session
                     $token = bin2hex(random_bytes(16));
