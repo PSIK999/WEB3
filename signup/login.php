@@ -70,9 +70,9 @@
               </div>
             </form>
             <p class="loginhere">
-              Don't have an account ?
-              <a href="../signup/signup.php" class="loginhere-link"
-                >Signup here</a
+              Continue as a
+              <a href="../mainPage/index.php" class="loginhere-link"
+                >Guest</a
               >
             </p>
              <p class="loginhere">
