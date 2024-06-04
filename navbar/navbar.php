@@ -1,3 +1,9 @@
+<?php
+include "../signup/connect.php";
+//include '../signup/regular_auth.php';
+session_start()
+?>
+
 <nav>
   <div class="main-navbar shadow-sm sticky-top">
     <div class="top-navbar">
@@ -18,13 +24,9 @@
               </div>
             </form>
           </div>
-          <div class="col-md-5 my-auto">
+          <?php if (isset($_SESSION['log']) && $_SESSION['log']){ ?>
+            <div class="col-md-5 my-auto">
             <ul class="nav justify-content-end">
-              <li class="nav-item">
-                <a class="nav-link" href="../signup/signup.php">
-                  <i class="fa fa-heart"></i> Sign Up
-                </a>
-              </li>
               <li class="nav-item">
                 <a class="nav-link" href="../cart/cart.php">
                   <i class="fa fa-shopping-cart"></i> Cart (0)
@@ -34,13 +36,12 @@
                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                   <i class="fa fa-user"></i>
                   <?php
-                  if (isset($_SESSION['email'])) {
                     $email = $_SESSION['email'];
                     $query = mysqli_query($conn, "SELECT users.* FROM `users` WHERE users.email='$email'");
                     while ($row = mysqli_fetch_array($query)) {
                       echo $row['first_name'] . ' ' . $row['last_name'];
                     }
-                  }
+                  
                   ?>
                 </a>
                 <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
@@ -67,6 +68,50 @@
         </div>
       </div>
     </div>
+    <?php } else { ?>
+         <div class="col-md-5 my-auto">
+            <ul class="nav justify-content-end">
+              <li class="nav-item">
+                <a class="nav-link" href="../signup/signup.php">
+                  <i class="fa fa-heart"></i> Sign Up
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="../signup/login.php">
+                  <i class="fa fa-shopping-cart"></i> Cart (0)
+                </a>
+              </li>
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                  <i class="fa fa-user"></i>
+                  User Name
+                </a>
+                <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                  <li>
+                    <a class="dropdown-item" href="../signup/login.php"><i class="fa fa-user"></i> Profile</a>
+                  </li>
+
+                  <li>
+                    <a class="dropdown-item" href="../signup/login.php"><i class="fa fa-list"></i> My Orders</a>
+                  </li>
+                  <li>
+                    <a class="dropdown-item" href="../signup/login.php"><i class="fa fa-heart"></i> My Wishlist</a>
+                  </li>
+                  <li>
+                    <a class="dropdown-item" href="../signup/login.php"><i class="fa fa-shopping-cart"></i> My Cart</a>
+                  </li>
+                  <li>
+                    <a class="dropdown-item" href="../signup/login.php"><i class="fa fa-sign-out"></i> Logout</a>
+                  </li>
+                </ul>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+        <?php } ?>
 
     <nav class="navbar navbar-expand-lg">
       <div class="container-fluid">
