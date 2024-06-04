@@ -1,3 +1,7 @@
+<?php
+include "../signup/connect.php";
+
+?>
 <footer class="footer">
       <div class="box">
         <h2>Links</h2>
@@ -13,11 +17,14 @@
         </ul>
       </div>
       <div class="box">
-        <h2 class="footertitle">𝔖𝔞𝔥𝔢𝔩𝔗𝔯𝔬𝔫𝔦𝔵</h2>
-        <form action="../signup/signup.php" class="registration">
-          <button type="submit" class="btn-signin">Sign Up Now</button>
-        </form>
-      </div>
+    <h2 class="footertitle">𝔖𝔞𝔥𝔢𝔩𝔗𝔯𝔬𝔫𝔦𝔵</h2>
+    <?php if (isset($_SESSION['log']) && $_SESSION['log']){ ?>
+    <?php } else { ?>
+      <form action="../signup/signup.php" class="registration">
+        <button type="submit" class="btn-signin">Sign Up Now</button>
+      </form>
+    <?php } ?>
+  </div>
       <div class="box">
         <h2>Address</h2>
         <p class="address">
