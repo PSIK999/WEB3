@@ -75,6 +75,12 @@
                 >Signup here</a
               >
             </p>
+             <p class="loginhere">
+              Don't have an account ?
+              <a href="../signup/signup.php" class="loginhere-link"
+                >Signup here</a
+              >
+            </p>
           </div>
         </div>
       </section>
