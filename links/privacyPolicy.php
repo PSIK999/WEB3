@@ -1,8 +1,7 @@
 <?php
 include "../signup/connect.php";
-require_once '../signup/auth.php';
+include '../signup/regular_auth.php';
 ?>
-
 <!DOCTYPE html>
 <html lang="en">
 <meta charset="UTF-8" />
