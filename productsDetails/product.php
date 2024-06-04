@@ -1,6 +1,6 @@
 <?php
 include "../signup/connect.php";
-require_once '../signup/auth.php';
+include '../signup/regular_auth.php';
 
 
 ?>
@@ -65,10 +65,17 @@ require_once '../signup/auth.php';
             <option>64 GB</option>
           </select>
           <input type="number" min="0" max="10" value="1" />
-          <a href="../cart/cart.php" class="bton">Add To Cart</a>
-          <a href="../checkout/checkout.php" class="bton">Buy Now</a>
-          <a href="../review/review.php" class="bton">Add a Review</a>
-
+          
+          <?php if (isset($_SESSION['log']) && $_SESSION['log']){ ?>
+          <a href="../checkout/checkout.php"><button   class="bton">Buy Now</button></a>
+          <a href="../cart/cart.php"><button  class="bton" >Add To Cart</button></a>
+          <a href="../cart/cart.php"><button  class="bton">Add a Review</button></a>
+          <?php } else { ?>
+          <a href="../signup/login.php"><button  class="bton">Buy Now</button></a>
+          <a href="../signup/login.php"><button  class="bton">Add To Cart</button></a>
+          <a href="../signup/login.php"><button  class="bton">Add a Review</button></a>
+         
+        <?php } ?>
           <h3>Product Details <i class="fa fa-indent"></i></h3>
           <br />
           <p>
@@ -162,7 +169,10 @@ require_once '../signup/auth.php';
   <?php
   include("../footer/footer.php");
   ?>
+  
   <script src="../productsDetails/product.js"></script>
+ 
+
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 </body>
