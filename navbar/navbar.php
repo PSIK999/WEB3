@@ -1,6 +1,6 @@
 <?php
 include "../signup/connect.php";
-session_start()
+//session_start()
 ?>
 
 <nav>
