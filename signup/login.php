@@ -103,8 +103,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         echo '<p style="color: red;">' . $error . '</p>';
       }
     } else {
+
       // Check if email and password match as an user
-      $stmt = $conn->prepare("SELECT * FROM users WHERE email=? AND user_role = 0");
+      $stmt = $conn->prepare("SELECT * FROM users WHERE email=?");
       $stmt->bind_param("s", $email);
       $stmt->execute();
       $result = $stmt->get_result();
@@ -115,40 +116,59 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         // Verify the password
         if (password_verify($password, $user['password'])) {
           // Password is correct, store user data in the session
-          $_SESSION['user_id'] = $user['id'];
-          $_SESSION['email'] = $user['email'];
-          $_SESSION['log'] = true;
-          $SQL = "UPDATE users SET is_active = 1 WHERE user_id = '" . $_SESSION['user_id'] . "' OR email = '" . $_SESSION['email'] . "'";
-          $result = $conn->query($SQL);
-          // Generate a token for the user session
-          $token = bin2hex(random_bytes(16));
-          $_SESSION['token'] = $token;
-          $_SESSION['token_expiration'] = time() + 3600; // 1 hour expiration
+          $stmt = $conn->prepare("SELECT * FROM users WHERE email=? AND user_role = 0");
+          $stmt->bind_param("s", $email);
+          $stmt->execute();
+          $result = $stmt->get_result();
 
-          // Redirect the user to the index page
-          header("location: ../mainpage/index.php");
-          exit();
+          if ($result->num_rows > 0) {
+            $_SESSION['user_id'] = $user['id'];
+            $_SESSION['email'] = $user['email'];
+            //$_SESSION['log'] = true;
+            $SQL = "UPDATE users SET is_active = 1 WHERE user_id = '" . $_SESSION['user_id'] . "' OR email = '" . $_SESSION['email'] . "'";
+            $result = $conn->query($SQL);
+            // Generate a token for the user session
+            $token = bin2hex(random_bytes(16));
+            $_SESSION['token'] = $token;
+            $_SESSION['token_expiration'] = time() + 3600; // 1 hour expiration
+
+            // Redirect the user to the index page
+            header("location: ../mainpage/index.php");
+            exit();
           } else {
-          echo "Incorrect password";
-        }
-      } else {
-        // Check if email and password match as an Admin
-        $stmt = $conn->prepare("SELECT * FROM users WHERE email=? AND user_role = 1");
-        $stmt->bind_param("s", $email);
-        $stmt->execute();
-        $result = $stmt->get_result();
+            $stmt = $conn->prepare("SELECT * FROM users WHERE email=? AND user_role = 1");
+            $stmt->bind_param("s", $email);
+            $stmt->execute();
+            $result = $stmt->get_result();
 
-        if ($result->num_rows > 0) {
-          // Generate a token for the user session
-          $token = bin2hex(random_bytes(16));
-          $_SESSION['token'] = $token;
-          $_SESSION['token_expiration'] = time() + 3600; // 1 hour expiration
+            if ($result->num_rows > 0) {
+              $admin_email = $_POST['email'];
+              $admin_password = $_POST['password'];
+              $admin_token_name = 'admin_token$589jydu567rjedny';
+              $admin_token_expiration = 3600; // 1 hour expiration time
 
-          header("location: ../adminpanel/admin.php");
+              // Set the admin token and expiration time
+              $_SESSION[$admin_token_name] = $admin_token_name;
+              $_SESSION[$admin_token_name . '_expiration'] = time() + $admin_token_expiration;
+              $stmt = $conn->prepare("SELECT user_id FROM users WHERE email=? AND user_role = 1");
+              $stmt->bind_param("s", $email);
+              $stmt->execute();
+              $admin_id = $stmt->get_result();
+              // Set the admin ID and username
+              $_SESSION['admin_id'] = $admin_id;
+              $_SESSION['admin_email'] = $admin_email;
 
+              // Redirect to the admin panel
+              header("location: ../adminpanel/admin.php");
+              exit();
+
+            }
+          }
         } else {
-          echo "Email not found";
+          echo "Incorrect 5password";
         }
+
+
       }
     }
   }
