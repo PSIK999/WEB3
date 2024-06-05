@@ -2,7 +2,30 @@
 include "../signup/connect.php";
 //session_start()
 ?>
+<style>
+        .navbar .nav-link {
+            color: #000; 
+            text-decoration: none;
+            padding: 10px 15px;
+            display: block;
+        }
 
+        .navbar .nav-link.active {
+            color: yellow; 
+            font-weight: bold;
+            border-bottom: 2px solid yellow;
+        }
+
+        .navbar {
+            background-color: #333;
+            padding: 10px 0;
+        }
+
+        .navbar .nav-link:hover {
+            color: #fff;
+            text-decoration: underline;
+        }
+    </style>
 <nav>
   <div class="main-navbar shadow-sm sticky-top">
     <div class="top-navbar">
