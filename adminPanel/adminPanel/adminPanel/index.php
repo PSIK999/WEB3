@@ -1,3 +1,11 @@
+<?php
+include "../signup/connect.php";
+require_once '../signup/auth.php';
+
+
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -77,7 +85,7 @@
                 </li>
 
                 <li>
-                    <a href="#">
+                    <a href="../signup/logout.php">
                         <span class="icon">
                             <ion-icon name="log-out-outline"></ion-icon>
                         </span>
