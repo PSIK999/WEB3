@@ -1,6 +1,25 @@
 <?php
 include "../signup/connect.php";
 require_once '../signup/auth.php';
+
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+  if (isset($_POST['product_id']) /*&& isset($_POST['user_id'])*/) {
+    $product_id = $_POST['product_id'];
+    //$user_id = $_POST['user_id'];
+    $user_id = 1;
+    $quantity = 1;
+
+
+    function insertIntoCart($product_id, $user_id, $quantity, $conn)
+    {
+      $sql = "INSERT INTO shoppingcart (user_id, product_id, quantity) VALUES ('$user_id', '$product_id' , $quantity)";
+      $conn->query($sql);
+    }
+  }
+
+  insertIntoCart($product_id, $user_id, $quantity, $conn);
+}
+
 ?>
 
 <!DOCTYPE html>
@@ -39,51 +58,69 @@ require_once '../signup/auth.php';
           <th>Quantity</th>
           <th>Subtotal</th>
         </tr>
-        <tr>
-          <td>
-            <div class="cart-info">
-              <img src="../images/productsImages/laptops/Asus Rog Strix G16 G614JI-N3169 Core i9-13980hx Rtx 4070 165hz 16/ROGStrixG16G614_3.jpg" alt="" />
-              <div>
-                <p>
-                  Asus Rog Strix G16 G614JI-N3169 Core i9-13980hx Rtx 4070
-                  165hz 16
-                </p>
-                <small>Price: $2,199.99</small><br />
-                <a href="">Remove</a>
-              </div>
+        <?php
+        $sql = "SELECT product_id FROM shoppingcart WHERE user_id = '1'";
+        $result = $conn->query($sql);
+        if ($result->num_rows > 0) {
+          $product_ids = array();
+          while ($row = $result->fetch_assoc()) {
+            $product_ids[] = $row['product_id'];
+          }
+          foreach ($product_ids as $product_id) {
+            echo fetchProductDetails($product_id, 1, $conn);
+          }
+        } else {
+          echo "No products found for user ID 1";
+        }
+
+        function fetchProductDetails($product_id, $user_id, $conn)
+        {
+          $sql = "SELECT name, description, price, image_url FROM products WHERE product_id = '$product_id'";
+          $result = $conn->query($sql);
+
+          if ($result->num_rows > 0) {
+            $row = $result->fetch_assoc();
+            $cart_html = "<tr>
+            <td>
+            <div class='cart-info'>
+            <img src='" . htmlspecialchars($row['image_url']) .  "' alt= '" . htmlspecialchars($row['description']) . "'  />
+            <div>
+            <p>" . htmlspecialchars($row['name']) . "</p>
+            <small>Price: $" . number_format($row['price'], 2) . " </small><br />
+            <a href=''>remove</a>
             </div>
-          </td>
-          <td><input type="number" value="1" /></td>
-          <td><label>$2,199.99</label></td>
-        </tr>
-        <tr>
-          <td>
-            <div class="cart-info">
-              <img src="../images/productsImages/monitors/AOC 27 C27G2Z 240hz 0.5ms 1500r Curved Gaming Monitor/AOCC27G2Z_1.jpg" alt="" />
-              <div>
-                <p>AOC 27 C27G2Z 240hz 0.5ms Curved Gaming Monitor</p>
-                <small>Price: $199.99</small><br />
-                <a href="">Remove</a>
-              </div>
             </div>
-          </td>
-          <td><input type="number" value="1" /></td>
-          <td><label>$199.99</label></td>
-        </tr>
-        <tr>
-          <td>
-            <div class="cart-info">
-              <img src="../images/productsImages/desktops/Alienware Aurora Core i7-9700k Desktop Computers/AlienwareAurora_1_8e83c8aa-63b1-42f7-a20d-65c63b2f1c4b.jpg" alt="" />
-              <div>
-                <p>Alienware Aurora Core i7-9700k Desktop Computers</p>
-                <small>Price: $1,499.99</small><br />
-                <a href="">Remove</a>
-              </div>
-            </div>
-          </td>
-          <td><input type="number" value="1" min="0" /></td>
-          <td><label>$1,499.99</label></td>
-        </tr>
+            </td>
+            <td><input type='number' value='1' /></td>
+            <td><label>$2,199.99</label></td>
+            </tr>";
+            return $cart_html;
+          } else {
+            return "Product not found.";
+          }
+        }
+        // function removeFromCart($product_id, $user_id, $conn)
+        // {
+        //   $sql = "DELETE FROM shoppingcart WHERE user_id = '$user_id' AND product_id = '$product_id'";
+
+        //   if ($conn->query($sql) === TRUE) {
+        //     return true;
+        //   } else {
+        //     return false;
+        //   }
+        // }
+
+        // $removed = removeFromCart(1 ,1, $conn);
+
+        // if ($removed) {
+        //   echo "Product removed from shopping cart.";
+        // } else {
+        //   echo "Error removing product from shopping cart.";
+        // }
+        // Close the database connection
+
+        $conn->close();
+        ?>
       </table>
 
       <div class="total-price">
@@ -111,42 +148,12 @@ require_once '../signup/auth.php';
       </div>
     </div>
   </main>
-  <footer class="footer">
-    <div class="box">
-      <h2>Links</h2>
-      <ul class="links">
-        <li><a href="../links/privacyPolicy.php"> Privacy Policy </a></li>
-        <li>
-          <a href="../links/shippingPolicy.php"> Shipping Policy </a>
-        </li>
-        <li>
-          <a href="../links/termsOfService.php"> Terms of Services </a>
-        </li>
-        <li><a href="../links/refundPolicy.php"> Refund Policy </a></li>
-      </ul>
-    </div>
-    <div class="box">
-      <h2 class="footertitle">𝔖𝔞𝔥𝔢𝔩𝔗𝔯𝔬𝔫𝔦𝔵</h2>
-      <form action="../signup/signup.php" class="registration">
-        <button type="submit" class="btn-signin">Sign Up Now</button>
-      </form>
-    </div>
-    <div class="box">
-      <h2>Address</h2>
-      <p class="address">
-        <br />
-        Sahel Alma , Lebanon<br />
-        Next To Jamil Market<br />
-      </p>
-      <ul class="social">
-        <li><i class="fa-brands fa-facebook"></i></li>
-        <li><i class="fa-brands fa-twitter"></i></li>
-        <li><i class="fa-brands fa-instagram"></i></li>
-        <li><i class="fa-brands fa-youtube"></i></li>
-      </ul>
-    </div>
-  </footer>
-  <script src="../index.js"></script>
+
+  <?php
+  include("../footer/footer.php");
+  ?>
+
+  <script src="../mainPage/index.js"></script>
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 
