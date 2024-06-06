@@ -103,8 +103,9 @@ include "../products/productFetcher.php";
 include("../footer/footer.php");
 ?>
 
-
+<script src="../cart/cart.js"></script>
 </html>
+    
     <script src="../mainPage/index.js"></script>
     <script src="../allproducts/allproducts.js"></script>
     <script
