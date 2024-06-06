@@ -57,7 +57,7 @@
               </div>
               <div class="form-group">
                 <input
-                  type="text"
+                  type="password"
                   class="form-input"
                   name="password"
                   id="password"
@@ -66,13 +66,13 @@
                 />
                 <i
                   toggle="#password"
-                  class="fa-regular fa-eye field-icon toggle-password"
+                  class="fa-regular fa-eye-slash field-icon toggle-password"
                 >
                 </i>
               </div>
               <div class="form-group">
                 <input
-                  type="text"
+                  type="password"
                   class="form-input"
                   name="re_password"
                   id="re_password"
@@ -81,7 +81,7 @@
                 />
                 <i
                   toggle="#re_password"
-                  class="fa-regular fa-eye field-icon toggle-password"
+                  class="fa-regular fa-eye-slash field-icon toggle-password"
                 >
                 </i>
               </div>
