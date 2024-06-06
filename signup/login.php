@@ -158,8 +158,8 @@
             </div>
 
             <div class="form-group">
-              <input type="text" class="form-input" name="password" id="password" placeholder="Password" />
-              <i toggle="#password" class="fa-regular fa-eye field-icon toggle-password">
+              <input type="password" class="form-input" name="password" id="password" placeholder="Password" />
+              <i toggle="#password" class="fa-regular fa-eye-slash field-icon toggle-password">
               </i>
               <?php
                   
