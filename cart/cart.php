@@ -3,10 +3,9 @@ include "../signup/connect.php";
 require_once '../signup/auth.php';
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-  if (isset($_POST['product_id']) /*&& isset($_POST['user_id'])*/) {
+  if (isset($_POST['product_id']) && isset($_SESSION['user_id'])) {
     $product_id = $_POST['product_id'];
-    //$user_id = $_POST['user_id'];
-    $user_id = 1;
+    $user_id =  $_SESSION['user_id'];
     $quantity = 1;
 
 
@@ -59,7 +58,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
           <th>Subtotal</th>
         </tr>
         <?php
-        $sql = "SELECT product_id FROM shoppingcart WHERE user_id = '1'";
+        $sql = "SELECT product_id FROM shoppingcart WHERE user_id = '$user_id'";
         $result = $conn->query($sql);
         if ($result->num_rows > 0) {
           $product_ids = array();
@@ -70,7 +69,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             echo fetchProductDetails($product_id, 1, $conn);
           }
         } else {
-          echo "No products found for user ID 1";
+          echo "You haven't select any product yet!";
         }
 
         function fetchProductDetails($product_id, $user_id, $conn)
