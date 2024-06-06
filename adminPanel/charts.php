@@ -24,7 +24,7 @@
                 </li>
 
                 <li>
-                    <a href="index.php">
+                    <a href="admin.php">
                         <span class="icon">
                             <ion-icon name="home-outline"></ion-icon>
                         </span>
@@ -34,7 +34,7 @@
                 </li>
 
                 <li>
-                    <a href="manageUsers.html">
+                    <a href="manageUsers.php">
                         <span class="icon">
                             <ion-icon name="people-outline"></ion-icon>
                         </span>
@@ -43,7 +43,7 @@
                 </li>
 
                 <li>
-                    <a href="charts.html">
+                    <a href="charts.php">
                         <span class="icon">
                             <ion-icon name="chatbubble-outline"></ion-icon>
                         </span>
@@ -79,7 +79,7 @@
                 </li>
 
                 <li>
-                    <a href="#">
+                    <a href="../signup/logout.php">
                         <span class="icon">
                             <ion-icon name="log-out-outline"></ion-icon>
                         </span>
