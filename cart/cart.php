@@ -66,7 +66,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $product_ids[] = $row['product_id'];
           }
           foreach ($product_ids as $product_id) {
-            echo fetchProductDetails($product_id, 1, $conn);
+            echo fetchProductDetails($product_id, $user_id, $conn);
           }
         } else {
           echo "You haven't select any product yet!";
@@ -74,7 +74,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         function fetchProductDetails($product_id, $user_id, $conn)
         {
-          $sql = "SELECT name, description, price, image_url FROM products WHERE product_id = '$product_id'";
+          $sql = "SELECT name, description, price, image_url FROM products WHERE product_id = '$product_id' AND product_id IN (SELECT product_id from shoppingcart WHERE user_id = $user_id);";
           $result = $conn->query($sql);
 
           if ($result->num_rows > 0) {
@@ -160,3 +160,4 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 </body>
 
 </html>
+
