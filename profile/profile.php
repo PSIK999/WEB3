@@ -16,6 +16,10 @@ require_once '../signup/auth.php';
       href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/css/bootstrap.min.css"
       rel="stylesheet"
     />
+    <link rel="stylesheet" href="fonts/material-icon/css/material-design-iconic-font.min.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+    integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
   </head>
 
   <body>
@@ -140,92 +144,132 @@ require_once '../signup/auth.php';
                     </div>
                   </div>
                 </div>
+
+
                 <div class="tab-pane fade" id="account-change-password">
                   <div class="card-body pb-2">
-                    <form method="POST" class="form-group" action="profile.php">
-                      <label class="form-label">Current password</label>
-                      <input type="password" name="current_password" class="form-control" />
-                    
-                    <div class="form-group">
-                      <label class="form-label">New password</label>
-                      <input type="password" name="password" class="form-control" />
-                    </div>
-                    <div class="form-group">
-                      <label class="form-label">Repeat new password</label>
-                      <input type="password" name="re_password" class="form-control" />
-                    </div>
-                    <input type="submit" name="submit" class="btn btn-primary" value="Save changes"/>
-                  </form>
-                  </div>
-                </div>
-                <?php                   
-                 
-                 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-                     if (isset($_POST["submit"]) && $_POST["submit"] == "Save changes") {
-                         $current_password = $_POST["current_password"];
-                         $password = $_POST["password"];
-                         $re_password = $_POST["re_password"];
-                         $errors = array();
-                 
-                         // Check if user is logged in
-                         //if (!isset($_SESSION['email'])) {
-                          //   $errors[] = 'You must be logged in to change your password';
-                        // }
-                 
+                    <?php
+                    $errors = array(
+                      'current_password' => array(),
+                      'password' => array(),
+                      'e_password' => array(),
+                      'general' => array()
+                    );
+
+                    if ($_SERVER["REQUEST_METHOD"] == "POST") {
+                      if (isset($_POST["submit"]) && $_POST["submit"] == "Save changes") {
+                        $current_password = $_POST["current_password"];
+                        $password = $_POST["password"];
+                        $re_password = $_POST["re_password"];
+
+                        //Check if user is logged in
+                        if (!isset($_SESSION['email'])) {
+                          $errors['general'][] = 'You must be logged in to change your password';
+                        }
+
                         // Validate current password
-                       // if (empty($current_password) || strlen($current_password) < 12 ) {
-                         // $errors[] = 'Current password0000 is required OR invalid format';
-                        //}
+                        if (empty($current_password)) {
+                          $errors['current_password'][] = 'Current password is required ';
+                        } else if (!preg_match('/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{12,}$/', $current_password)) {
+                          $errors['current_password'][] = 'Your Current password must be at least 12 characters long and contain at least one lowercase letter, one uppercase letter, one digit, and one special character';
+                        }
 
                         // Validate new password
-                        //if (empty($password) || strlen($password) < 12 ) {
-                        //  $errors[] = 'New password1111 is required OR invalid format';
-                        //}
+                        if (empty($password)) {
+                          $errors['password'][] = 'New password is required';
+                        } else if (!preg_match('/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{12,}$/', $password)) {
+                          $errors['password'][] = 'Your New password must be at least 12 characters long and contain at least one lowercase letter, one uppercase letter, one digit, and one special character';
+                        }
 
                         // Validate re-entered password
-                       // if (empty($re_password) || strlen($re_password) < 12 ) {
-                       //   $errors[] = 'Re-entered22222 password is required OR invalid format';
-                       // }
-                 
-                         // Check if passwords match
-                        // if ($password!== $re_password) {
-                         //    $errors[] = 'Passwords do not match';
-                         //}
-                 
-                         if (count($errors) > 0) {
-                             foreach ($errors as $error) {
-                                 echo $error;
-                             }
-                         } else {
-                             $email = $_SESSION['email'];
-                             $stmt = $conn->prepare("SELECT password FROM users WHERE email=?");
-                             $stmt->bind_param("s", $email);
-                             $stmt->execute();
-                             $result = $stmt->get_result();
-                             $row = $result->fetch_assoc();
-                 
-                             // Get the stored password hash from the database
-                             $stored_password_hash = $row['password'];
-                 
-                             // Verify the password hash using password_verify()
-                             if (password_verify($current_password, $stored_password_hash)) {
-                                 $hashed_password = password_hash($password, PASSWORD_DEFAULT);
-                                 $stmt = $conn->prepare("UPDATE users SET password =? WHERE email =?");
-                                 $stmt->bind_param("ss", $hashed_password, $email);
-                 
-                                 if ($stmt->execute()) {
-                                     echo "Your password has been succesfully changed!";
-                                 } else {
-                                     echo "Error:". $conn->error;
-                                 }
-                             } else {
-                                 echo "The password you entered is not your current password.";
-                             }
-                         }
-                     }
-                 }
-                 
-                    ?>
+                        if (empty($re_password)) {
+                          $errors['re_password'][] = 'Re-entered password is required';
+                        } else if (!preg_match('/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{12,}$/', $re_password)) {
+                          $errors['re_password'][] = 'Your Re-entered password must be at least 12 characters long and contain at least one lowercase letter, one uppercase letter, one digit, and one special character';
+                        }
+
+                        // Check if passwords match
+                        if ($password!== $re_password) {
+                          $errors['general'][] = 'Passwords do not match';
+                        }
+
+                        if (count($errors) == 0) {
+                          $email = $_SESSION['email'];
+                          $stmt = $conn->prepare("SELECT password FROM users WHERE email=?");
+                          $stmt->bind_param("s", $email);
+                          $stmt->execute();
+                          $result = $stmt->get_result();
+                          $row = $result->fetch_assoc();
+
+                          // Get the stored password hash from the database
+                          $stored_password_hash = $row['password'];
+
+                          // Verify the password hash using password_verify()
+                          if (password_verify($current_password, $stored_password_hash)) {
+                            $hashed_password = password_hash($password, PASSWORD_DEFAULT);
+                            $stmt = $conn->prepare("UPDATE users SET password =? WHERE email =?");
+                            $stmt->bind_param("ss", $hashed_password, $email);
+
+                            if ($stmt->execute()) {
+                              echo "Your password has been succesfully changed!";
+                            } else {
+                              echo "Error:". $conn->error;
+                            }
+                          } else {
+                            echo "The password you entered is not your current password.";
+                          }
+                        }
+                      }
+                    }
+                  ?>
+
+                    <form method="POST" class="form-group" action="profile.php">
+                      <label class="form-label">Current password</label>
+                      <input type="password" name="current_password" class="form-control" />             
+                      <?php if (!empty($errors['current_password'])) {?>
+                        <div class="alert alert-danger">
+                          <?php foreach ($errors['current_password'] as $error) {?>
+                            <?= htmlspecialchars($error)?><br>
+                          <?php }?>
+                        </div>
+                      <?php }?>
+
+                      <div class="form-group">
+                        <label class="form-label">New password</label>
+                        <input type="password" name="password" class="form-control" />
+                        <?php if (!empty($errors['password'])) {?>
+                          <div class="alert alert-danger">
+                            <?php foreach ($errors['password'] as $error) {?>
+                              <?= htmlspecialchars($error)?><br>
+                            <?php }?>
+                          </div>
+                        <?php }?>
+                      </div>
+
+                      <div class="form-group">
+                        <label class="form-label">Repeat new password</label>
+                        <input type="password" name="re_password" class="form-control" />
+                        <?php if (!empty($errors['re_password'])) {?>
+                          <div class="alert alert-danger">
+                            <?php foreach ($errors['re_password'] as $error) {?>
+                              <?= htmlspecialchars($error)?><br>
+                            <?php }?>
+                          </div>
+                        <?php }?>
+                      </div>
+
+                      <?php if (!empty($errors['general'])) {?>
+                        <div class="alert alert-danger">
+                          <?php foreach ($errors['general'] as $error) {?>
+                            <?= htmlspecialchars($error)?><br>
+                          <?php }?>
+                        </div>
+                      <?php }?>
+
+                      <input type="submit" name="submit" class="btn btn-primary" value="Save changes"/>
+                    </form>
+                  </div>
+                </div>
                 <div class="tab-pane fade" id="account-info">
                   <div class="card-body pb-2">
                     <div class="form-group">
@@ -402,9 +446,9 @@ require_once '../signup/auth.php';
           </div>
         </div>
         <div class="text-right mt-3">
-          <input type="submit" class="btn btn-primary" value="Save changes"/>
+          <!-- <input type="submit" class="btn btn-primary" value="Save changes"/>-->
            &nbsp;
-          <input type="reset" class="btn btn-danger" value="Reset">
+          <a href="../mainPage/index.php" ><button type="button"  class="btn btn-danger">Back</button></a>
         </div>
       </div>
       <script src="profile.js"></script>
@@ -418,6 +462,9 @@ require_once '../signup/auth.php';
     </main>
   </body>
 </html>
+
+
+
 
 
 
