@@ -25,22 +25,23 @@
               <input type="email" class="form-input" name="email" id="email" placeholder="Your Email" required />
             </div>
             <div class="form-group">
-              <input type="password" class="form-input" name="password" id="password" placeholder="Password" required />
-              <i toggle="#password" class="fa-regular fa-eye-slash field-icon toggle-password">
+              <input type="text" class="form-input" name="password" id="password" placeholder="Password" required />
+              <i toggle="#password" class="fa-regular fa-eye field-icon toggle-password">
               </i>
             </div>
             <div class="form-group">
               <label class="label-agree-term"><span><span></span></span>Forgot your
                 <a href="#" class="term-service">Password?</a></label>
-            </div>
+                <span></span><span></span>
+                <label class="label-guest-term">
+            Continue as a
+            <a href="../mainPage/index.php" class="loginhere-link">Guest</a>
+           </label>
+          </div>
             <div class="form-group">
               <input type="submit" name="submit" id="submit" class="form-submit" value="Log in" />
             </div>
           </form>
-          <p class="loginhere">
-            Continue as a
-            <a href="../mainPage/index.php" class="loginhere-link">Guest</a>
-          </p>
           <p class="loginhere">
             Don't have an account ?
             <a href="../signup/signup.php" class="loginhere-link">Signup here</a>

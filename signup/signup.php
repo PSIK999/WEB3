@@ -57,7 +57,7 @@
               </div>
               <div class="form-group">
                 <input
-                  type="password"
+                  type="text"
                   class="form-input"
                   name="password"
                   id="password"
@@ -66,13 +66,13 @@
                 />
                 <i
                   toggle="#password"
-                  class="fa-regular fa-eye-slash field-icon toggle-password"
+                  class="fa-regular fa-eye field-icon toggle-password"
                 >
                 </i>
               </div>
               <div class="form-group">
                 <input
-                  type="password"
+                  type="text"
                   class="form-input"
                   name="re_password"
                   id="re_password"
@@ -81,12 +81,12 @@
                 />
                 <i
                   toggle="#re_password"
-                  class="fa-regular fa-eye-slash field-icon toggle-password"
+                  class="fa-regular fa-eye field-icon toggle-password"
                 >
                 </i>
               </div>
               <div class="form-group">
-                <input type="checkbox"  required/>
+                <input class="checkbox" type="checkbox"  required/>
                 <label for="agree-term" class="label-agree-term"
                   ><span><span></span></span>I agree all statements in
                   <a href="../links/termsOfService.html" class="term-service"

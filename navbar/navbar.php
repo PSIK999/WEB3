@@ -22,8 +22,9 @@ include "../signup/connect.php";
         }
 
         .navbar .nav-link:hover {
-            color: #fff;
+            
             text-decoration: underline;
+            color: rgb(255, 196, 0);
         }
     </style>
 <nav>

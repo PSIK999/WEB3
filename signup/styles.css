@@ -101,12 +101,24 @@ body {
   background-image: -webkit-linear-gradient(left, #493901, #eeb600);
   cursor:pointer;
 }
+.checkbox{
+  float:left;
+  margin-top:5px;
+}
 
 .label-agree-term {
   font-size: 12px;
   font-weight: 600;
   color: white;
+  float:left;
 }
+.label-guest-term{
+  font-size: 12px;
+  font-weight: 600;
+  color: white;
+  float:right;
+}
+
 
 .term-service {
   color: rgb(255, 196, 0);
