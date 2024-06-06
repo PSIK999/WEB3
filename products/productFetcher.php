@@ -22,7 +22,7 @@ function getProductDetails($conn, $product_id) {
                         <h4>" . htmlspecialchars($row['name']) . "</h4>
                     </a>
                     <div class='rating'>
-                        <button class='buybtn' onclick='addToCart(this)'>Add to Cart</button>
+                        <button class='buybtn' id='add-to-cart-button' onclick='addToCart(this)'>Add to Cart</button>
                     </div>
                     <p>$" . number_format($row['price'], 2) . "</p>
                 </div>
@@ -52,3 +52,23 @@ function getProductDetails($conn, $product_id) {
         )
     }
   </script>
+<script>
+  $('#add-to-cart-button').click(function() {
+    // Add the item to the cart
+    //...
+  
+    // Update the cart count
+    updateCartCount();
+  });
+  function updateCartCount() {
+    var xhr = new XMLHttpRequest();
+    xhr.open('GET', 'update-cart-count.php', true);
+    xhr.onload = function() {
+      if (xhr.status === 200) {
+        var count = xhr.responseText;
+        document.getElementById('cart-count').innerHTML = '(' + count + ')';
+      }
+    };
+    xhr.send();
+  }
+</script>
