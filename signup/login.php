@@ -25,8 +25,8 @@
               <input type="email" class="form-input" name="email" id="email" placeholder="Your Email" required />
             </div>
             <div class="form-group">
-              <input type="text" class="form-input" name="password" id="password" placeholder="Password" required />
-              <i toggle="#password" class="fa-regular fa-eye field-icon toggle-password">
+              <input type="password" class="form-input" name="password" id="password" placeholder="Password" required />
+              <i toggle="#password" class="fa-regular fa-eye-slash field-icon toggle-password">
               </i>
             </div>
             <div class="form-group">
