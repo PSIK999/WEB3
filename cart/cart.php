@@ -139,7 +139,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
           </tr>
           <tr>
             <td>
-              <a href="../checkout/checkout.html">
+              <a href="../checkout/checkout.php">
                 <button class="checkout-btn">Checkout</button>
               </a>
             </td>
