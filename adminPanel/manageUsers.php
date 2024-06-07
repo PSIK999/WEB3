@@ -82,7 +82,7 @@ require_once '../signup/admin_auth.php';
                         <td class="editable" style="background-color:black; color: rgb(255, 196, 0);"><?php echo $row['Street'] ?></td>
                         <td class="editable" style="background-color:black; color: rgb(255, 196, 0);"><?php echo $row['City'] ?></td>
                         <td class="editable" style="background-color:black; color: rgb(255, 196, 0);"><?php echo $row['Country'] ?></td>
-                        <td class="editable" style="background-color:black; color: rgb(255, 196, 0);"><?php echo $row['Postal Code'] ?></td>
+                        <td class="editable" style="background-color:black; color: rgb(255, 196, 0);"><?php echo $row['Postal_Code'] ?></td>
                         <td style="background-color:black; "><button class="edit-btn btn btn-primary btn-sm">Edit</button></td>
                         <td style="background-color:black;"><a class='btn btn-danger btn-sm' href='delete.php?user_id=<?php echo $row["user_id"]; ?>'>Delete</a></td>
                         <td style="background-color:black; "><button class="save-btn btn btn-success btn-sm" style="display:none;">Save</button></td>
