@@ -13,7 +13,7 @@ if (!isset($_SESSION[$admin_token_name]) ||!isset($_SESSION[$admin_token_name. '
 
     session_destroy();
 
-    header('Location: login.php');
+    header('Location: ../signup/login.php');
     exit();
 }
 
