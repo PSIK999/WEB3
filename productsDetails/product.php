@@ -1,9 +1,37 @@
 <?php
 include "../signup/connect.php";
 include '../signup/regular_auth.php';
+include "../products/productFetcher.php"; 
+
+// Get the product_id from the URL parameter
+if (isset($_GET['id'])) {
+  $product_id = intval($_GET['id']);
+  $product_html = getProductDetails($conn, $product_id);
+  echo $product_html;
+} else {
+  echo "Product ID not found in URL";
+  exit;
+}
+
+// Fetch the product details from the database
+//$sql = "SELECT * FROM products WHERE product_id = {$product_id}";
+//$result = mysqli_query($conn, $sql);
+
+// Check if the product exists
+//if (mysqli_num_rows($result) > 0) {
+    // Fetch the product details into an array
+   // $product = mysqli_fetch_assoc($result);?>
+
+    
+   
+   
+   
+   
+   
+    
 
 
-?>
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -37,7 +65,7 @@ include '../signup/regular_auth.php';
     <div class="small-container single-product">
       <div class="row">
         <div class="col-2">
-          <img src="../images/productsImages/laptops/Asus Rog Strix G16 G614JI-N3169 Core i9-13980hx Rtx 4070 165hz 16/ROGStrixG16G614_3.jpg" width="100%" id="ProductImg" />
+          <img src="<?php //htmlspecialchars($product['image_url']);?>" width="100%" id="ProductImg" />
 
           <div class="small-img-row">
             <div class="small-img-col">
@@ -56,8 +84,8 @@ include '../signup/regular_auth.php';
         </div>
         <div class="col-2">
           <p>Home / laptop</p>
-          <h1>Asus ROG STRIX G18 I9 G14(Brand New)</h1>
-          <h4>2099.00$</h4>
+          <h1><?php // htmlspecialchars($product['name']);?></h1>
+          <h4><?php //htmlspecialchars($product['price'])?>$</h4>
           <select>
             <option>Select Ram</option>
             <option>16 GB</option>
@@ -79,19 +107,7 @@ include '../signup/regular_auth.php';
           <h3>Product Details <i class="fa fa-indent"></i></h3>
           <br />
           <p>
-            ASUS ROG Strix G18 18” Gaming Laptop - Intel Core i9-13980HX -
-            16GB RAM - 1TB SSD - GeForce RTX 4070 | G814JI-CS94 Processor:
-            13th Gen Intel Core™ i9-13980HX Processor 2.2 GHz (36M Cache, up
-            to 5.6 GHz, 24 cores: 8 P-cores and 16 E-cores) Memory: 8GB
-            DDR5-4800 SO-DIMM x 2 Storage: 1TB PCIe® 4.0 NVMe™ M.2 SSD Graphic
-            Card: NVIDIA GeForce RTX™ 4070 Laptop GPU 8GB GDDR6
-            Display:18-inch QHD+ 16:10 (2560 x 1600, WQXGA) Anti-glare display
-            240Hz Refresh Rate Operating System: Windows 11 Home I/O Ports:1x
-            3.5mm Combo Audio Jack, 1x HDMI 2.1 FRL, 2x USB 3.2 Gen 2 Type-A,
-            1x USB 3.2 Gen 2 Type-C support DisplayPort™ / power delivery /
-            G-SYNC, 1x RJ45 LAN port, 1x Thunderbolt™ 4 support DisplayPort™
-            Wireless Connectivity: Wi-Fi 6E(802.11ax) (Triple band) 2*2 +
-            Bluetooth 5.3 Battery: 90WHrs, 4S1P, 4-cell Li-ion
+          <?php //htmlspecialchars($product['description']);?>
           </p>
         </div>
       </div>
@@ -169,7 +185,11 @@ include '../signup/regular_auth.php';
   <?php
   include("../footer/footer.php");
   ?>
-  
+  <?php // } else { ?>
+    
+    <?php //echo "Product not found.";?>
+ <?php // } ?>
+ 
   <script src="../productsDetails/product.js"></script>
  
 
