@@ -115,7 +115,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             return "<tr><td colspan='3'>Product not found.</td></tr>";
           }
         }
-
+        $_SESSION['cart_html'] = $cart_html;
         function calculateSubtotal($product_id, $quantity, $conn)
         {
           $sql = "SELECT price FROM products WHERE product_id = '$product_id'";
@@ -130,6 +130,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         $tax = $total * 0.01; 
         $grand_total = $total + $tax;
+        $_SESSION['total']=$total;
+        $_SESSION['tax']= $tax;
+        $_SESSION['grand_total']= $grand_total;
 
        
         $conn->close();
