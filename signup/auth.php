@@ -15,7 +15,7 @@ if (!isset($_SESSION['token']) ||!isset($_SESSION['token_expiration']) || $_SESS
 
     session_destroy();
 
-    header('Location:login.php');
+    header('Location: ../signup/login.php');
     exit();
 }
 
