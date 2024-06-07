@@ -62,30 +62,10 @@ include "../products/productFetcher.php";
         </div>
       </div>
       <div class="small-container row">
-      <?php
-      echo getProductDetails($conn, 1);
-      echo getProductDetails($conn, 2);
-      echo getProductDetails($conn, 3);
-      echo getProductDetails($conn, 4);
-      echo getProductDetails($conn, 5);
-      echo getProductDetails($conn, 6);
-      echo getProductDetails($conn, 7);
-      echo getProductDetails($conn, 8);
-      echo getProductDetails($conn, 9);
-      echo getProductDetails($conn, 10);
-      echo getProductDetails($conn, 11);
-      echo getProductDetails($conn, 12);
-      echo getProductDetails($conn, 13);
-      echo getProductDetails($conn, 14);
-      echo getProductDetails($conn, 15);
-      echo getProductDetails($conn, 16);
-      echo getProductDetails($conn, 17);
-      echo getProductDetails($conn, 18);
-      echo getProductDetails($conn, 19);
-      echo getProductDetails($conn, 20);
-      echo getProductDetails($conn, 21);
-      echo getProductDetails($conn, 22);
-      echo getProductDetails($conn, 23);
+        <?php
+      for($i =1 ; $i <=23 ; $i++){
+      echo getProductDetails($conn, $i);
+    }
       $conn->close();
       ?>
     </div>
