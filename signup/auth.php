@@ -1,70 +1,21 @@
 <?php
-/*
-session_start();
-
-// Check if the token is valid
-if (!isset($_SESSION['token']) || $_SESSION['token']!== $expectedToken) {
-    // Token is invalid, log out the user
-    unset($_SESSION['user_id']);
-    unset($_SESSION['email']);
-    unset($_SESSION['token']);
-    unset($_SESSION['token_expiration']);
-
-    session_destroy();
-
-    header('Location: ./signup/login.php');
-    exit();
-}
-
-// Token is valid, authenticate the user
-$user_id = $_SESSION['user_id'];
-$email = $_SESSION['email'];
-
-// Add HTTP headers to control caching
-header('Cache-Control: no-cache, no-store, must-revalidate');
-header('Pragma: no-cache');
-header('Expires: 0');
-
 
 session_start();
 
 // Check if the token is valid
 if (!isset($_SESSION['token']) ||!isset($_SESSION['token_expiration']) || $_SESSION['token_expiration'] < time()) {
     // Token is invalid or has expired, log out the user
+    $SQL = "UPDATE users SET is_active = 0 WHERE user_id = '" . $_SESSION['user_id'] . "' OR email = '" . $_SESSION['email'] . "'";
+    $result = $conn->query($SQL);
     unset($_SESSION['user_id']);
     unset($_SESSION['email']);
     unset($_SESSION['token']);
     unset($_SESSION['token_expiration']);
+    
 
     session_destroy();
 
-    header('Location:./signup/login.php');
-    exit();
-}
-
-// Token is valid, authenticate the user
-$user_id = $_SESSION['user_id'];
-$email = $_SESSION['email'];
-
-// Add HTTP headers to control caching
-header('Cache-Control: no-cache, no-store, must-revalidate');
-header('Pragma: no-cache');
-header('Expires: 0');
-*/
-
-session_start();
-
-// Check if the token is valid
-if (!isset($_SESSION['token']) ||!isset($_SESSION['token_expiration']) || $_SESSION['token_expiration'] < time()) {
-    // Token is invalid or has expired, log out the user
-    unset($_SESSION['user_id']);
-    unset($_SESSION['email']);
-    unset($_SESSION['token']);
-    unset($_SESSION['token_expiration']);
-
-    session_destroy();
-
-    header('Location:./signup/login.php');
+    header('Location:login.php');
     exit();
 }
 
