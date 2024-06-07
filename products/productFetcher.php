@@ -1,7 +1,6 @@
 
 <?php
-
-function getProductDetails($conn, $product_id) {
+ function getProductDetails($conn, $product_id) {
     $product_id = intval($product_id);
 
     $sql = "SELECT name, description, image_url, price FROM products WHERE product_id = $product_id";
@@ -52,7 +51,7 @@ function getProductDetails($conn, $product_id) {
         )
     }
   </script>
-<script>
+<!-- <script>
   $('#add-to-cart-button').click(function() {
     // Add the item to the cart
     //...
@@ -69,6 +68,6 @@ function getProductDetails($conn, $product_id) {
         document.getElementById('cart-count').innerHTML = '(' + count + ')';
       }
     };
-    xhr.send();
-  }
+    xhr.send(); 
+  } -->
 </script>
