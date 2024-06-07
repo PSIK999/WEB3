@@ -6,17 +6,27 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   if (isset($_POST['product_id']) && isset($_SESSION['user_id'])) {
     $product_id = $_POST['product_id'];
     $user_id =  $_SESSION['user_id'];
-    $quantity = 1;
 
+    if (isset($_POST['remove'])) {
+      $quantity = 0;
+    } else if (isset($_POST['quantity'])) {
+      $quantity = intval($_POST['quantity']);
+    } else {
+      $quantity = 1;
+    }
 
-    function insertIntoCart($product_id, $user_id, $quantity, $conn)
+    function updateCart($product_id, $user_id, $quantity, $conn)
     {
-      $sql = "INSERT INTO shoppingcart (user_id, product_id, quantity) VALUES ('$user_id', '$product_id' , $quantity)";
+      if ($quantity > 0) {
+        $sql = "INSERT INTO shoppingcart (user_id, product_id, quantity) VALUES ('$user_id', '$product_id', $quantity) ON DUPLICATE KEY UPDATE quantity = '$quantity'";
+      } else {
+        $sql = "DELETE FROM shoppingcart WHERE user_id = '$user_id' AND product_id = '$product_id'";
+      }
       $conn->query($sql);
     }
-  }
 
-  insertIntoCart($product_id, $user_id, $quantity, $conn);
+    updateCart($product_id, $user_id, $quantity, $conn);
+  }
 }
 
 ?>
@@ -29,13 +39,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 <head>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous" />
-
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
-
   <link href="https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css" rel="stylesheet" />
-
   <link rel="stylesheet" href="../mainPage/styles.css" />
   <link rel="stylesheet" href="../navbar/navbar.css" />
   <link rel="stylesheet" href="../footer/footer.css" />
@@ -58,27 +64,30 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
           <th>Subtotal</th>
         </tr>
         <?php
-        $sql = "SELECT product_id FROM shoppingcart WHERE user_id = '$user_id'";
+        $sql = "SELECT product_id, quantity FROM shoppingcart WHERE user_id = '$user_id'";
         $result = $conn->query($sql);
+        $total = 0;
         if ($result->num_rows > 0) {
           $product_ids = array();
           while ($row = $result->fetch_assoc()) {
-            $product_ids[] = $row['product_id'];
+            $product_ids[] = $row;
           }
-          foreach ($product_ids as $product_id) {
-            echo fetchProductDetails($product_id, $user_id, $conn);
+          foreach ($product_ids as $product) {
+            echo fetchProductDetails($product['product_id'], $product['quantity'], $conn);
+            $total += calculateSubtotal($product['product_id'], $product['quantity'], $conn);
           }
         } else {
-          echo "You haven't select any product yet!";
+          echo "<tr><td colspan='3'>You haven't selected any product yet!</td></tr>";
         }
 
-        function fetchProductDetails($product_id, $user_id, $conn)
+        function fetchProductDetails($product_id, $quantity, $conn)
         {
-          $sql = "SELECT name, description, price, image_url FROM products WHERE product_id = '$product_id' AND product_id IN (SELECT product_id from shoppingcart WHERE user_id = $user_id);";
+          $sql = "SELECT name, description, price, image_url FROM products WHERE product_id = '$product_id'";
           $result = $conn->query($sql);
 
           if ($result->num_rows > 0) {
             $row = $result->fetch_assoc();
+            $subtotal = $row['price'] * $quantity;
             $cart_html = "<tr>
             <td>
             <div class='cart-info'>
@@ -86,38 +95,43 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <div>
             <p>" . htmlspecialchars($row['name']) . "</p>
             <small>Price: $" . number_format($row['price'], 2) . " </small><br />
-            <a href=''>remove</a>
+            <form method='post' style='display:inline;'>
+              <input type='hidden' name='product_id' value='$product_id'>
+              <button type='submit' name='remove' class='btn btn-link'>Remove</button>
+            </form>
             </div>
             </div>
             </td>
-            <td><input type='number' value='1' /></td>
-            <td><label>$2,199.99</label></td>
+            <td>
+              <form method='post' class='quantity-form'>
+                <input type='hidden' name='product_id' value='$product_id'>
+                <input type='number' name='quantity' value='$quantity' min='1' class='quantity-input' />
+              </form>
+            </td>
+            <td><label>$" . number_format($subtotal, 2) . "</label></td>
             </tr>";
             return $cart_html;
           } else {
-            return "Product not found.";
+            return "<tr><td colspan='3'>Product not found.</td></tr>";
           }
         }
-        // function removeFromCart($product_id, $user_id, $conn)
-        // {
-        //   $sql = "DELETE FROM shoppingcart WHERE user_id = '$user_id' AND product_id = '$product_id'";
 
-        //   if ($conn->query($sql) === TRUE) {
-        //     return true;
-        //   } else {
-        //     return false;
-        //   }
-        // }
+        function calculateSubtotal($product_id, $quantity, $conn)
+        {
+          $sql = "SELECT price FROM products WHERE product_id = '$product_id'";
+          $result = $conn->query($sql);
+          if ($result->num_rows > 0) {
+            $row = $result->fetch_assoc();
+            return $row['price'] * $quantity;
+          } else {
+            return 0;
+          }
+        }
 
-        // $removed = removeFromCart(1 ,1, $conn);
+        $tax = $total * 0.01; 
+        $grand_total = $total + $tax;
 
-        // if ($removed) {
-        //   echo "Product removed from shopping cart.";
-        // } else {
-        //   echo "Error removing product from shopping cart.";
-        // }
-        // Close the database connection
-
+       
         $conn->close();
         ?>
       </table>
@@ -126,15 +140,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <table>
           <tr>
             <td>Subtotal</td>
-            <td>$3900.00</td>
+            <td>$<?php echo number_format($total, 2); ?></td>
           </tr>
           <tr>
             <td>Tax</td>
-            <td>$35.00</td>
+            <td>$<?php echo number_format($tax, 2); ?></td>
           </tr>
           <tr>
             <td>Total</td>
-            <td>$3935.00</td>
+            <td>$<?php echo number_format($grand_total, 2); ?></td>
           </tr>
           <tr>
             <td>
@@ -153,11 +167,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   ?>
 
   <script src="../mainPage/index.js"></script>
-
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 
-  <script src="cart.js"></script>
+  <script>
+    document.querySelectorAll('.quantity-input').forEach(input => {
+      input.addEventListener('change', function() {
+        this.form.submit();
+      });
+    });
+  </script>
 </body>
-
-</html>
-
+</html>  
