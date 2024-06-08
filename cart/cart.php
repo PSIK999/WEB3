@@ -82,7 +82,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         function fetchProductDetails($product_id, $quantity, $conn)
         {
-          $sql = "SELECT name, description, price, image_url FROM products WHERE product_id = '$product_id'";
+          $sql = "SELECT name, description, price, image_url_1 FROM products WHERE product_id = '$product_id'";
           $result = $conn->query($sql);
 
           if ($result->num_rows > 0) {
@@ -91,7 +91,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $cart_html = "<tr>
             <td>
             <div class='cart-info'>
-            <img src='" . htmlspecialchars($row['image_url']) .  "' alt= '" . htmlspecialchars($row['description']) . "'  />
+            <img src='" . htmlspecialchars($row['image_url_1']) .  "' alt= '" . htmlspecialchars($row['description']) . "'  />
             <div>
             <p>" . htmlspecialchars($row['name']) . "</p>
             <small>Price: $" . number_format($row['price'], 2) . " </small><br />
