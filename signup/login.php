@@ -120,10 +120,13 @@
                         $stmt = $conn->prepare("SELECT user_id FROM users WHERE email=? AND user_role = 1");
                         $stmt->bind_param("s", $email);
                         $stmt->execute();
-                        $admin_id = $stmt->get_result();
+                        $result = $stmt->get_result();
+                        $row = $result->fetch_assoc();
                         // Set the admin ID and username
-                        $_SESSION['admin_id'] = $admin_id;
+                        $_SESSION['admin_id'] = $row['user_id'];
                         $_SESSION['admin_email'] = $admin_email;
+                        $SQL = "UPDATE users SET is_active = 1 WHERE user_id = '" . $_SESSION['admin_id'] . "'OR email = '" . $_SESSION['email'] . "'";
+                        $result = $conn->query($SQL);
 
                         // Redirect to the admin panel
                         header("location: ../adminpanel/admin.php");
@@ -199,6 +202,10 @@
 
   <script src="../signup/main.js"></script>
 </body>
+
+</html>
+
+
 
 </html>
 
