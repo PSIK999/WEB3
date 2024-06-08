@@ -11,7 +11,7 @@ function getProductDetails($conn, $product_id) {
         $product_html = "
             <div class='col-4'>
                 <a href='../productsDetails/product.php?id= '{$product_id}' '>
-                    <img src='". htmlspecialchars($row['image_url']).  "' alt= '". htmlspecialchars($row['description']). "'  />
+                    <img src='". htmlspecialchars($row['image_url_1']).  "' alt= '". htmlspecialchars($row['description']). "'  />
                 </a>
                 <div id='myForm'>
                     <input type='hidden' name='product_id' value='". htmlspecialchars($product_id). "' />
