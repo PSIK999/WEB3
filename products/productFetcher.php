@@ -3,7 +3,7 @@
 function getProductDetails($conn, $product_id) {
     $product_id = intval($product_id);
 
-    $sql = "SELECT name, description, image_url, price FROM products WHERE product_id = $product_id";
+    $sql = "SELECT name, description, image_url_1, price FROM products WHERE product_id = $product_id";
     $result = $conn->query($sql);
 
     if ($result->num_rows > 0) {
@@ -17,7 +17,7 @@ function getProductDetails($conn, $product_id) {
                     <input type='hidden' name='product_id' value='". htmlspecialchars($product_id). "' />
                     <input type='hidden' name='name' value='". htmlspecialchars($row['name']). "' />
                     <input type='hidden' name='description' value='". htmlspecialchars($row['description']). "' />
-                    <input type='hidden' name='image_url' value='". htmlspecialchars($row['image_url']). "' />
+                    <input type='hidden' name='image_url' value='". htmlspecialchars($row['image_url_1']). "' />
                     <input type='hidden' name='price' value='". htmlspecialchars($row['price']). "' />
                     <a href='../productsDetails/product.php'>
                         <h4>". htmlspecialchars($row['name']). "</h4>
