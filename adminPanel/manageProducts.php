@@ -10,7 +10,7 @@ require_once '../signup/admin_auth.php';
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Manage Users</title>
+    <title>Manage Products</title>
     <!-- ======= Styles ====== -->
     <link rel="stylesheet" href="assets/css/style.css">
     <link rel="stylesheet" href="assets/css/manageUsers.css">
@@ -68,55 +68,57 @@ require_once '../signup/admin_auth.php';
     </div>
 
     <!-- =========== USERS LIST ======== -->
-    <div class="usertable mt-5">
+    <div class="container mt-5">
         <h1 class="listofusers">List Of Products</h1>
         <br>
-        <table class="table table-bordered text-center" style="border-color: rgb(255, 196, 0);">
-            <thead class="thead">
-                <tr>
-                    <th class="th">Product_ID</th>
-                    <th class="th">Name</th>
-                    <th class="th">Description</th>
-                    <th class="th">Price : $</th>
-                    <th class="th">Image</th>
-                    <th class="th">Category ID</th>
-                    <th class="th">Brand ID</th>
-                    <th class="th">Edit</th>
-                    <th class="th">Delete</th>
-                    <th class="th">Save</th>
-                </tr>
-            </thead>
-            <tbody id="productTableBody">
-                <?php
-                if ($conn->connect_error) {
-                    die("Connection failed: " . $conn->connect_error);
-                }
-                $sql = "SELECT * FROM products";
-                $result = $conn->query($sql);
-
-                if (!$result) {
-                    die("Invalid query: " . $conn->error);
-                }
-
-                while ($row = $result->fetch_assoc()) {
-                ?>
-                    <tr data-id="<?php echo $row['product_id']; ?>">
-                        <td style="background-color:black; color: rgb(255, 196, 0);"><?php echo $row['product_id'] ?></td>
-                        <td class="editable" style="background-color:black; color: rgb(255, 196, 0);"><?php echo $row['name'] ?></td>
-                        <td class="editable" style="background-color:black; color: rgb(255, 196, 0);"><?php echo $row['description'] ?></td>
-                        <td class="editable" style="background-color:black; color: rgb(255, 196, 0);"><?php echo $row['price'] ?></td>
-                        <td class="editable" style="background-color:black; color: rgb(255, 196, 0);"><img src="<?php echo $row['image_url_1']; ?>" height="100" alt=""></td>
-                        <td class="editable" style="background-color:black; color: rgb(255, 196, 0);"><?php echo $row['categorie_id'] ?></td>
-                        <td class="editable" style="background-color:black; color: rgb(255, 196, 0);"><?php echo $row['brand_id'] ?></td>
-                        <td style="background-color:black;"><button class="edit-btn btn btn-primary btn-sm">Edit</button></td>
-                        <td style="background-color:black;"><a class='btn btn-danger btn-sm' href='deleteProducts.php?product_id=<?php echo $row["product_id"]; ?>'>Delete</a></td>
-                        <td style="background-color:black;"><button class="save-btn btn btn-success btn-sm" style="display:none;">Save</button></td>
+        <div class="table-responsive">
+            <table class="table table-bordered text-center" style="border-color: rgb(255, 196, 0);">
+                <thead class="thead">
+                    <tr>
+                        <th class="th">Product_ID</th>
+                        <th class="th">Name</th>
+                        <th class="th">Description</th>
+                        <th class="th">Price : $</th>
+                        <th class="th">Image</th>
+                        <th class="th">Category ID</th>
+                        <th class="th">Brand ID</th>
+                        <th class="th">Edit</th>
+                        <th class="th">Delete</th>
+                        <th class="th">Save</th>
                     </tr>
-                <?php
-                }
-                ?>
-            </tbody>
-        </table>
+                </thead>
+                <tbody id="productTableBody">
+                    <?php
+                    if ($conn->connect_error) {
+                        die("Connection failed: " . $conn->connect_error);
+                    }
+                    $sql = "SELECT * FROM products";
+                    $result = $conn->query($sql);
+
+                    if (!$result) {
+                        die("Invalid query: " . $conn->error);
+                    }
+
+                    while ($row = $result->fetch_assoc()) {
+                    ?>
+                        <tr data-id="<?php echo $row['product_id']; ?>">
+                            <td style="background-color:black; color: rgb(255, 196, 0);"><?php echo $row['product_id'] ?></td>
+                            <td class="editable" style="background-color:black; color: rgb(255, 196, 0);"><?php echo $row['name'] ?></td>
+                            <td class="editable" style="background-color:black; color: rgb(255, 196, 0);"><?php echo $row['description'] ?></td>
+                            <td class="editable" style="background-color:black; color: rgb(255, 196, 0);"><?php echo $row['price'] ?></td>
+                            <td class="editable" style="background-color:black; color: rgb(255, 196, 0);"><img src="<?php echo $row['image_url_1']; ?>" height="100" alt=""></td>
+                            <td class="editable" style="background-color:black; color: rgb(255, 196, 0);"><?php echo $row['categorie_id'] ?></td>
+                            <td class="editable" style="background-color:black; color: rgb(255, 196, 0);"><?php echo $row['brand_id'] ?></td>
+                            <td style="background-color:black;"><button class="edit-btn btn btn-primary btn-sm">Edit</button></td>
+                            <td style="background-color:black;"><a class='btn btn-danger btn-sm' href='deleteProducts.php?product_id=<?php echo $row["product_id"]; ?>'>Delete</a></td>
+                            <td style="background-color:black;"><button class="save-btn btn btn-success btn-sm" style="display:none;">Save</button></td>
+                        </tr>
+                    <?php
+                    }
+                    ?>
+                </tbody>
+            </table>
+        </div>
     </div>
 
     <!-- =========== Scripts ========= -->
