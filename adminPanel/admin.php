@@ -67,7 +67,7 @@ require_once '../signup/admin_auth.php';
                 </li>
 
                 <li>
-                    <a href="editProducts.php">
+                    <a href="manageProducts.php">
                         <span class="icon">
                             <ion-icon name="settings-outline"></ion-icon>
                         </span>
