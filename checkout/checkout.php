@@ -37,7 +37,7 @@ require_once '../signup/auth.php';
     <section class="bg-light py-5">
       <div class="container">
         <div class="row">
-          <div class="col-xl-8 col-lg-8 mb-4">
+          <div class="col-lg-8 mb-4">
             <div class="card shadow-0 border">
               <div class="p-4">
                 <h5 class="card-title mb-3">Guest checkout</h5>
@@ -87,12 +87,12 @@ require_once '../signup/auth.php';
         <div class='col-sm-8 mb-3'>
             <p class='mb-0'>Street</p>
               <div class='form-outline'>
-          <input type='text' id='street'  placeholder='Type here' name='street' value='$street' />
+          <input type='text' id='street'  placeholder='Type here' name='street' value='$street' class='form-control' />
         </div>
         <div class='col-sm-8 mb-3'>
             <p class='mb-0'>City</p>
               <div class='form-outline'>
-          <input type='text' id='typeText' placeholder='Type here' name='city' value='$city' />
+          <input type='text' id='typeText' placeholder='Type here' name='city' value='$city' class='form-control' />
         </div>
         <div class='col-sm-4 mb-3'>
           <label class='mb-0' for='country'>Country</label>
@@ -104,7 +104,7 @@ require_once '../signup/auth.php';
         <div class='col-sm-4 col-6 mb-3'>
           <label for='mb-0'>Postal Code</label>
               <div class='form-outline'>
-                  <input type='text' id='postal_code' name='postal_code' value='$postal_code' />
+                  <input type='text' id='postal_code' name='postal_code' value='$postal_code' class='form-control' />
               </div>
         </div>
         <div class='form-group'>
@@ -127,17 +127,17 @@ require_once '../signup/auth.php';
           <div class='col-sm-8 mb-3'>
               <p class='mb-0'>Address</p>
                 <div class='form-outline'>
-            <input type='text' id='street'  placeholder='Type here' name='address' required />
+            <input type='text' id='street'  placeholder='Type here' name='address' class='form-control' required />
           </div>
         </div>
         <div class='row'>
         <div class='col-sm-8 mb-3'>
           <label for='street'>Street</label>
-          <input type='text' id='street'  placeholder='Type here' name='street' required />
+          <input type='text' id='street'  placeholder='Type here' name='street' class='form-control' required />
         </div>
         <div class='col-sm-8 mb-3'>
           <label for='city'>City</label>
-          <input  type='text' id='typeText' placeholder='Type here' name='city' required />
+          <input  type='text' id='typeText' placeholder='Type here' name='city' class='form-control' required />
         </div>
          <div class='col-sm-8 mb-3'>
           <label class='mb-0' for='country'>Country</label>
@@ -149,7 +149,7 @@ require_once '../signup/auth.php';
         <div class='col-sm-4 col-6 mb-3'>
           <label for='mb-0'>Postal Code</label>
               <div class='form-outline'>
-                  <input type='text' id='postal_code' name='postal_code' required />
+                  <input type='text' id='postal_code' name='postal_code' class='form-control' required />
               </div>
         </div>
         </div>
@@ -185,18 +185,15 @@ require_once '../signup/auth.php';
               </div>
             </div>
 
-            <classfs="float-end">
+            <div class="float-end">
               <a href="../cart/cart.php"><button class="btn btn-light border">Cancel</button></a>
-              <a ><input type="submit" class="btn btn-success shadow-0 border" value="Continue"></a>
-              </div>
+              <input type="submit" class="btn btn-success shadow-0 border" value="Continue">
+            </div>
         </form>
           </div>
         </div>
       </div>
-    </div>
-  </div>
-
-      <div class="col-xl-4 col-lg-4 d-flex justify-content-center justify-content-lg-end">
+      <div class="col-lg-4 d-flex justify-content-center justify-content-lg-end">
         <div class="ms-lg-4 mt-4 mt-lg-0" style="max-width: 320px;">
           <h6 class="mb-3">Summary</h6>
           <div class="d-flex justify-content-between">
@@ -227,6 +224,7 @@ require_once '../signup/auth.php';
           </div>
 
           <hr />
+          
           <h6 class="text-dark my-4">Items in cart</h6>
 
           <div class="d-flex align-items-center mb-4">
@@ -275,7 +273,6 @@ require_once '../signup/auth.php';
         </div>
       </div>
       </div>
-      </div>
     </section>
 
   </main>
@@ -291,4 +288,5 @@ require_once '../signup/auth.php';
     crossorigin="anonymous"></script>
 </body>
 
-</html>
+</html> 
+

@@ -2,96 +2,95 @@
 include "../signup/connect.php";
 include '../signup/regular_auth.php';
 include "../products/productFetcher.php"; 
+
+$searchQuery = isset($_GET['search']) ? $_GET['search'] : '';
+
+function displayProducts($conn, $searchQuery) {
+  $sql = "SELECT product_id FROM products WHERE name LIKE ? OR description LIKE ?";
+  $stmt = $conn->prepare($sql);
+  $likeQuery = "%" . $searchQuery . "%";
+  $stmt->bind_param("ss", $likeQuery, $likeQuery);
+  $stmt->execute();
+  $result = $stmt->get_result();
+
+  if ($result->num_rows > 0) {
+    while ($row = $result->fetch_assoc()) {
+      echo getProductDetails($conn, $row['product_id']);
+    }
+  } else {
+    echo "No products found.";
+  }
+}
+
 ?>
 
 <!DOCTYPE html>
 <html lang="en">
+<head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Project</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+  <link href="https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css" rel="stylesheet" />
+  <link rel="stylesheet" href="../mainPage/styles.css" />
+  <link rel="stylesheet" href="../navbar/navbar.css" />
+  <link rel="stylesheet" href="../footer/footer.css" />
+  <link rel="stylesheet" href="../products/products.css" />
+</head>
 
-  <head>
-    <link
-      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
-      rel="stylesheet"
-      integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
-      crossorigin="anonymous"
-    />
+<body loading="lazy">
+  <?php include ("../navbar/navbar.php"); ?>
 
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
-      integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A=="
-      crossorigin="anonymous"
-      referrerpolicy="no-referrer"
-    />
+  <main>
+    <div class="small-container">
+      <div class="row row-2">
+        <h2>All Products</h2>
+        <select class="selectbtn" id="sortDropdown">
+  <option value="default">Default sorting</option>
+  <option value="highest">Sort by highest price</option>
+  <option value="lowest">Sort by lowest price</option>
+  <option value="az">Sort A-Z</option>
+  <option value="za">Sort Z-A</option>
+</select>
 
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
-    />
-
-    <link
-      href="https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css"
-      rel="stylesheet"
-    />
-
-   <link rel="stylesheet" href="../mainPage/styles.css" />
-    <link rel="stylesheet" href="../navbar/navbar.css" />
-    <link rel="stylesheet" href="../footer/footer.css" />
-    <link rel="stylesheet" href="../products/products.css" />
- 
-  </head>
-
-  <body loading="lazy">
-  <?php
-          include ("../navbar/navbar.php");
-    ?>
-
-    <main>
-      <div class="small-container">
-        <div class="row row-2">
-          <h2>All Products</h2>
-          <select class="selectbtn">
-            <option>Default sorting</option>
-            <option>Sort by price</option>
-            <option>Sort by popularity</option>
-            <option>Sort by rating</option>
-            <option>Sort by sale</option>
-          </select>
-        </div>
       </div>
-      <div class="small-container row">
-        <?php
-      for($i =1 ; $i <=23 ; $i++){
-      echo getProductDetails($conn, $i);
-    }
-      $conn->close();
-      ?>
     </div>
-        <div class="page-btn">
-          <a href="#"><span>1</span></a>
-          <a href="#"><span>2</span></a>
-          <a href="#"><span>3</span></a>
-          <a href="#"><span>4</span></a>
-          <a href="#"><span>&#8594;</span></a>
-        </div>
-      </div>
-      </main>
+    <div class="small-container row">
+      <?php displayProducts($conn, $searchQuery); ?>
+    </div>
+    <div class="page-btn">
+      <a href="#"><span>1</span></a>
+      <a href="#"><span>2</span></a>
+      <a href="#"><span>3</span></a>
+      <a href="#"><span>4</span></a>
+      <a href="#"><span>&#8594;</span></a>
+    </div>
+  </main>
 
-<?php
-include("../footer/footer.php");
-?>
+  <?php include("../footer/footer.php"); ?>
+  <script>
+  document.getElementById('sortDropdown').addEventListener('change', function() {
+  const sortValue = this.value;
+  if (sortValue === 'az' || sortValue === 'za') {
+    fetchSortedProducts(sortValue, 'name'); // Sort by name
+  } else {
+    fetchSortedProducts(sortValue, 'price'); // Sort by price
+  }
+});
 
-<script src="../cart/cart.js"></script>
-</html>
-    
-    <script src="../mainPage/index.js"></script>
-    <script src="../allproducts/allproducts.js"></script>
-    <script
-      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
-      integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
-      crossorigin="anonymous"
-    ></script>
-  </body>
+function fetchSortedProducts(sortBy, orderBy) {
+  fetch(`../allproducts/sort_products.php?sort_by=${sortBy}&order_by=${orderBy}`)
+    .then(response => response.text())
+    .then(data => {
+      document.querySelector('.small-container.row').innerHTML = data;
+    })
+    .catch(error => console.error('Error fetching sorted products:', error));
+}
+</script>
+  <script src="../mainPage/index.js"></script>
+  <script src="../allproducts/allproducts.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+</body>
 </html>

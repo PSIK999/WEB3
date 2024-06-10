@@ -30,7 +30,7 @@ require_once '../signup/admin_auth.php';
                 </li>
 
                 <li>
-                    <a href="index.php">
+                    <a href="admin.php">
                         <span class="icon">
                             <ion-icon name="home-outline"></ion-icon>
                         </span>
