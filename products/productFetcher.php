@@ -18,7 +18,7 @@ function getProductDetails($conn, $product_id) {
                     <input type='hidden' name='description' value='". htmlspecialchars($row['description']). "' />
                     <input type='hidden' name='image_url' value='". htmlspecialchars($row['image_url_1']). "' />
                     <input type='hidden' name='price' value='". htmlspecialchars($row['price']). "' />
-                    <a href='../productsDetails/product.php'>
+                    <a href='../productsDetails/product.php?product_id=" . htmlspecialchars($product_id) . "'>
                         <h4>". htmlspecialchars($row['name']). "</h4>
                     </a>
                     <div class='rating'>
