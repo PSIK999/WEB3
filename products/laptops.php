@@ -34,13 +34,13 @@ include "../products/productFetcher.php";
     <div class="small-container">
       <div class="row row-2">
         <h2>All Laptops</h2>
-        <select class="selectbtn">
-          <option>Default sorting</option>
-          <option>Sort by price</option>
-          <option>Sort by popularity</option>
-          <option>Sort by rating</option>
-          <option>Sort by sale</option>
-        </select>
+        <select class="selectbtn" id="sortDropdown">
+  <option value="default">Default sorting</option>
+  <option value="highest">Sort by highest price</option>
+  <option value="lowest">Sort by lowest price</option>
+  <option value="az">Sort A-Z</option>
+  <option value="za">Sort Z-A</option>
+</select>
       </div>
     </div>
     <div class="small-container row">
@@ -57,7 +57,25 @@ include "../products/productFetcher.php";
   <?php
   include("../footer/footer.php");
   ?>
+    <script>
+  document.getElementById('sortDropdown').addEventListener('change', function() {
+  const sortValue = this.value;
+  if (sortValue === 'az' || sortValue === 'za') {
+    fetchSortedProducts(sortValue, 'name'); // Sort by name
+  } else {
+    fetchSortedProducts(sortValue, 'price'); // Sort by price
+  }
+});
 
+function fetchSortedProducts(sortBy, orderBy) {
+  fetch(`../products/sort_laptops.php?sort_by=${sortBy}&order_by=${orderBy}`)
+    .then(response => response.text())
+    .then(data => {
+      document.querySelector('.small-container.row').innerHTML = data;
+    })
+    .catch(error => console.error('Error fetching sorted products:', error));
+}
+</script>
   <script src="../mainPage/index.js"></script>
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
