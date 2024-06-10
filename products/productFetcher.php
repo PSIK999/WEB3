@@ -9,7 +9,7 @@ function getProductDetails($conn, $product_id) {
         $row = $result->fetch_assoc();
         $product_html = "
             <div class='col-4'>
-                <a href='../productsDetails/product.php?id={$product_id}'>
+                <a href='../productsDetails/product.php?id= '{$product_id}' '>
                     <img src='". htmlspecialchars($row['image_url_1']).  "' alt= '". htmlspecialchars($row['description']). "'  />
                 </a>
                 <div id='myForm'>
