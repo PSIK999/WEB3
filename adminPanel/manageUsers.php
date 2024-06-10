@@ -17,13 +17,13 @@ require_once '../signup/admin_auth.php';
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
 </head>
 
-<body style="background-image:url(../images/laptop-murjp1nk4lp1idlt.jpg)">
+<body >
     <!-- ===========USERS LIST======== -->
     <div class="container mt-5">
         <h1 class="listofusers">List Of Users</h1>
         <br>
         <div class="table-responsive">
-            <table class="table table-bordered text-center" style="border-color: rgb(255, 196, 0);">
+            <table class="table table-bordered text-center" style="border-color: black ;">
                 <thead class="thead">
                     <tr>
                         <th class="th">User_ID</th>
@@ -41,6 +41,7 @@ require_once '../signup/admin_auth.php';
                         <th class="th">Edit</th>
                         <th class="th">Delete</th>
                         <th class="th">Save</th>
+                       
                     </tr>
                 </thead>
                 <tbody>
@@ -58,21 +59,21 @@ require_once '../signup/admin_auth.php';
                     while ($row = $result->fetch_assoc()) {
                     ?>
                         <tr data-id="<?php echo $row['user_id']; ?>">
-                            <td style="background-color:black; color: rgb(255, 196, 0);"><?php echo $row['user_id'] ?></td>
-                            <td class="editable" style="background-color:black; color: rgb(255, 196, 0);"><?php echo $row['first_name'] ?></td>
-                            <td class="editable" style="background-color:black; color: rgb(255, 196, 0);"><?php echo $row['last_name'] ?></td>
-                            <td class="editable" style="background-color:black; color: rgb(255, 196, 0);"><?php echo $row['email'] ?></td>
-                            <td class="editable" style="background-color:black; color: rgb(255, 196, 0);"><?php echo $row['address'] ?></td>
-                            <td class="editable" style="background-color:black; color: rgb(255, 196, 0);"><?php echo $row['phone_number'] ?></td>
-                            <td class="editable" style="background-color:black; color: rgb(255, 196, 0);"><?php echo $row['is_active'] ?></td>
-                            <td class="editable" style="background-color:black; color: rgb(255, 196, 0);"><?php echo $row['user_role'] ?></td>
-                            <td class="editable" style="background-color:black; color: rgb(255, 196, 0);"><?php echo $row['Street'] ?></td>
-                            <td class="editable" style="background-color:black; color: rgb(255, 196, 0);"><?php echo $row['City'] ?></td>
-                            <td class="editable" style="background-color:black; color: rgb(255, 196, 0);"><?php echo $row['Country'] ?></td>
-                            <td class="editable" style="background-color:black; color: rgb(255, 196, 0);"><?php echo $row['Postal_Code'] ?></td>
-                            <td style="background-color:black;"><button class="edit-btn btn btn-primary btn-sm">Edit</button></td>
-                            <td style="background-color:black;"><a class='btn btn-danger btn-sm' href='delete.php?user_id=<?php echo $row["user_id"]; ?>'>Delete</a></td>
-                            <td style="background-color:black;"><button class="save-btn btn btn-success btn-sm" style="display:none;">Save</button></td>
+                            <td ><?php echo $row['user_id'] ?></td>
+                            <td class="editable" ><?php echo $row['first_name'] ?></td>
+                            <td class="editable" ><?php echo $row['last_name'] ?></td>
+                            <td class="editable" ><?php echo $row['email'] ?></td>
+                            <td class="editable" ><?php echo $row['address'] ?></td>
+                            <td class="editable" ><?php echo $row['phone_number'] ?></td>
+                            <td class="editable" ><?php echo $row['is_active'] ?></td>
+                            <td class="editable" ><?php echo $row['user_role'] ?></td>
+                            <td class="editable" ><?php echo $row['Street'] ?></td>
+                            <td class="editable" ><?php echo $row['City'] ?></td>
+                            <td class="editable" ><?php echo $row['Country'] ?></td>
+                            <td class="editable" ><?php echo $row['Postal_Code'] ?></td>
+                            <td ><button class="edit-btn btn btn-primary btn-sm">Edit</button></td>
+                            <td ><a class='btn btn-danger btn-sm' href='delete.php?user_id=<?php echo $row["user_id"]; ?>'>Delete</a></td>
+                            <td ><button class="save-btn btn btn-success btn-sm" style="display:none;">Save</button></td>
                         </tr>
                     <?php
                     }

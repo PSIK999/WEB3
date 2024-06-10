@@ -18,7 +18,7 @@ require_once '../signup/admin_auth.php';
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
 </head>
 
-<body style="background-color:black;">
+<body style="background-color:silver;">
     <!-- =========== ADD NEW PRODUCT FORM ======== -->
     <div class="container mt-5">
         <h1 class="titleproduct">Add New Product</h1>
@@ -72,7 +72,7 @@ require_once '../signup/admin_auth.php';
         <h1 class="listofusers">List Of Products</h1>
         <br>
         <div class="table-responsive">
-            <table class="table table-bordered text-center" style="border-color: rgb(255, 196, 0);">
+            <table class="table table-bordered text-center" style="border-color: black;">
                 <thead class="thead">
                     <tr>
                         <th class="th">Product_ID</th>
@@ -102,16 +102,16 @@ require_once '../signup/admin_auth.php';
                     while ($row = $result->fetch_assoc()) {
                     ?>
                         <tr data-id="<?php echo $row['product_id']; ?>">
-                            <td style="background-color:black; color: rgb(255, 196, 0);"><?php echo $row['product_id'] ?></td>
-                            <td class="editable" style="background-color:black; color: rgb(255, 196, 0);"><?php echo $row['name'] ?></td>
-                            <td class="editable" style="background-color:black; color: rgb(255, 196, 0);"><?php echo $row['description'] ?></td>
-                            <td class="editable" style="background-color:black; color: rgb(255, 196, 0);"><?php echo $row['price'] ?></td>
-                            <td class="editable" style="background-color:black; color: rgb(255, 196, 0);"><img src="<?php echo $row['image_url_1']; ?>" height="100" alt=""></td>
-                            <td class="editable" style="background-color:black; color: rgb(255, 196, 0);"><?php echo $row['categorie_id'] ?></td>
-                            <td class="editable" style="background-color:black; color: rgb(255, 196, 0);"><?php echo $row['brand_id'] ?></td>
-                            <td style="background-color:black;"><button class="edit-btn btn btn-primary btn-sm">Edit</button></td>
-                            <td style="background-color:black;"><a class='btn btn-danger btn-sm' href='deleteProducts.php?product_id=<?php echo $row["product_id"]; ?>'>Delete</a></td>
-                            <td style="background-color:black;"><button class="save-btn btn btn-success btn-sm" style="display:none;">Save</button></td>
+                            <td ><?php echo $row['product_id'] ?></td>
+                            <td class="editable"><?php echo $row['name'] ?></td>
+                            <td class="editable"><?php echo $row['description'] ?></td>
+                            <td class="editable"><?php echo $row['price'] ?></td>
+                            <td class="editable"><img src="<?php echo $row['image_url_1']; ?>" height="100" alt=""></td>
+                            <td class="editable"><?php echo $row['categorie_id'] ?></td>
+                            <td class="editable"><?php echo $row['brand_id'] ?></td>
+                            <td ><button class="edit-btn btn btn-primary btn-sm">Edit</button></td>
+                            <td ><a class='btn btn-danger btn-sm' href='deleteProducts.php?product_id=<?php echo $row["product_id"]; ?>'>Delete</a></td>
+                            <td ><button class="save-btn btn btn-success btn-sm" style="display:none;">Save</button></td>
                         </tr>
                     <?php
                     }

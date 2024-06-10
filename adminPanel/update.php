@@ -21,11 +21,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $street = isset($_POST['street']) ? $_POST['street'] : '';
     $city = isset($_POST['city']) ? $_POST['city'] : '';
     $country = isset($_POST['country']) ? $_POST['country'] : '';
-    $postal_code = isset($_POST['postal_code']) ? $_POST['postal_code'] : '';
+    $postal_code = isset($_POST['Postal_Code']) ? $_POST['Postal_Code'] : '';
 
     if ($user_id > 0) {
-        $stmt = $conn->prepare("UPDATE users SET first_name=?, last_name=?, email=?, address=?, phone_number=?, is_active=?, user_role=?, Street=?, City=?, Country=?, `Postal Code`=? WHERE user_id=?");
-        $stmt->bind_param("sssssssssssi", $first_name, $last_name, $email, $address, $phone_number, $is_active, $user_role, $street, $city, $country, $postal_code, $user_id);
+        $stmt = $conn->prepare("UPDATE users SET first_name=?, last_name=?, email=?, address=?, phone_number=?, is_active=?, user_role=?, Street=?, City=?, Country=?, Postal_Code=? WHERE user_id=?");
+        $stmt->bind_param("ssssssssssii", $first_name, $last_name, $email, $address, $phone_number, $is_active, $user_role, $street, $city, $country, $postal_code, $user_id);
 
         if ($stmt->execute()) {
             echo 'success';
