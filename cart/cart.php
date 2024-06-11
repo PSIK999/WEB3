@@ -2,34 +2,46 @@
 include "../signup/connect.php";
 require_once '../signup/auth.php';
 
+
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-  if (isset($_POST['product_id']) && isset($_SESSION['user_id'])) {
-    $product_id = $_POST['product_id'];
-    $user_id =  $_SESSION['user_id'];
+    if (isset($_POST['product_id']) && isset($_SESSION['user_id'])) {
+        $product_id = $_POST['product_id'];
+        $user_id =  $_SESSION['user_id'];
 
-    if (isset($_POST['remove'])) {
-      $quantity = 0;
-    } else if (isset($_POST['quantity'])) {
-      $quantity = intval($_POST['quantity']);
+        if (isset($_POST['remove'])) {
+            $quantity = 0;
+        } else if (isset($_POST['quantity'])) {
+            $quantity = intval($_POST['quantity']);
+        } else {
+            $quantity = 1;
+        }
+
+        function updateCart($product_id, $user_id, $quantity, $conn)
+        {
+            $sql = "SELECT price FROM products WHERE product_id = '$product_id'";
+            $result = $conn->query($sql);
+            if ($result->num_rows > 0) {
+                $row = $result->fetch_assoc();
+                $price = $row['price'];
+                if ($quantity > 0) {
+                    $sql = "INSERT INTO shoppingcart (user_id, product_id, quantity, price) VALUES ('$user_id', '$product_id', $quantity, $price) ON DUPLICATE KEY UPDATE quantity = '$quantity', price = '$price'";
+                } else {
+                    $sql = "DELETE FROM shoppingcart WHERE user_id = '$user_id' AND product_id = '$product_id'";
+                }
+                if ($conn->query($sql) === TRUE) {
+                } else {
+                    echo "Error: " . $sql . "<br>" . $conn->error;
+                }
+            }
+        }
+
+        updateCart($product_id, $user_id, $quantity, $conn);
     } else {
-      $quantity = 1;
+        echo "Product ID or User ID is missing.";
     }
-
-    function updateCart($product_id, $user_id, $quantity, $conn)
-    {
-      if ($quantity > 0) {
-        $sql = "INSERT INTO shoppingcart (user_id, product_id, quantity) VALUES ('$user_id', '$product_id', $quantity) ON DUPLICATE KEY UPDATE quantity = '$quantity'";
-      } else {
-        $sql = "DELETE FROM shoppingcart WHERE user_id = '$user_id' AND product_id = '$product_id'";
-      }
-      $conn->query($sql);
-    }
-
-    updateCart($product_id, $user_id, $quantity, $conn);
-  }
 }
-
 ?>
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -50,10 +62,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 </head>
 
 <body loading="lazy">
-
-  <?php
-  include("../navbar/navbar.php");
-  ?>
+  <?php include("../navbar/navbar.php"); ?>
 
   <main>
     <div class="small-container cart-page">
@@ -64,77 +73,47 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
           <th>Subtotal</th>
         </tr>
         <?php
-        $sql = "SELECT product_id, quantity FROM shoppingcart WHERE user_id = '$user_id'";
+        $sql = "SELECT sc.product_id, sc.quantity, sc.price, p.name, p.description, p.image_url_1 FROM shoppingcart sc JOIN products p ON sc.product_id = p.product_id WHERE sc.user_id = '{$_SESSION['user_id']}'";
         $result = $conn->query($sql);
         $total = 0;
+
         if ($result->num_rows > 0) {
-          $product_ids = array();
           while ($row = $result->fetch_assoc()) {
-            $product_ids[] = $row;
-          }
-          foreach ($product_ids as $product) {
-            echo fetchProductDetails($product['product_id'], $product['quantity'], $conn);
-            $total += calculateSubtotal($product['product_id'], $product['quantity'], $conn);
+            $subtotal = $row['price'] * $row['quantity'];
+            $total += $subtotal;
+            echo "<tr>
+              <td>
+                <div class='cart-info'>
+                  <img src='" . htmlspecialchars($row['image_url_1']) . "' alt='" . htmlspecialchars($row['description']) . "' />
+                  <div>
+                    <p>" . htmlspecialchars($row['name']) . "</p>
+                    <small>Price: $" . number_format($row['price'], 2) . "</small><br />
+                    <form method='post' style='display:inline;'>
+                      <input type='hidden' name='product_id' value='{$row['product_id']}'>
+                      <button type='submit' name='remove' class='btn btn-link'>Remove</button>
+                    </form>
+                  </div>
+                </div>
+              </td>
+              <td>
+                <form method='post' class='quantity-form'>
+                  <input type='hidden' name='product_id' value='{$row['product_id']}'>
+                  <input type='number' name='quantity' value='{$row['quantity']}' min='1' class='quantity-input' />
+                </form>
+              </td>
+              <td><label>$" . number_format($subtotal, 2) . "</label></td>
+            </tr>";
           }
         } else {
           echo "<tr><td colspan='3'>You haven't selected any product yet!</td></tr>";
         }
 
-        function fetchProductDetails($product_id, $quantity, $conn)
-        {
-          $sql = "SELECT name, description, price, image_url_1 FROM products WHERE product_id = '$product_id'";
-          $result = $conn->query($sql);
-
-          if ($result->num_rows > 0) {
-            $row = $result->fetch_assoc();
-            $subtotal = $row['price'] * $quantity;
-            $cart_html = "<tr>
-            <td>
-            <div class='cart-info'>
-            <img src='" . htmlspecialchars($row['image_url_1']) .  "' alt= '" . htmlspecialchars($row['description']) . "'  />
-            <div>
-            <p>" . htmlspecialchars($row['name']) . "</p>
-            <small>Price: $" . number_format($row['price'], 2) . " </small><br />
-            <form method='post' style='display:inline;'>
-              <input type='hidden' name='product_id' value='$product_id'>
-              <button type='submit' name='remove' class='btn btn-link'>Remove</button>
-            </form>
-            </div>
-            </div>
-            </td>
-            <td>
-              <form method='post' class='quantity-form'>
-                <input type='hidden' name='product_id' value='$product_id'>
-                <input type='number' name='quantity' value='$quantity' min='1' class='quantity-input' />
-              </form>
-            </td>
-            <td><label>$" . number_format($subtotal, 2) . "</label></td>
-            </tr>";
-            return $cart_html;
-          } else {
-            return "<tr><td colspan='3'>Product not found.</td></tr>";
-          }
-        }
-        $_SESSION['cart_html'] = $cart_html;
-        function calculateSubtotal($product_id, $quantity, $conn)
-        {
-          $sql = "SELECT price FROM products WHERE product_id = '$product_id'";
-          $result = $conn->query($sql);
-          if ($result->num_rows > 0) {
-            $row = $result->fetch_assoc();
-            return $row['price'] * $quantity;
-          } else {
-            return 0;
-          }
-        }
-
-        $tax = $total * 0.01; 
+        $tax = $total * 0.01;
         $grand_total = $total + $tax;
-        $_SESSION['total']=$total;
-        $_SESSION['tax']= $tax;
-        $_SESSION['grand_total']= $grand_total;
+        $_SESSION['total'] = $total;
+        $_SESSION['tax'] = $tax;
+        $_SESSION['grand_total'] = $grand_total;
 
-       
         $conn->close();
         ?>
       </table>
@@ -165,19 +144,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     </div>
   </main>
 
-  <?php
-  include("../footer/footer.php");
-  ?>
+  <?php include("../footer/footer.php"); ?>
 
   <script src="../mainPage/index.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
-
   <script>
     document.querySelectorAll('.quantity-input').forEach(input => {
-      input.addEventListener('change', function() {
+      input.addEventListener('change', function () {
         this.form.submit();
       });
     });
   </script>
 </body>
-</html>  
+</html>
