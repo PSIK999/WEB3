@@ -30,8 +30,8 @@ body {
   position: fixed;
   width: 300px;
   height: 100%;
-  background:  black;
-  border-left: 10px solid  black;
+  background: black;
+  border-left: 10px solid black;
   transition: 0.5s;
   overflow: hidden;
   color: rgb(255, 196, 0);
@@ -56,9 +56,9 @@ body {
   border-bottom-left-radius: 30px;
 }
 
-.navigation ul li:hover{
+.navigation ul li:hover {
   background: rgb(255, 196, 0);
-  color:white;
+  color: white;
 }
 
 .navigation ul li:nth-child(1) {
@@ -78,16 +78,16 @@ body {
 .navigation ul li.hovered a {
   color: var(--blue);
 }
-.navigation ul li a .maintitle{
-  display:flex;
-  justify-content:center;
-  align-items:center;
-  font-size:25px;
-  margin-left:70px;
-  margin-top:20px;
+.navigation ul li a .maintitle {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 25px;
+  margin-left: 70px;
+  margin-top: 20px;
 }
-.navigation ul li a .maintitle:hover{
-  color:white;
+.navigation ul li a .maintitle:hover {
+  color: white;
   background: rgb(255, 196, 0);
 }
 
@@ -283,41 +283,23 @@ body {
 .details .recentOrders {
   position: relative;
   display: grid;
-  min-height: 500px;
+  /* min-height: 500px; */
   background: var(--white);
   padding: 20px;
   box-shadow: 0 7px 25px rgba(0, 0, 0, 0.08);
   border-radius: 20px;
 }
 .details .myGraph {
-  position: absolute;
-  display: grid;
+  position: relative;
+  display: grid; 
   background: var(--white);
   padding: 20px;
   box-shadow: 0 7px 25px rgba(0, 0, 0, 0.08);
   border-radius: 20px;
-  margin-top:30px;
-  margin-left:10px;
-
+  /* margin-top: 30px;
+  margin-left: 10px; */
 }
-.details .myGraph2{
-  position: absolute;
-  display: grid;
-  min-height: 500px;
-  padding: 20px;
-  background: var(--white);
-  box-shadow: 0 7px 25px rgba(0, 0, 0, 0.08);
-  border-radius: 20px;
-  margin-left:90%;
-  margin-top:30px;
-  margin-right:10px;
-  
-}
-#myPlot{
-  width:100%;
-  max-width:550px;
-}
-@media(max-width:615px){
+/* @media(max-width:615px){
 .details .myGraph{
   max-width:450px;
 }
@@ -326,7 +308,7 @@ body {
   .details .myGraph #myPlot{
     max-width:400px;
   }
-  }
+  } */
 .details .cardHeader {
   display: flex;
   justify-content: space-between;
@@ -484,7 +466,7 @@ body {
   .status.inProgress {
     white-space: nowrap;
   }
-  .details .myGraph{
+  .details .myGraph {
     grid-template-columns: repeat(1, 1fr);
   }
 }
@@ -518,5 +500,3 @@ body {
     left: initial;
   }
 }
-
-
