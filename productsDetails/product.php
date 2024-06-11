@@ -119,14 +119,17 @@ include '../signup/regular_auth.php';
               <input type='number' min='0' max='10' value='1' />
               ";
         
+              
               if (isset($_SESSION['log']) && $_SESSION['log']) {
-                  echo "<button class='bton' id='add-to-cart-button' data-product-id='<?php echo $product_id; ?>' onclick='addToCart(this)'>Add to Cart</button>
-                  <button onclick='addreview(this) class='bton'>Add a Review</button>";
+                  echo "<button class='bton' id='add-to-cart-button' data-product-id='" . htmlspecialchars($product['product_id']) . "' onclick='addToCart(this)'>Add to Cart</button>
+                  <button onclick='addreview(this)' class='bton'>Add a Review</button>";
               } else {
                   echo "<a href='../signup/login.php'><button class='bton'>Buy Now</button></a>
                   <a href='../signup/login.php'><button class='bton'>Add To Cart</button></a>
                   <a href='../signup/login.php'><button class='bton'>Add a Review</button></a>";
               }
+              
+              
               echo "<form id='review-form' method='post' action='submit_review.php'>
                <input type='hidden' name='product_id' value='<?php echo $product_id; ?>'>
                   <div class='star-rating'>
@@ -204,24 +207,38 @@ include '../signup/regular_auth.php';
     }
   </script>
   <script>
-    function addToCart(button) {
-        var productID = button.dataset.productId;
 
-        fetch("../cart/cart.php", {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/x-www-form-urlencoded'
-            },
-            body: new URLSearchParams({
-                product_id: productID,
-                quantity: 1 // You can customize the quantity as needed
-            })
-        }).then(response => response.text())
-          .then(data => {
-              alert('Product added to cart!');
-              console.log(data);
-          }).catch(error => console.error('Error:', error));
-    }
+function addToCart(button) {
+    var productID = button.dataset.productId;
+    var quantity = 1; // Customize quantity as needed
+
+    // Get the total price
+    var totalPrice = parseFloat(document.getElementById('total-price').innerText);
+
+    fetch("../cart/cart.php", {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/x-www-form-urlencoded'
+        },
+        body: new URLSearchParams({
+            product_id: productID,
+            quantity: quantity,
+            total_price: totalPrice // Pass the total price
+        })
+    }).then(response => response.json()) // Expect JSON response
+    .then(data => {
+        if (data.success) {
+            alert('Product added to cart!');
+            // Optionally, redirect to the cart page or update cart UI
+            // window.location.href = '../cart/cart.php';
+        } else {
+            alert('Failed to add product to cart.');
+        }
+    }).catch(error => console.error('Error:', error));
+}
+
+
+
 </script>
 <script>
     document.querySelectorAll('.star-rating .fa').forEach(star => {
@@ -249,5 +266,4 @@ include '../signup/regular_auth.php';
 </script>
 </body>
 </html>
-
 
