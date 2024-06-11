@@ -1,6 +1,42 @@
 <?php
+
 include "../signup/connect.php";
 require_once '../signup/auth.php';
+
+$user_id = $_SESSION['user_id'];
+
+// Calculate the total price
+$total_price = 0;
+$stmt = $conn->prepare("SELECT SUM(price * quantity) AS total FROM shoppingcart WHERE user_id = ?");
+$stmt->bind_param("i", $user_id);
+$stmt->execute();
+$result = $stmt->get_result();
+$row = $result->fetch_assoc();
+$total_price = $row['total'];
+
+$_SESSION['total_price'] = $total_price;
+?>
+<?php
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $user_id = $_SESSION['user_id'];
+    $total_price = $_SESSION['total_price'];
+
+    $stmt = $conn->prepare("INSERT INTO orders (user_id, total_price) VALUES (?, ?)");
+    $stmt->bind_param("id", $user_id, $total_price);
+    $stmt->execute();
+    $order_id = $stmt->insert_id;
+
+    $stmt = $conn->prepare("INSERT INTO order_items (order_id, product_id, quantity, price) SELECT ?, product_id, quantity, price FROM cart WHERE user_id = ?");
+    $stmt->bind_param("ii", $order_id, $user_id);
+    $stmt->execute();
+
+    $stmt = $conn->prepare("DELETE FROM cart WHERE user_id = ?");
+    $stmt->bind_param("i", $user_id);
+    $stmt->execute();
+
+    header("Location: order_confirmation.php?order_id=" . $order_id);
+    exit();
+}
 ?>
 
 <!DOCTYPE html>
@@ -177,6 +213,34 @@ require_once '../signup/auth.php';
               <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault1" />
               <label class="form-check-label" for="flexCheckDefault1">Save this address</label>
             </div>
+            <form method="POST" action="checkout.php">
+  <!-- Other form fields -->
+
+            <h5 class="card-title mb-3">Payment Method</h5>
+            <div class="form-check">
+              <input class="form-check-input" type="radio" name="payment_method" id="payment1" value="credit_card" checked>
+              <label class="form-check-label" for="payment1">
+                Credit Card
+              </label>
+            </div>
+            <div class="form-check">
+              <input class="form-check-input" type="radio" name="payment_method" id="payment2" value="paypal">
+              <label class="form-check-label" for="payment2">
+                PayPal
+              </label>
+            </div>
+            <div class="form-check">
+              <input class="form-check-input" type="radio" name="payment_method" id="payment3" value="bank_transfer">
+              <label class="form-check-label" for="payment3">
+                Bank Transfer
+              </label>
+            </div>
+
+            <div class="float-end">
+              <a href="../cart/cart.php"><button type="button" class="btn btn-light border">Cancel</button></a>
+              <input type="submit" class="btn btn-success shadow-0 border" value="Continue">
+            </div>
+          </form>
 
             <div class="mb-3">
               <p class="mb-0">Message to seller</p>
