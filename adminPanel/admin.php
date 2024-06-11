@@ -2,7 +2,10 @@
 include "../signup/connect.php";
 require_once '../signup/admin_auth.php';
 
-
+$sql = "SELECT COUNT(*) as daily_views FROM page_views WHERE DATE(view_date) = CURDATE()";
+$result = $conn->query($sql);
+$row = $result->fetch_assoc();
+$daily_views = $row['daily_views'];
 ?>
 
 
@@ -115,13 +118,13 @@ require_once '../signup/admin_auth.php';
             </div>
 
             <!-- ======================= Cards ================== -->
+
             <div class="cardBox">
                 <div class="card">
                     <div>
-                        <div class="numbers">1,504</div>
+                        <div class="numbers"><?php echo htmlspecialchars($daily_views); ?></div>
                         <div class="cardName">Daily Views</div>
                     </div>
-
                     <div class="iconBx">
                         <ion-icon name="eye-outline"></ion-icon>
                     </div>
@@ -241,89 +244,44 @@ require_once '../signup/admin_auth.php';
                 </div>
 
                 <!-- ================= New Customers ================ -->
+               <?php $sql = "SELECT first_name, Country FROM users ORDER BY user_id DESC LIMIT 8";
+
+                // Execute the query
+                $result = $conn->query($sql);
+
+                if ($result->num_rows > 0) {
+                    // Fetch all results
+                    $users = $result->fetch_all(MYSQLI_ASSOC);
+                } else {
+                    $users = [];
+                }
+    
+                ?>
                 <div class="recentCustomers">
-                    <div class="cardHeader">
-                        <h2>Recent Customers</h2>
-                    </div>
+        <div class="cardHeader">
+            <h2>Recent Customers</h2>
+        </div>
 
-                    <table>
-                        <tr>
-                            <td width="60px">
-                                <div class="imgBx"><img src="assets/imgs/customer02.jpg" alt=""></div>
-                            </td>
-                            <td>
-                                <h4>David <br> <span>Italy</span></h4>
-                            </td>
-                        </tr>
-
-                        <tr>
-                            <td width="60px">
-                                <div class="imgBx"><img src="assets/imgs/customer01.jpg" alt=""></div>
-                            </td>
-                            <td>
-                                <h4>Amit <br> <span>India</span></h4>
-                            </td>
-                        </tr>
-
-                        <tr>
-                            <td width="60px">
-                                <div class="imgBx"><img src="assets/imgs/customer02.jpg" alt=""></div>
-                            </td>
-                            <td>
-                                <h4>David <br> <span>Italy</span></h4>
-                            </td>
-                        </tr>
-
-                        <tr>
-                            <td width="60px">
-                                <div class="imgBx"><img src="assets/imgs/customer01.jpg" alt=""></div>
-                            </td>
-                            <td>
-                                <h4>Amit <br> <span>India</span></h4>
-                            </td>
-                        </tr>
-
-                        <tr>
-                            <td width="60px">
-                                <div class="imgBx"><img src="assets/imgs/customer02.jpg" alt=""></div>
-                            </td>
-                            <td>
-                                <h4>David <br> <span>Italy</span></h4>
-                            </td>
-                        </tr>
-
-                        <tr>
-                            <td width="60px">
-                                <div class="imgBx"><img src="assets/imgs/customer01.jpg" alt=""></div>
-                            </td>
-                            <td>
-                                <h4>Amit <br> <span>India</span></h4>
-                            </td>
-                        </tr>
-
-                        <tr>
-                            <td width="60px">
-                                <div class="imgBx"><img src="assets/imgs/customer01.jpg" alt=""></div>
-                            </td>
-                            <td>
-                                <h4>David <br> <span>Italy</span></h4>
-                            </td>
-                        </tr>
-
-                        <tr>
-                            <td width="60px">
-                                <div class="imgBx"><img src="assets/imgs/customer02.jpg" alt=""></div>
-                            </td>
-                            <td>
-                                <h4>Amit <br> <span>India</span></h4>
-                            </td>
-                        </tr>
-                    </table>
-                </div>
+        <table>
+            <?php foreach ($users as $user): ?>
+                <tr>
+                    <td>
+                        <h4><?php echo htmlspecialchars($user['first_name']); ?> <br> <span><?php echo htmlspecialchars($user['Country']); ?></span></h4>
+                    </td>
+                </tr>
+            <?php endforeach; ?>
+        </table>
+    </div>
             </div>
         </div>
     </div>
-
+    <script>
+        (function() {
+            var xhr = new XMLHttpRequest();
+            xhr.open("GET", "../mainPage/index.php", true);
+            xhr.send();
+        })();
+    </script>
     <!-- =========== Scripts =========  -->
     <script src="assets/js/main.js"></script>
 
@@ -333,3 +291,4 @@ require_once '../signup/admin_auth.php';
 </body>
 
 </html>
+
