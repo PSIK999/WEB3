@@ -66,7 +66,7 @@ include '../signup/regular_auth.php';
               $options_data[$row['group_name']][] = $row;
           }
           $_SESSION['PRODUCTT'] = $product['product_id'];
-          
+        
           $stmt->close();
       }
 
@@ -119,19 +119,16 @@ include '../signup/regular_auth.php';
               <input type='number' min='0' max='10' value='1' />
               ";
         
-              
               if (isset($_SESSION['log']) && $_SESSION['log']) {
-                  echo "<button class='bton' id='add-to-cart-button' data-product-id='" . htmlspecialchars($product['product_id']) . "' onclick='addToCart(this)'>Add to Cart</button>
-                  <button onclick='addreview(this)' class='bton'>Add a Review</button>";
+                  echo "<button class='bton' id='add-to-cart-button' data-product-id='<?php echo $product_id; ?>' onclick='addToCart(this)'>Add to Cart</button>
+                  ";
               } else {
                   echo "<a href='../signup/login.php'><button class='bton'>Buy Now</button></a>
                   <a href='../signup/login.php'><button class='bton'>Add To Cart</button></a>
                   <a href='../signup/login.php'><button class='bton'>Add a Review</button></a>";
               }
-              
-              
               echo "<form id='review-form' method='post' action='submit_review.php'>
-               <input type='hidden' name='product_id' value='<?php echo $product_id; ?>'>
+               <input type='hidden' name='product_id' value='{$product['product_id']}'>
                   <div class='star-rating'>
                       <span class='fa fa-star' data-rating='1'></span>
                       <span class='fa fa-star' data-rating='2'></span>
@@ -163,14 +160,14 @@ include '../signup/regular_auth.php';
         <?php echo var_dump($product['product_id']); ?>
         <p class="Viewmore"><a href="../allproducts/allproducts.html">View more</a></p>
     </div>
-</div><!-- 
+</div>
 <div class="small-container">
     <div class="row">
-        <?php // while ($related_product = $related_products->fetch_assoc()): ?>
+        <?php  while ($related_product = $related_products->fetch_assoc()): ?>
         <div class="col-4">
-            <img src="<?php // echo htmlspecialchars($related_product['image_url_1']); ?>" />
-            <a href="../productsDetails/product.php?product_id=<?php // echo $related_product['product_id']; ?>">
-                <h4><?php // echo htmlspecialchars($related_product['name']); ?></h4>
+            <img src="<?php  echo htmlspecialchars($related_product['image_url_1']); ?>" />
+            <a href="../productsDetails/product.php?product_id=<?php  echo $related_product['product_id']; ?>">
+                <h4><?php  echo htmlspecialchars($related_product['name']); ?></h4>
                 <div class="rating">
                     <i class="fa fa-star"></i>
                     <i class="fa fa-star"></i>
@@ -178,12 +175,12 @@ include '../signup/regular_auth.php';
                     <i class="fa fa-star"></i>
                     <i class="fa fa-star-o"></i>
                 </div>
-                <p>$<?php // echo number_format($related_product['price'], 2); ?></p>
+                <p>$<?php  echo number_format($related_product['price'], 2); ?></p>
             </a>
         </div>
-        <?php // endwhile; ?>
+        <?php  endwhile; ?>
     </div>
-</div>-->
+</div>
   </main>
 
   <?php
@@ -207,38 +204,24 @@ include '../signup/regular_auth.php';
     }
   </script>
   <script>
+    function addToCart(button) {
+        var productID = button.dataset.productId;
 
-function addToCart(button) {
-    var productID = button.dataset.productId;
-    var quantity = 1; // Customize quantity as needed
-
-    // Get the total price
-    var totalPrice = parseFloat(document.getElementById('total-price').innerText);
-
-    fetch("../cart/cart.php", {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/x-www-form-urlencoded'
-        },
-        body: new URLSearchParams({
-            product_id: productID,
-            quantity: quantity,
-            total_price: totalPrice // Pass the total price
-        })
-    }).then(response => response.json()) // Expect JSON response
-    .then(data => {
-        if (data.success) {
-            alert('Product added to cart!');
-            // Optionally, redirect to the cart page or update cart UI
-            // window.location.href = '../cart/cart.php';
-        } else {
-            alert('Failed to add product to cart.');
-        }
-    }).catch(error => console.error('Error:', error));
-}
-
-
-
+        fetch("../cart/cart.php", {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded'
+            },
+            body: new URLSearchParams({
+                product_id: productID,
+                quantity: 1 // You can customize the quantity as needed
+            })
+        }).then(response => response.text())
+          .then(data => {
+              alert('Product added to cart!');
+              console.log(data);
+          }).catch(error => console.error('Error:', error));
+    }
 </script>
 <script>
     document.querySelectorAll('.star-rating .fa').forEach(star => {
@@ -266,4 +249,6 @@ function addToCart(button) {
 </script>
 </body>
 </html>
+
+
 
