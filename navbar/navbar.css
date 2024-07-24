@@ -41,14 +41,12 @@
   font-size: 15px;
 }
 .logo .ke {
-  width: 200px;
-  height: 50px;
- 
+  height: 45px;
   color: rgb(255, 196, 0);
   margin-top:20px;
-  margin-left:60px;
- 
-  
+  font-size:45px;
+  margin-bottom:35px;
+  margin-left:10px;
 }
   .viewbtn {
     display: flex;
@@ -79,15 +77,35 @@
       margin-right: 0px;
     }
   }
-@media (max-width:1230px){
+@media (max-width:1733px){
   .logo .ke{
-    width:150px;
+    font-size:40px;
+    margin-bottom:20px;
 
   }
 }
-@media(max-width:1000px){
+@media(max-width:1430px){
   .logo .ke{
-    width:130px;
+    font-size:35px;
+    margin-bottom:15px;
+  }
+}
+@media(max-width:1260px){
+  .logo .ke{
+    font-size:30px;
+    margin-bottom:12px;
+  }
+}
+@media(max-width:1260px){
+  .logo .ke{
+    font-size:25px;
+    margin-bottom:7px;
+  }
+}
+@media(max-width:964px){
+  .logo .ke{
+    font-size:20px;
+    margin-bottom:0px;
   }
 }
 @media (max-width: 768px) {

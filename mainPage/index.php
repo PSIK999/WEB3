@@ -9,7 +9,6 @@ include "../products/productFetcher.php";
 // Log the page view
 $sql = "INSERT INTO page_views (view_date) VALUES (NOW())";
 if ($conn->query($sql) === TRUE) {
-    echo "Page view logged successfully";
 } else {
     echo "Error: " . $sql . "<br>" . $conn->error;
 }

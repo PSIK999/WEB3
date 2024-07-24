@@ -6,18 +6,31 @@ $user_id = $_SESSION['user_id'];
 
 // Handle cancel order request
 if (isset($_POST['cancel_order'])) {
-    $order_id = $_POST['order_id'];
-    $stmt = $conn->prepare("DELETE FROM orders WHERE order_id = ? AND user_id = ? AND status = 'pending'");
-    $stmt->bind_param("ii", $order_id, $user_id);
-    $stmt->execute();
-}
+    $order_id = intval($_POST['order_id']);
 
-// Handle remove order request
-if (isset($_POST['remove_order'])) {
-    $order_id = $_POST['order_id'];
-    $stmt = $conn->prepare("DELETE FROM orders WHERE order_id = ? AND user_id = ?");
-    $stmt->bind_param("ii", $order_id, $user_id);
-    $stmt->execute();
+    // Start a transaction
+    $conn->begin_transaction();
+
+    try {
+        // Delete related order items first
+        $stmt = $conn->prepare("DELETE FROM order_items WHERE order_id = ?");
+        $stmt->bind_param("i", $order_id);
+        $stmt->execute();
+        $stmt->close();
+
+        // Delete the order
+        $stmt = $conn->prepare("DELETE FROM orders WHERE order_id = ? AND user_id = ? AND order_status = 'Order Pending'");
+        $stmt->bind_param("ii", $order_id, $user_id);
+        $stmt->execute();
+        $stmt->close();
+
+        // Commit the transaction
+        $conn->commit();
+    } catch (mysqli_sql_exception $exception) {
+        // Rollback the transaction if an error occurs
+        $conn->rollback();
+        throw $exception;
+    }
 }
 
 $stmt = $conn->prepare("SELECT o.order_id, o.total_price, o.order_date, o.order_status, oi.product_id, oi.quantity, oi.price, p.name, p.image_url_1 FROM orders o JOIN order_items oi ON o.order_id = oi.order_id JOIN products p ON oi.product_id = p.product_id WHERE o.user_id = ?");
@@ -32,6 +45,8 @@ while ($row = $result->fetch_assoc()) {
     $orders[$row['order_id']]['order_status'] = $row['order_status'];
     $orders[$row['order_id']]['items'][] = $row;
 }
+$stmt->close();
+$conn->close();
 ?>
 
 <!DOCTYPE html>
@@ -48,7 +63,7 @@ while ($row = $result->fetch_assoc()) {
     <link rel="stylesheet" href="../footer/footer.css" />
 </head>
 <body loading="lazy">
-    <?php include ("../navbar/navbar.php"); ?>
+    <?php include("../navbar/navbar.php"); ?>
 
     <main>
         <section class="bg-light py-5">
@@ -60,29 +75,23 @@ while ($row = $result->fetch_assoc()) {
                             <?php foreach ($orders as $order_id => $order) : ?>
                                 <div class="card mb-4 shadow-0 border">
                                     <div class="card-body">
-                                        <h5 class="card-title">Order #<?= $order_id ?></h5>
-                                        <p>Order Date: <?= $order['order_date'] ?></p>
+                                        <h5 class="card-title">Order #<?= htmlspecialchars($order_id) ?></h5>
+                                        <p>Order Date: <?= htmlspecialchars($order['order_date']) ?></p>
                                         <p>Total Price: $<?= number_format($order['total_price'], 2) ?></p>
-                                        <p>Status: <?= ucfirst($order['order_status']) ?></p>
-                                        <div class="d-flex justify-content-between">
-                                            <?php if ($order['order_status'] == 'pending') : ?>
-                                                <form method="POST" action="orders.php" class="me-2">
-                                                    <input type="hidden" name="order_id" value="<?= $order_id ?>">
-                                                    <button type="submit" name="cancel_order" class="btn btn-danger">Cancel Order</button>
-                                                </form>
-                                            <?php endif; ?>
-                                            <form method="POST" action="orders.php">
-                                                <input type="hidden" name="order_id" value="<?= $order_id ?>">
-                                                <button type="submit" name="remove_order" class="btn btn-secondary">Remove Order</button>
+                                        <p>Status: <?= ucfirst(htmlspecialchars($order['order_status'])) ?></p>
+                                        <?php if ($order['order_status'] == 'Order Pending') : ?>
+                                            <form method="POST" action="orders.php" class="mb-3">
+                                                <input type="hidden" name="order_id" value="<?= htmlspecialchars($order_id) ?>">
+                                                <button type="submit" name="cancel_order" class="btn btn-danger">Cancel Order</button>
                                             </form>
-                                        </div>
+                                        <?php endif; ?>
                                         <hr>
                                         <?php foreach ($order['items'] as $item) : ?>
                                             <div class="d-flex align-items-center mb-4">
-                                                <img src="../products/<?= $item['image_url_1'] ?>" class="img-fluid" style="width: 70px;" />
+                                                <img src="../products/<?= htmlspecialchars($item['image_url_1']) ?>" class="img-fluid" style="width: 70px;" alt="<?= htmlspecialchars($item['name']) ?>" />
                                                 <div class="ms-3">
-                                                    <h6><?= $item['name'] ?></h6>
-                                                    <p class="small mb-0">Quantity: <?= $item['quantity'] ?></p>
+                                                    <h6><?= htmlspecialchars($item['name']) ?></h6>
+                                                    <p class="small mb-0">Quantity: <?= htmlspecialchars($item['quantity']) ?></p>
                                                     <p class="small mb-0">Price: $<?= number_format($item['price'], 2) ?></p>
                                                 </div>
                                             </div>
@@ -99,6 +108,6 @@ while ($row = $result->fetch_assoc()) {
         </section>
     </main>
 
-    <?php include ("../footer/footer.php"); ?>
+    <?php include("../footer/footer.php"); ?>
 </body>
 </html>

@@ -34,7 +34,7 @@ include "../signup/connect.php";
         <div class="row">
           <div class="col-md-2 my-auto d-none d-sm-none d-md-block d-lg-block">
             <div class="logo">
-            <h2 class="ke">𝔖𝔞𝔥𝔢𝔩𝔗𝔯𝔬𝔫𝔦𝔵</h2>
+            <h1 class="ke">𝔖𝔞𝔥𝔢𝔩𝔗𝔯𝔬𝔫𝔦𝔵</h1>
             </div>
           </div>
           <div class="col-md-5 my-auto">
@@ -83,10 +83,7 @@ include "../signup/connect.php";
                     </li>
 
                     <li>
-                      <a class="dropdown-item" href="#"><i class="fa fa-list"></i> My Orders</a>
-                    </li>
-                    <li>
-                      <a class="dropdown-item" href="../wishlist/wishlist.php"><i class="fa fa-heart"></i> My Wishlist</a>
+                      <a class="dropdown-item" href="../orders/orders.php"><i class="fa fa-list"></i> My Orders</a>
                     </li>
                     <li>
                       <a class="dropdown-item" href="../cart/cart.php"><i class="fa fa-shopping-cart"></i> My Cart</a>
@@ -126,9 +123,6 @@ include "../signup/connect.php";
 
             <li>
               <a class="dropdown-item" href="../signup/login.php"><i class="fa fa-list"></i> My Orders</a>
-            </li>
-            <li>
-              <a class="dropdown-item" href="../signup/login.php"><i class="fa fa-heart"></i> My Wishlist</a>
             </li>
             <li>
               <a class="dropdown-item" href="../signup/login.php"><i class="fa fa-shopping-cart"></i> My Cart</a>
