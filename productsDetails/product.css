@@ -127,6 +127,7 @@ h4 {
 .selectbtn {
   border: 1px solid #032eb9cc;
   padding: 5px;
+  margin : 5px;
 }
 .selectbtn:focus {
   outline: none;

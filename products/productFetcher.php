@@ -52,20 +52,6 @@ function getProductDetails($conn, $product_id) {
         );
     }
 
-    function toggleWishlist(icon, productID) {
-        icon.classList.toggle('text-danger');
-        var isInWishlist = icon.classList.contains('text-danger');
 
-        fetch(
-            "../wishlist/toggle_wishlist.php",
-            {
-                method: 'POST',
-                body: new URLSearchParams({
-                    product_id: productID,
-                    add: isInWishlist
-                })
-            }
-        );
-    }
 </script>
 <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" rel="stylesheet" />

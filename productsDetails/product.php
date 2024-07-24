@@ -70,7 +70,6 @@ include '../signup/regular_auth.php';
           $stmt->close();
       }
 
-      $conn->close();
   }
   ?>
 
@@ -116,11 +115,11 @@ include '../signup/regular_auth.php';
               }
         
               echo "
-              <input type='number' min='0' max='10' value='1' />
+              <input type='number' min='0' max='10' value='1' id='quantity'/>
               ";
         
               if (isset($_SESSION['log']) && $_SESSION['log']) {
-                  echo "<button class='bton' id='add-to-cart-button' data-product-id='<?php echo $product_id; ?>' onclick='addToCart(this)'>Add to Cart</button>
+                  echo "<button class='bton' id='add-to-cart-button' data-product-id='" . htmlspecialchars($product['product_id']) . "' onclick='addToCart(this)'>Add to Cart</button>
                   ";
               } else {
                   echo "<a href='../signup/login.php'><button class='bton'>Buy Now</button></a>
@@ -147,18 +146,17 @@ include '../signup/regular_auth.php';
     ?>
     <?php
         // Fetch random related products
-       /* $sql = "SELECT * FROM products WHERE categorie_id = ? ORDER BY RAND() LIMIT 4";
+       $sql = "SELECT * FROM products WHERE categorie_id = ? ORDER BY RAND() LIMIT 4";
         $stmt = $conn->prepare($sql);
         $stmt->bind_param('i', $categorie_id);
         $stmt->execute();
         $related_products = $stmt->get_result();
-        $stmt->close();*/
+        $stmt->close();
     ?>
    <div class="small-container">
     <div class="row row-2">
         <h2>Related Products</h2>
-        <?php echo var_dump($product['product_id']); ?>
-        <p class="Viewmore"><a href="../allproducts/allproducts.html">View more</a></p>
+        <p class="Viewmore"><a href="../allproducts/allproducts.php">View more</a></p>
     </div>
 </div>
 <div class="small-container">
@@ -202,28 +200,32 @@ include '../signup/regular_auth.php';
 
       document.getElementById('total-price').innerText = totalPrice.toFixed(2);
     }
+
+    function addToCart(button) {
+      let productID = button.getAttribute('data-product-id');
+      let totalPrice = parseFloat(document.getElementById('total-price').innerText);
+      let quantity = parseInt(document.getElementById('quantity').value);
+
+      fetch("../cart/cart.php", {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/x-www-form-urlencoded',
+        },
+        body: new URLSearchParams({
+          product_id: productID,
+          total_price: totalPrice,
+          quantity: quantity
+        })
+      }).then(response => {
+        if (response.ok) {
+          alert('Product added to cart successfully.');
+        } else {
+          alert('Failed to add product to cart.');
+        }
+      });
+    }
   </script>
   <script>
-    function addToCart(button) {
-        var productID = button.dataset.productId;
-
-        fetch("../cart/cart.php", {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/x-www-form-urlencoded'
-            },
-            body: new URLSearchParams({
-                product_id: productID,
-                quantity: 1 // You can customize the quantity as needed
-            })
-        }).then(response => response.text())
-          .then(data => {
-              alert('Product added to cart!');
-              console.log(data);
-          }).catch(error => console.error('Error:', error));
-    }
-</script>
-<script>
     document.querySelectorAll('.star-rating .fa').forEach(star => {
         star.addEventListener('click', function() {
             let rating = this.getAttribute('data-rating');
@@ -246,9 +248,6 @@ include '../signup/regular_auth.php';
         }
         return siblings;
     }
-</script>
+  </script>
 </body>
 </html>
-
-
-
