@@ -2,46 +2,31 @@
 include "../signup/connect.php";
 require_once '../signup/auth.php';
 
-
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if (isset($_POST['product_id']) && isset($_SESSION['user_id'])) {
-        $product_id = $_POST['product_id'];
-        $user_id =  $_SESSION['user_id'];
+        $product_id = intval($_POST['product_id']);
+        $user_id = intval($_SESSION['user_id']);
+        $total_price = isset($_POST['total_price']) ? floatval($_POST['total_price']) : 0.0;
+        $quantity = isset($_POST['remove']) ? 0 : (isset($_POST['quantity']) ? intval($_POST['quantity']) : 1);
 
-        if (isset($_POST['remove'])) {
-            $quantity = 0;
-        } else if (isset($_POST['quantity'])) {
-            $quantity = intval($_POST['quantity']);
-        } else {
-            $quantity = 1;
-        }
-
-        function updateCart($product_id, $user_id, $quantity, $conn)
+        function updateCart($product_id, $user_id, $quantity, $total_price, $conn)
         {
-            $sql = "SELECT price FROM products WHERE product_id = '$product_id'";
-            $result = $conn->query($sql);
-            if ($result->num_rows > 0) {
-                $row = $result->fetch_assoc();
-                $price = $row['price'];
-                if ($quantity > 0) {
-                    $sql = "INSERT INTO shoppingcart (user_id, product_id, quantity, price) VALUES ('$user_id', '$product_id', $quantity, $price) ON DUPLICATE KEY UPDATE quantity = '$quantity', price = '$price'";
-                } else {
-                    $sql = "DELETE FROM shoppingcart WHERE user_id = '$user_id' AND product_id = '$product_id'";
-                }
-                if ($conn->query($sql) === TRUE) {
-                } else {
-                    echo "Error: " . $sql . "<br>" . $conn->error;
-                }
+            if ($quantity > 0) {
+                $sql = "INSERT INTO shoppingcart (user_id, product_id, quantity, price) VALUES ('$user_id', '$product_id', $quantity, $total_price) ON DUPLICATE KEY UPDATE quantity = '$quantity', price = '$total_price'";
+            } else {
+                $sql = "DELETE FROM shoppingcart WHERE user_id = '$user_id' AND product_id = '$product_id'";
+            }
+            if ($conn->query($sql) !== TRUE) {
+                echo "Error: " . $sql . "<br>" . $conn->error;
             }
         }
 
-        updateCart($product_id, $user_id, $quantity, $conn);
+        updateCart($product_id, $user_id, $quantity, $total_price, $conn);
     } else {
         echo "Product ID or User ID is missing.";
     }
 }
 ?>
-
 
 <!DOCTYPE html>
 <html lang="en">
@@ -98,6 +83,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
               <td>
                 <form method='post' class='quantity-form'>
                   <input type='hidden' name='product_id' value='{$row['product_id']}'>
+                  <input type='hidden' name='total_price' value='{$row['price']}'>
                   <input type='number' name='quantity' value='{$row['quantity']}' min='1' class='quantity-input' />
                 </form>
               </td>
