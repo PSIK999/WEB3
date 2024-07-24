@@ -34,7 +34,7 @@ include "../signup/connect.php";
         <div class="row">
           <div class="col-md-2 my-auto d-none d-sm-none d-md-block d-lg-block">
             <div class="logo">
-              <img src="../images/20240524_162618.png" class="ke">
+            <h2 class="ke">𝔖𝔞𝔥𝔢𝔩𝔗𝔯𝔬𝔫𝔦𝔵</h2>
             </div>
           </div>
           <div class="col-md-5 my-auto">
