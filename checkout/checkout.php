@@ -2,6 +2,15 @@
 include "../signup/connect.php";
 require_once '../signup/auth.php';
 
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\Exception;
+
+require '../PHPMailer-master/src/Exception.php';
+require '../PHPMailer-master/src/PHPMailer.php';
+require '../PHPMailer-master/src/SMTP.php';
+
+require '../vendor/autoload.php';
+
 $user_id = $_SESSION['user_id'];
 
 // Calculate the total price
@@ -16,7 +25,7 @@ $_SESSION['total_price'] = $total_price;
 
 // Get cart items
 $cart_items = [];
-$stmt = $conn->prepare("SELECT sc.product_id, sc.quantity, sc.price, p.image_url_1 FROM shoppingcart sc JOIN products p ON sc.product_id = p.product_id WHERE sc.user_id = ?");
+$stmt = $conn->prepare("SELECT sc.product_id, sc.quantity, sc.price, p.image_url_1, p.name FROM shoppingcart sc JOIN products p ON sc.product_id = p.product_id WHERE sc.user_id = ?");
 $stmt->bind_param("i", $user_id);
 $stmt->execute();
 $result = $stmt->get_result();
@@ -25,7 +34,7 @@ while ($row = $result->fetch_assoc()) {
 }
 
 // Process checkout form submission
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
+if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["sender"])) {
     $user_id = $_SESSION['user_id'];
     $total_price = $_SESSION['total_price'];
 
@@ -43,11 +52,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $stmt->execute();
     }
 
-    // Calculate shipping cost
-    $shipping_cost = ($country === 'Lebanon') ? 3 : 50;
-    $total_price += $shipping_cost;
+    // Store country in session for shipping cost calculation
+    $_SESSION['country'] = $country;
 
-    $stmt = $conn->prepare("INSERT INTO orders (user_id, total_price) VALUES (?, ?)");
+    $stmt = $conn->prepare("INSERT INTO orders (user_id, total_price, order_date) VALUES (?, ?, NOW())");
     $stmt->bind_param("id", $user_id, $total_price);
     $stmt->execute();
     $order_id = $stmt->insert_id;
@@ -60,7 +68,53 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $stmt->bind_param("i", $user_id);
     $stmt->execute();
 
-    header("Location: my_orders.php");
+    // Send confirmation email
+    $name = $_SESSION['username'];
+    $email = $_SESSION['email'];
+    $message = "<h1>Order Confirmation</h1>";
+    $message .= "<p>Thank you for your order. Here are the details:</p>";
+    $message .= "<p>Total Price: $" . number_format($total_price, 2) . "</p>";
+    $message .= "<p>Items:</p><ul>";
+    foreach ($cart_items as $item) {
+        $message .= "<li>" . $item['name'] . " (Quantity: " . $item['quantity'] . ", Price: $" . $item['price'] . ")</li>";
+    }
+    $message .= "</ul>";
+
+    try {
+        $mail = new PHPMailer(true);
+        $mail->isSMTP();
+        $mail->SMTPDebug = 0;
+        $mail->Host       = 'smtp.gmail.com';
+        $mail->SMTPAuth   = true;
+        $mail->Username   = 'sicha1232020@gmail.com';
+        $mail->Password   = 'qajb jqll efys rncb'; // Use your App Password here not your password
+        $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
+        $mail->Port       = 587;
+        $mail->SMTPOptions = array(
+            'ssl' => array(
+                'verify_peer' => false,
+                'verify_peer_name' => false,
+                'allow_self_signed' => true
+            )
+        );
+        $mail->setFrom('saheltronix@gmail.com' , $name);
+        $mail->addAddress($email);
+        $mail->isHTML(true);
+        $mail->Subject = 'Order Confirmation';
+        $mail->Body    = $message;
+        $mail->send();
+        echo "
+        <script>
+            alert('Email Sent');
+            document.location.href='contactus.php';
+        </script>";
+    } catch (Exception $e) {
+        echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
+    }
+
+
+    // Redirect to orders.php after successful order placement
+    header("Location: ../orders/orders.php");
     exit();
 }
 ?>
@@ -105,7 +159,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                                             $city = htmlspecialchars($row['City']);
                                             $country = htmlspecialchars($row['Country']);
                                             $postal_code = htmlspecialchars($row['Postal_Code']);
-                                            
+
                                             // Display address information in the checkout form
                                             echo "<div class='row'>
                                             <div class='col-6 mb-3'>
@@ -132,77 +186,53 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                                                     <input type='text' id='typeText' placeholder='Type here' name='city' value='$city' class='form-control' />
                                                 </div>
                                             </div>
-                                            <div class='col-sm-4 mb-3'>
-                                                <label class='mb-0' for='country'>Country</label>
-                                                <select class='form-select' name='country'>";
-                                                
-                                                // List of countries
-                                                $countries = ["Select a country", "Afghanistan", "Albania", "Algeria", "Andorra", "Angola", "Antigua and Barbuda", "Argentina", "Armenia", "Australia", "Austria", "Azerbaijan", "Bahamas", "Bahrain", "Bangladesh", "Barbados", "Belarus", "Belgium", "Belize", "Benin", "Bhutan", "Bolivia", "Bosnia and Herzegovina", "Botswana", "Brazil", "Brunei", "Bulgaria", "Burkina Faso", "Burundi", "Cabo Verde", "Cambodia", "Cameroon", "Canada", "Central African Republic", "Chad", "Chile", "China", "Colombia", "Comoros", "Congo, Democratic Republic of the", "Congo, Republic of the", "Costa Rica", "Croatia", "Cuba", "Cyprus", "Czech Republic", "Denmark", "Djibouti", "Dominica", "Dominican Republic", "Ecuador", "Egypt", "El Salvador", "Equatorial Guinea", "Eritrea", "Estonia", "Eswatini", "Ethiopia", "Fiji", "Finland", "France", "Gabon", "Gambia", "Georgia", "Germany", "Ghana", "Greece", "Grenada", "Guatemala", "Guinea", "Guinea-Bissau", "Guyana", "Haiti", "Honduras", "Hungary", "Iceland", "India", "Indonesia", "Iran", "Iraq", "Ireland", "Israel", "Italy", "Jamaica", "Japan", "Jordan", "Kazakhstan", "Kenya", "Kiribati", "Korea, North", "Korea, South", "Kosovo", "Kuwait", "Kyrgyzstan", "Laos", "Latvia", "Lebanon", "Lesotho", "Liberia", "Libya", "Liechtenstein", "Lithuania", "Luxembourg", "Madagascar", "Malawi", "Malaysia", "Maldives", "Mali", "Malta", "Marshall Islands", "Mauritania", "Mauritius", "Mexico", "Micronesia", "Moldova", "Monaco", "Mongolia", "Montenegro", "Morocco", "Mozambique", "Myanmar", "Namibia", "Nauru", "Nepal", "Netherlands", "New Zealand", "Nicaragua", "Niger", "Nigeria", "North Macedonia", "Norway", "Oman", "Pakistan", "Palau", "Palestine", "Panama", "Papua New Guinea", "Paraguay", "Peru", "Philippines", "Poland", "Portugal", "Qatar", "Romania", "Russia", "Rwanda", "Saint Kitts and Nevis", "Saint Lucia", "Saint Vincent and the Grenadines", "Samoa", "San Marino", "Sao Tome and Principe", "Saudi Arabia", "Senegal", "Serbia", "Seychelles", "Sierra Leone", "Singapore", "Slovakia", "Slovenia", "Solomon Islands", "Somalia", "South Africa", "South Sudan", "Spain", "Sri Lanka", "Sudan", "Suriname", "Sweden", "Switzerland", "Syria", "Taiwan", "Tajikistan", "Tanzania", "Thailand", "Timor-Leste", "Togo", "Tonga", "Trinidad and Tobago", "Tunisia", "Turkey", "Turkmenistan", "Tuvalu", "Uganda", "Ukraine", "United Arab Emirates", "United Kingdom", "United States", "Uruguay", "Uzbekistan", "Vanuatu", "Venezuela", "Vietnam", "Yemen", "Zambia", "Zimbabwe"];
-
-                                                foreach ($countries as $option_country) {
-                                                    $selected = ($country === $option_country) ? "selected" : "";
-                                                    echo "<option value='$option_country' $selected>$option_country</option>";
-                                                }
-
-                                                echo "</select>
+                                            <div class='col-sm-8 mb-3'>
+                                                <p class='mb-0'>Country</p>
+                                                <div class='form-outline'>
+                                                    <input type='text' id='typeText' placeholder='Type here' name='country' value='$country' class='form-control' />
+                                                </div>
                                             </div>
-                                            <div class='col-sm-4 mb-3'>
+                                            <div class='col-sm-8 mb-3'>
                                                 <p class='mb-0'>Postal Code</p>
                                                 <div class='form-outline'>
                                                     <input type='text' id='typeText' placeholder='Type here' name='postal_code' value='$postal_code' class='form-control' />
                                                 </div>
                                             </div>
-                                            <div class='form-check'>
-                                                <input class='form-check-input' type='checkbox' id='editAddressCheckbox' name='edit_address'>
-                                                <label class='form-check-label' for='editAddressCheckbox'>Edit Address</label>
-                                            </div>
-                                            <button type='submit' class='btn btn-primary btn-lg btn-block mt-3'>Place Order</button>
-                                        </div>";
+                                            </div>";
                                         }
                                     }
                                     ?>
+
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" name="edit_address" id="edit_address">
+                                        <label class="form-check-label" for="edit_address">
+                                            Edit address
+                                        </label>
+                                    </div>
+                                    
+                                    <button type="submit" name="sender" class="btn btn-primary w-100">Place Order</button>
                                 </form>
                             </div>
                         </div>
                     </div>
-                    <div class="col-lg-4">
-                        <div class="card mb-3 shadow-0 border">
+                    <div class="col-lg-4 d-flex justify-content-center">
+                        <div class="card mb-4 w-100 shadow-0 border">
                             <div class="card-body">
-                                <h5 class="card-title">Order Summary</h5>
-                                <div class="d-flex justify-content-between">
-                                    <p class="mb-2">Total price:</p>
-                                    <p class="mb-2">$<?= number_format($total_price, 2) ?></p>
+                                <h5 class="card-title mb-3">Summary</h5>
+                                <span>Total price: $<?php echo number_format($total_price, 2); ?></span>
+                                <div class="d-flex justify-content-between mt-3 mb-3">
+                                    <span>Tax:</span>
+                                    <span>$0.00</span>
                                 </div>
-                                <div class="d-flex justify-content-between">
-                                    <p class="mb-2">Shipping cost:</p>
-                                    <p class="mb-2">$<?= ($country === 'Lebanon') ? 3 : 50 ?></p>
+                                <div class="d-flex justify-content-between mb-3">
+                                    <span>Shipping:</span>
+                                    <span>$0.00</span>
                                 </div>
+                                <hr>
                                 <div class="d-flex justify-content-between">
-                                    <p class="mb-2">Total:</p>
-                                    <p class="mb-2"><strong>$<?= number_format($total_price + (($country === 'Lebanon') ? 3 : 50), 2) ?></strong></p>
+                                    <span>Total price:</span>
+                                    <strong class="price">$<?php echo number_format($total_price, 2); ?></strong>
                                 </div>
-                                <hr />
-                            </div>
-                        </div>
-                        <div class="card shadow-0 border">
-                            <div class="card-body">
-                                <h5 class="card-title">Items in your cart</h5>
-                                <?php
-                                if (!empty($cart_items)) {
-                                    foreach ($cart_items as $item) {
-                                        echo "<div class='d-flex align-items-center mb-4'>
-                                        <img src='../products/{$item['image_url_1']}' class='img-fluid' style='width: 70px;' />
-                                        <div class='ms-3'>
-                                            <h6>{$item['product_id']}</h6>
-                                            <p class='small mb-0'>Quantity: {$item['quantity']}</p>
-                                            <p class='small mb-0'>Price: {$item['price']}</p>
-                                        </div>
-                                    </div>";
-                                    }
-                                } else {
-                                    echo "<p class='text-muted'>Your cart is empty.</p>";
-                                }
-                                ?>
                             </div>
                         </div>
                     </div>
@@ -210,7 +240,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             </div>
         </section>
     </main>
-
+    
     <?php include ("../footer/footer.php"); ?>
+    
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-t5oFbNnNQaUbwGA2rtEIzKzED3b6A9l1Shf0tRk1R9+fyKxjDE+H86ttt8AuDLa/" crossorigin="anonymous"></script>
 </body>
 </html>
+
