@@ -114,27 +114,84 @@ require_once '../signup/admin_auth.php';
                 </div>
             </div>
 
-            <div class="myGraph">
-                <canvas id="myChart1" style="width:100%;max-width:700px"></canvas>
-            </div>
-            <div class="myGraph">
-                <div id="myPlot">
-                    <canvas id="myChart2" style="width:100%;max-width:1200px"></canvas>
-                </div>
-            </div>
+<div class="chartContainer">
+    <div class="chart" id="chart2">
+        <canvas id="myChart2" style="width:100%; max-width: 1150px;"></canvas>
+    </div>
+    <div class="chartRow">
+        <div class="chart" id="chart1">
+            <canvas id="myChart1" style="width:100%; max-width: 700px; height: 550px;"></canvas>
         </div>
-        <script src="assets/js/main.js"></script>
-        <script>
+        <div class="chart" id="chart3">
+            <canvas id="myChart3" style="width:100%; max-width: 700px; height: 550px;"></canvas>
+        </div>
+    </div>
+</div>
+
+<style>
+    .chartContainer {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    .chartRow {
+        display: flex;
+        gap: 20px;
+        justify-content: space-around;
+    }
+
+    .chart {
+        width: 100%;
+        max-width: 700px;
+    }
+
+    #chart2 {
+        max-width: 1150px;
+    }
+
+    #chart1, #chart3 {
+        height: 550px;
+    }
+</style>
+
+<script>
             var xValues = ["Italy", "France", "Spain", "USA", "Argentina"];
             var yValues = [55, 49, 44, 24, 15];
             var barColors = [
-                "#b91d47",
-                "#00aba9",
-                "#2b5797",
-                "#e8c3b9",
-                "#1e7145"
+                "#FF6347 ",
+                "#40E0D0 ",
+                "#EE82EE ",
+                "#FFD700 ",
+                "#7FFFD4 "
             ];
+            new Chart("myChart3", {
+                type: "pie",
+                data: {
+                    labels: xValues,
+                    datasets: [{
+                        backgroundColor: barColors,
+                        data: yValues
+                    }]
+                },
+                options: {
+                    title: {
+                        display: true,
+                        text: "World Wide Wine Production"
+                    }
+                }
+            });
 
+            var xValues = ["Italy", "France", "Spain", "USA", "Argentina"];
+            var yValues = [55, 49, 44, 24, 15];
+            var barColors = [
+                "#FF1493",
+                "#00FA9A",
+                "#FF8C00",
+                "#9400D3",
+                "#00BFFF"
+            ];
+            
             new Chart("myChart1", {
                 type: "doughnut",
                 data: {
@@ -151,12 +208,11 @@ require_once '../signup/admin_auth.php';
                     }
                 }
             });
-        </script>
-        <script>
+
             var xValues = ["Italy", "France", "Spain", "USA", "Argentina"];
             var yValues = [55, 49, 44, 24, 15];
-            var barColors = ["red", "green", "blue", "orange", "brown"];
-
+            var barColors = ["#9932CC", "#3CB371", "#FF69B4", "#4682B4", "#DDA0DD"];
+            
             new Chart("myChart2", {
                 type: "bar",
                 data: {
@@ -176,11 +232,12 @@ require_once '../signup/admin_auth.php';
                     }
                 }
             });
-        </script>
+            </script>
         <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
         <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
-
-
-</body>
-
+        <script src="assets/js/main.js"></script>
+        
+        
+    </body>
+    
 </html>

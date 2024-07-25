@@ -2,12 +2,40 @@
 include "../signup/connect.php";
 require_once '../signup/admin_auth.php';
 
-$sql = "SELECT COUNT(*) as daily_views FROM page_views WHERE DATE(view_date) = CURDATE()";
+// Fetch total page views
+$sql = "SELECT COUNT(*) as total_page_views FROM page_views";
 $result = $conn->query($sql);
 $row = $result->fetch_assoc();
-$daily_views = $row['daily_views'];
-?>
+$total_page_views = $row['total_page_views'];
 
+// Fetch total orders
+$sql = "SELECT COUNT(*) as total_orders FROM orders";
+$result = $conn->query($sql);
+$row = $result->fetch_assoc();
+$total_orders = $row['total_orders'];
+
+// Fetch total reviews
+$sql = "SELECT COUNT(*) as total_reviews FROM reviews";
+$result = $conn->query($sql);
+$row = $result->fetch_assoc();
+$total_reviews = $row['total_reviews'];
+
+// Fetch total earnings
+$sql = "SELECT SUM(total_price) as total_earnings FROM orders";
+$result = $conn->query($sql);
+$row = $result->fetch_assoc();
+$total_earnings = $row['total_earnings'];
+
+// Fetch recent orders
+$sql = "SELECT order_id, user_id, order_date, total_price, order_status FROM orders ORDER BY order_date DESC LIMIT 8";
+$result = $conn->query($sql);
+$orders = $result->fetch_all(MYSQLI_ASSOC);
+
+// Fetch recent customers
+$sql = "SELECT first_name, address FROM users ORDER BY user_id DESC LIMIT 8";
+$result = $conn->query($sql);
+$users = $result->fetch_all(MYSQLI_ASSOC);
+?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -37,7 +65,6 @@ $daily_views = $row['daily_views'];
                         <span class="icon">
                             <ion-icon name="home-outline"></ion-icon>
                         </span>
-                       
                         <span class="title">Dashboard</span>
                     </a>
                 </li>
@@ -61,11 +88,11 @@ $daily_views = $row['daily_views'];
                 </li>
 
                 <li>
-                    <a href="#">
+                    <a href="manageOrders.php">
                         <span class="icon">
-                            <ion-icon name="help-outline"></ion-icon>
+                            <ion-icon name="settings-outline"></ion-icon>
                         </span>
-                        <span class="title">Help</span>
+                        <span class="title">Edit/Cancel Orders</span>
                     </a>
                 </li>
 
@@ -122,8 +149,8 @@ $daily_views = $row['daily_views'];
             <div class="cardBox">
                 <div class="card">
                     <div>
-                        <div class="numbers"><?php echo htmlspecialchars($daily_views); ?></div>
-                        <div class="cardName">Daily Views</div>
+                        <div class="numbers"><?php echo htmlspecialchars($total_page_views); ?></div>
+                        <div class="cardName">Page Views</div>
                     </div>
                     <div class="iconBx">
                         <ion-icon name="eye-outline"></ion-icon>
@@ -132,7 +159,7 @@ $daily_views = $row['daily_views'];
 
                 <div class="card">
                     <div>
-                        <div class="numbers">80</div>
+                        <div class="numbers"><?php echo htmlspecialchars($total_orders); ?></div>
                         <div class="cardName">Sales</div>
                     </div>
 
@@ -143,8 +170,8 @@ $daily_views = $row['daily_views'];
 
                 <div class="card">
                     <div>
-                        <div class="numbers">284</div>
-                        <div class="cardName">Comments</div>
+                        <div class="numbers"><?php echo htmlspecialchars($total_reviews); ?></div>
+                        <div class="cardName">Reviews</div>
                     </div>
 
                     <div class="iconBx">
@@ -154,8 +181,8 @@ $daily_views = $row['daily_views'];
 
                 <div class="card">
                     <div>
-                        <div class="numbers">$7,842</div>
-                        <div class="cardName">Earning</div>
+                        <div class="numbers"><?php echo htmlspecialchars('$' . number_format($total_earnings, 2)); ?></div>
+                        <div class="cardName">Earnings</div>
                     </div>
 
                     <div class="iconBx">
@@ -168,110 +195,50 @@ $daily_views = $row['daily_views'];
             <div class="details">
                 <div class="recentOrders">
                     <div class="cardHeader">
-    
                         <h2>Recent Orders</h2>
-                        <a href="#" class="btn">View All</a>
                     </div>
 
                     <table>
                         <thead>
                             <tr>
-                                <td>Name</td>
-                                <td>Price</td>
-                                <td>Payment</td>
-                                <td>Status</td>
+                                <td>Order ID</td>
+                                <td>User ID</td>
+                                <td>Order Date</td>
+                                <td>Total Price</td>
+                                <td>Order Status</td>
                             </tr>
                         </thead>
 
                         <tbody>
-                            <tr>
-                                <td>Star Refrigerator</td>
-                                <td>$1200</td>
-                                <td>Paid</td>
-                                <td><span class="status delivered">Delivered</span></td>
-                            </tr>
-
-                            <tr>
-                                <td>Dell Laptop</td>
-                                <td>$110</td>
-                                <td>Due</td>
-                                <td><span class="status pending">Pending</span></td>
-                            </tr>
-
-                            <tr>
-                                <td>Apple Watch</td>
-                                <td>$1200</td>
-                                <td>Paid</td>
-                                <td><span class="status return">Return</span></td>
-                            </tr>
-
-                            <tr>
-                                <td>Addidas Shoes</td>
-                                <td>$620</td>
-                                <td>Due</td>
-                                <td><span class="status inProgress">In Progress</span></td>
-                            </tr>
-
-                            <tr>
-                                <td>Star Refrigerator</td>
-                                <td>$1200</td>
-                                <td>Paid</td>
-                                <td><span class="status delivered">Delivered</span></td>
-                            </tr>
-
-                            <tr>
-                                <td>Dell Laptop</td>
-                                <td>$110</td>
-                                <td>Due</td>
-                                <td><span class="status pending">Pending</span></td>
-                            </tr>
-
-                            <tr>
-                                <td>Apple Watch</td>
-                                <td>$1200</td>
-                                <td>Paid</td>
-                                <td><span class="status return">Return</span></td>
-                            </tr>
-
-                            <tr>
-                                <td>Addidas Shoes</td>
-                                <td>$620</td>
-                                <td>Due</td>
-                                <td><span class="status inProgress">In Progress</span></td>
-                            </tr>
+                            <?php foreach ($orders as $order): ?>
+                                <tr>
+                                    <td><?php echo htmlspecialchars($order['order_id']); ?></td>
+                                    <td><?php echo htmlspecialchars($order['user_id']); ?></td>
+                                    <td><?php echo htmlspecialchars($order['order_date']); ?></td>
+                                    <td><?php echo htmlspecialchars('$' . number_format($order['total_price'], 2)); ?></td>
+                                    <td><span class="status <?php echo htmlspecialchars(strtolower($order['order_status'])); ?>"><?php echo htmlspecialchars($order['order_status']); ?></span></td>
+                                </tr>
+                            <?php endforeach; ?>
                         </tbody>
                     </table>
                 </div>
 
                 <!-- ================= New Customers ================ -->
-               <?php $sql = "SELECT first_name, Country FROM users ORDER BY user_id DESC LIMIT 8";
-
-                // Execute the query
-                $result = $conn->query($sql);
-
-                if ($result->num_rows > 0) {
-                    // Fetch all results
-                    $users = $result->fetch_all(MYSQLI_ASSOC);
-                } else {
-                    $users = [];
-                }
-    
-                ?>
                 <div class="recentCustomers">
-        <div class="cardHeader">
-            <h2>Recent Customers</h2>
-        </div>
+                    <div class="cardHeader">
+                        <h2>Recent Customers</h2>
+                    </div>
 
-        <table>
-            <?php foreach ($users as $user): ?>
-                <tr>
-                    <td>
-                        <h4><?php echo htmlspecialchars($user['first_name']); ?> <br> <span><?php echo htmlspecialchars($user['Country']); ?></span></h4>
-                    </td>
-                </tr>
-            <?php endforeach; ?>
-        </table>
-    </div>
+                    <table>
+                        <?php foreach ($users as $user): ?>
+                            <tr>
+                                <td>
+                                    <h4><?php echo htmlspecialchars($user['first_name']); ?> <br> <span><?php echo htmlspecialchars($user['address']); ?></span></h4>
+                                </td>
+                            </tr>
+                        <?php endforeach; ?>
+                    </table>
+                </div>
             </div>
         </div>
     </div>
@@ -291,4 +258,3 @@ $daily_views = $row['daily_views'];
 </body>
 
 </html>
-
