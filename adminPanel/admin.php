@@ -106,15 +106,6 @@ $users = $result->fetch_all(MYSQLI_ASSOC);
                 </li>
 
                 <li>
-                    <a href="#">
-                        <span class="icon">
-                            <ion-icon name="lock-closed-outline"></ion-icon>
-                        </span>
-                        <span class="title">Password</span>
-                    </a>
-                </li>
-
-                <li>
                     <a href="../signup/logout.php">
                         <span class="icon">
                             <ion-icon name="log-out-outline"></ion-icon>

@@ -36,7 +36,6 @@ require_once '../signup/admin_auth.php';
                         <span class="icon">
                             <ion-icon name="home-outline"></ion-icon>
                         </span>
-
                         <span class="title">Dashboard</span>
                     </a>
                 </li>
@@ -60,29 +59,20 @@ require_once '../signup/admin_auth.php';
                 </li>
 
                 <li>
-                    <a href="#">
-                        <span class="icon">
-                            <ion-icon name="help-outline"></ion-icon>
-                        </span>
-                        <span class="title">Help</span>
-                    </a>
-                </li>
-
-                <li>
-                    <a href="#">
+                    <a href="manageOrders.php">
                         <span class="icon">
                             <ion-icon name="settings-outline"></ion-icon>
                         </span>
-                        <span class="title">Settings</span>
+                        <span class="title">Edit/Cancel Orders</span>
                     </a>
                 </li>
 
                 <li>
-                    <a href="#">
+                    <a href="manageProducts.php">
                         <span class="icon">
-                            <ion-icon name="lock-closed-outline"></ion-icon>
+                            <ion-icon name="settings-outline"></ion-icon>
                         </span>
-                        <span class="title">Password</span>
+                        <span class="title">Add/Remove Products</span>
                     </a>
                 </li>
 
@@ -96,6 +86,7 @@ require_once '../signup/admin_auth.php';
                 </li>
             </ul>
         </div>
+
         <div class="main">
             <div class="topbar">
                 <div class="toggle">
@@ -156,8 +147,8 @@ require_once '../signup/admin_auth.php';
 </style>
 
 <script>
-            var xValues = ["Italy", "France", "Spain", "USA", "Argentina"];
-            var yValues = [55, 49, 44, 24, 15];
+            var xValues = ["Tuesday", "Monday", "Saturday", "Thursday", "Saturday"];
+            var yValues = [60, 49, 42, 36, 30];
             var barColors = [
                 "#FF6347 ",
                 "#40E0D0 ",
@@ -177,13 +168,13 @@ require_once '../signup/admin_auth.php';
                 options: {
                     title: {
                         display: true,
-                        text: "World Wide Wine Production"
+                        text: "Most Sales this week"
                     }
                 }
             });
 
-            var xValues = ["Italy", "France", "Spain", "USA", "Argentina"];
-            var yValues = [55, 49, 44, 24, 15];
+            var xValues = ["SahelAlma", "Beirut", "Jounieh", "Jbeil", "Tabarja"];
+            var yValues = [53, 49, 44, 24, 22];
             var barColors = [
                 "#FF1493",
                 "#00FA9A",
@@ -204,13 +195,13 @@ require_once '../signup/admin_auth.php';
                 options: {
                     title: {
                         display: true,
-                        text: "This Week's Sales"
+                        text: "Top 5 Cities Ordering from Our Website"
                     }
                 }
             });
 
-            var xValues = ["Italy", "France", "Spain", "USA", "Argentina"];
-            var yValues = [55, 49, 44, 24, 15];
+            var xValues = ["Laptops", "Monitors", "Keyboards", "Desktops", "Headphones"];
+            var yValues = [50, 42, 38, 32, 27];
             var barColors = ["#9932CC", "#3CB371", "#FF69B4", "#4682B4", "#DDA0DD"];
             
             new Chart("myChart2", {
@@ -228,7 +219,7 @@ require_once '../signup/admin_auth.php';
                     },
                     title: {
                         display: true,
-                        text: "This Year's Sales"
+                        text: "Most Sold Items"
                     }
                 }
             });
