@@ -180,7 +180,7 @@
 
             <div class="form-group">
               <label class="label-agree-term"><span><span></span></span>Forgot your
-                <a href="#" class="term-service">Password?</a></label>
+                <a href="forgotpassword.php" class="term-service">Password?</a></label>
               <span></span><span></span>
               <label class="label-guest-term">
                 Continue as a
