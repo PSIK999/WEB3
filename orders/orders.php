@@ -82,6 +82,7 @@ $conn->close();
                                         <?php if ($order['order_status'] == 'Order Pending') : ?>
                                             <form method="POST" action="orders.php" class="mb-3">
                                                 <input type="hidden" name="order_id" value="<?= htmlspecialchars($order_id) ?>">
+                                                <a href="../map/index.html" class="btn" style="background-color: green; color: white">Track Your Order</a>
                                                 <button type="submit" name="cancel_order" class="btn btn-danger">Cancel Order</button>
                                             </form>
                                         <?php endif; ?>
